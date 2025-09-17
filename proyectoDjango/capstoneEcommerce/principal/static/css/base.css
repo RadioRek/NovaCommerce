@@ -1,0 +1,146 @@
+:root {
+	--blanco5: #D4F2E7;
+	--blanco10: #C9E5DB;
+	--gris25: #A7BFB7;
+	--gris50: #70807A;
+	--negro75: #38403D;
+	--negro85: #212624;
+    --amarillo: #F2E582;
+    --rojoTexto: #A64030;
+    --rojo: #FF634B;
+    --verdeMain: #00A86B;
+    --azulMain: #00A8A4;
+    --verdeMain: #699B7F;
+}
+
+/* headers */
+.head1 {
+	font-family: "Poppins", sans-serif;
+	font-size: 42px;
+	color: var(--negro75);
+	font-weight: normal;
+}
+
+.head2 {
+	font-family: "Poppins", sans-serif;
+	font-size: 37px;
+	color: var(--negro75);
+	font-weight: normal;
+}
+
+.head3 {
+	font-family: "Poppins", sans-serif;
+	font-size: 33px;
+	color: var(--negro75);
+	font-weight: normal;
+}
+
+.head4 {
+	font-family: "Poppins", sans-serif;
+	font-size: 29px;
+	color: var(--negro75);
+	font-weight: normal;
+}
+
+.head5 {
+	font-family: "Poppins", sans-serif;
+	font-size: 26px;
+	color: var(--negro75);
+	font-weight: normal;
+}
+
+.head6 {
+	font-family: "Poppins", sans-serif;
+	font-size: 23px;
+	color: var(--negro75);
+	font-weight: normal;
+}
+
+.headBlanco1 {
+	font-family: "Poppins", sans-serif;
+	font-size: 42px;
+	color: var(--blanco5);
+	font-weight: normal;
+}
+
+.headBlanco2 {
+    font-family: "Poppins", sans-serif;
+    font-size: 37px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.headBlanco3 {
+    font-family: "Poppins", sans-serif;
+    font-size: 33px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.headBlanco4 {
+    font-family: "Poppins", sans-serif;
+    font-size: 29px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.headBlanco5 {
+    font-family: "Poppins", sans-serif;
+    font-size: 26px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.headBlanco6 {
+    font-family: "Poppins", sans-serif;
+    font-size: 23px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.parrafo {
+	font-family: "Montserrat", sans-serif;
+	font-size: 21px;
+	color: var(--negro75);
+	font-weight: normal;
+}
+
+.parrafoBlanco {
+    font-family: "Montserrat", sans-serif;
+    font-size: 21px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.parrafoPequeño {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    color: var(--negro75);
+    font-weight: normal;
+}
+
+.parrafoPequeñoBlanco {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+/* botones */
+.botonGenerico {
+    background-color: var(--azulMain);
+    color: var(--blanco5);
+    border-radius: 16px;
+    text-align: center;
+    margin: 0;
+    width: fit-content;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botonGenerico:hover {
+    background-color: #00807C;
+}
