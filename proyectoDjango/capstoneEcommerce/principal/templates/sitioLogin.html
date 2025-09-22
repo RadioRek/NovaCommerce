@@ -1,10 +1,37 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block head %}
-<title>LOGIN</title>
+<title>Login | Novacommerce</title>
 {% endblock head %}
 
-
 {% block body %}
-<h1>LOGIN</h1>
-{% endblock body %} 
+<section class="pantalla">
+  <!-- Título arriba (no seleccionable) -->
+  <h1 class="headBlanco3 novacommerce-grande" style="margin-bottom: 80px;">Novacommerce</h1>
+
+  <!-- Tarjeta -->
+  <div class="card card-login">
+    <h2 class="parrafo no-select" style="font-weight:600; margin-bottom:16px;">
+      Inicio de sesión
+    </h2>
+
+    <form class="form-ui" action="#" method="get">
+      <label class="parrafoPequeño">Email</label>
+      <input type="email" class="campo-falso" placeholder="hey@tuemail.com">
+
+      <label class="parrafoPequeño">Contraseña</label>
+      <input type="password" class="campo-falso" placeholder="************">
+
+      <div class="acciones">
+        <button type="button" class="botonGenerico btn-grande boton-centrado">Iniciar sesión</button>
+      </div>
+    </form>
+
+    <p class="parrafoPequeño" style="text-align:center; margin-top:18px;">
+      ¿No tienes cuenta?
+      <a href="{% url 'registro' %}" class="enlace-accion">Regístrate</a>
+    </p>
+  </div>
+</section>
+{% endblock body %}

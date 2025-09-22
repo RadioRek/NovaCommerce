@@ -1,10 +1,34 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block head %}
-
+<link rel="stylesheet" href="{% static 'css/app.css' %}">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>Registro Novacommerce</title>
 {% endblock head %}
 
-
 {% block body %}
+<section class="pantalla">
+  <h1 class="headBlanco3 novacommerce-grande" style="margin-bottom: 80px;">Novacommerce</h1>
 
+  <div class="card">
+    <div class="card-head">
+      <a href="#" class="botonVolver" aria-label="Volver">❮</a>
+      <span class="parrafoPequeño" style="font-weight: 600;">Registro</span>
+    </div>
+
+    <div class="form-ui">
+      <label class="parrafoPequeño">Nombre</label>
+      <input type="text" class="campo-falso" placeholder="PepePapa"></input>
+
+      <label class="parrafoPequeño">Email</label>
+      <input type="text" class="campo-falso" placeholder="Pepe@ejemplo.com"></input>
+
+      <label class="parrafoPequeño">Contraseña</label>
+      <input type="password" class="campo-falso" placeholder="******"></input>
+
+      <button class="botonGenerico boton-centrado" style="margin-top: 10px;">Registrarse</button>
+    </div>
+  </div>
+</section>
 {% endblock body %}
