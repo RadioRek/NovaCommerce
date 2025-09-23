@@ -12,3 +12,6 @@ def registro(request):
 def sitioLogin(request):
     return render(request, 'sitioLogin.html')
 
+def tienda(request):
+    return render(request, 'tienda.html')
+
