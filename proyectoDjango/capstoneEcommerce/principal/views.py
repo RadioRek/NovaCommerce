@@ -12,3 +12,5 @@ def registro(request):
 def sitioLogin(request):
     return render(request, 'sitioLogin.html')
 
+def panelControl(request):  
+    return render(request, 'panelControl.html')

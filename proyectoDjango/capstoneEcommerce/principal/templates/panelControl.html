@@ -1,0 +1,180 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block head %}
+<title>panelControl</title>
+<link rel="stylesheet" href="{% static 'css/panelControl.css' %}">
+{% endblock head %} 
+
+{% block body %}
+
+
+<div class="panelControlContainer d-flex m-0 flex-column p-2 p-sm-4">
+    <div class="card mx-2 mx-sm-4 p-2 p-sm-4">
+        <h5 class="head5 m-0 p-0 mx-auto text-center">Rellena el formulario para agregar un producto</h5>
+        <form action="">
+
+            <div class="row m-0 p-0 mt-2 mt-sm-4">
+                <!-- input nombre -->
+                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                    <label for="nombreInput" class="form-label">Nombre</label>
+                    <input type="text" class="form-control w-95" id="nombreInput" placeholder="Nombre del producto">
+                </div>
+
+                <!-- input precio -->
+                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                    <label for="precioInput" class="form-label">Precio</label>
+                    <input type="number" class="form-control w-95" id="precioInput" placeholder="Precio del producto">
+                </div>
+
+                <!-- input imagen -->
+                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                    <label for="imgInput" class="form-label">Imagen</label>
+                    <input class="form-control w-95" type="file" id="imgInput">
+                </div>
+
+                <!-- input descripcion -->
+                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                    <label for="descripcionInput" class="form-label">Descripcion</label>
+                    <textarea class="form-control w-95" id="descripcionInput" rows="3"></textarea>
+                </div>
+
+                <!-- input categoria -->
+                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                    <label for="categoriaInput" class="form-label">Categorias</label>
+                    <select class="form-select w-95" id="categoriaInput">
+                        <option selected>Selecciona las categorias</option>
+                        <option value="1">Categoria 1</option>
+                        <option value="2">Categoria 2</option>
+                        <option value="3">Categoria 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row m-0 p-0 mt-4">
+                <!-- boton limpiar formulario -->
+                <div class="col-12 col-sm-6 justify-content-center d-flex m-0 p-0 mb-sm-0 mb-2">
+                    <button type="reset" class="botonGenerico w-95">Limpiar formulario</button>
+                </div>
+
+                <!-- boton enviar -->
+                <div class="col-12 col-sm-6 justify-content-center d-flex m-0 p-0 mb-sm-0 mb-2">
+                    <button type="submit" class="botonGenerico w-95">Registrar producto</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- controles productos -->
+    <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
+        <div class="row p-0 m-0 mt-4">
+            <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
+                <label for="idInput" class="form-label">Id</label>
+                <input type="number" class="form-control w-95" id="idInput" placeholder="Id del producto">
+                <button type="button" class="botonGenerico mt-2 w-75">Buscar</button>
+            </div>
+            <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
+                <label for="nombreInput" class="form-label">Nombre</label>
+                <input type="text" class="form-control w-95" id="nombreInput" placeholder="Nombre del producto">
+                <button type="button" class="botonGenerico mt-2 w-75">Buscar</button>
+            </div>
+            <div class="col-12 text-center mb-sm-4 mb-2 mt-2">
+                <p class="parrafoPequeñoSuave">(deja los campos vacios antes de buscar para traer todo)</p>
+            </div>
+        </div>
+
+        <div class="mx-2 mx-sm-4 table-responsive">
+            <table class="table table-success table-striped-columns">
+                <thead>
+                    <tr>
+                        <th scope="col parrafo">Nombre</th>
+                        <th scope="col parrafo">Descripcion</th>
+                        <th scope="col parrafo">Precio</th>
+                        <th scope="col parrafo">Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                    </tr>
+                    <tr>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                    </tr>
+                    <tr>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- controles usuarios -->
+    <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
+        <div class="row p-0 m-0 mt-4">
+            <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
+                <label for="idInput" class="form-label">Id</label>
+                <input type="number" class="form-control w-95" id="idInput" placeholder="Id del usuario">
+                <button type="button" class="botonGenerico mt-2 w-75">Buscar</button>
+            </div>
+            <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
+                <label for="nombreInput" class="form-label">Nombre</label>
+                <input type="text" class="form-control w-95" id="nombreInput" placeholder="Nombre del usuario">
+                <button type="button" class="botonGenerico mt-2 w-75">Buscar</button>
+            </div>
+            <div class="col-12 text-center mb-sm-4 mb-2 mt-2">
+                <p class="parrafoPequeñoSuave">(deja los campos vacios antes de buscar para traer todo)</p>
+            </div>
+        </div>
+
+        <div class="mx-2 mx-sm-4 table-responsive">
+            <table class="table table-success table-striped-columns">
+                <thead>
+                    <tr>
+                        <th scope="col parrafo">Username</th>
+                        <th scope="col parrafo">Nombre</th>
+                        <th scope="col parrafo">Apellido</th>
+                        <th scope="col parrafo">Direccion</th>
+                        <th scope="col parrafo">Telefono</th>
+                        <th scope="col parrafo">Email</th>
+                        <th scope="col parrafo">Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                    <tr>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                        <td>Placeholder</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock body %}
