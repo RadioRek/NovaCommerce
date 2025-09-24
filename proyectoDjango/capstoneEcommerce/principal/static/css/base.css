@@ -124,6 +124,13 @@
     font-weight: normal;
 }
 
+.parrafoPequeñoSuave {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    color: var(--gris50);
+    font-weight: normal;
+}
+
 .parrafoPequeñoBlanco {
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
@@ -135,7 +142,7 @@
 .botonGenerico {
     background-color: var(--azulMain);
     color: var(--blanco5);
-    border-radius: 16px;
+    border-radius: 8px;
     text-align: center;
     margin: 0;
     width: fit-content;
@@ -195,4 +202,33 @@ margin-top:8px;
   display:block;
   margin-left:auto;
   margin-right:auto;
+}
+
+
+.w-90 {
+    width: 90%;
+}
+
+.w-95 {
+    width: 95%;
+}
+
+.w-85 {
+    width: 85%;
+}
+
+.bgColorAzulMain {
+    background-color: var(--azulMain);
+}
+
+.bgColorVerdeMain {
+    background-color: var(--verdeMain);
+}
+
+.bgColorGris25 {
+    background-color: var(--gris25);
+}
+
+.card {
+    box-shadow: 0 2px 4px 2px var(--gris50);   
 }

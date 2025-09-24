@@ -15,3 +15,5 @@ def sitioLogin(request):
 def tienda(request):
     return render(request, 'tienda.html')
 
+def panelControl(request):  
+    return render(request, 'panelControl.html')
