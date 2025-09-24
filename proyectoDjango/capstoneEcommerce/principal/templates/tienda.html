@@ -1,0 +1,216 @@
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/tienda.css' %}">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<title>Tienda</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<header class="header-custom py-4 shadow-sm mb-5">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h4 class="head4">Inicio</h4>
+        <h4 class="head4"> Tienda</h4>
+        <h4 class="head4">Categoria</h4>
+        <h4 class="head4">Contacto</h4>
+        <nav>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-search"
+                viewBox="0 0 16 16"
+            >
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-cart3"
+                viewBox="0 0 16 16"
+            >
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+            </svg>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-person"
+                viewBox="0 0 16 16"
+            >
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+            </svg>
+        </nav>
+    </div>
+</header>
+{% endblock head %}
+
+
+{% block body %}
+<div class="container mb-5">
+    <img src="https://via.placeholder.com/1200x400" class="img-fluid rounded" alt="Banner de la tienda">
+</div>
+<div class="container mt-4">
+    <div class="row">
+        <aside class="col-12 col-md-4 mb-4 ps-0 categorias">
+            <h4 class="head4 mb-4">Categorías</h4>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="#">Categoria 1</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#">Categoria 2</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#">Categoria 3</a>
+                </li>
+            </ul>
+            <h4 class="head4 mb-4">Rango de precios</h4>
+            <hr>
+            <h4 class="head4 mb-4">Ordenar por</h4>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="#">Categoria 1</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#">Categoria 2</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#">Categoria 3</a>
+                </li>
+            </ul>
+        </aside>
+        <main class="col-12 col-md-8">
+            <h4 class="head4 mb-4">Productos</h4>
+            <hr>
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Producto 1">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Producto 1</h5>
+                            <div class="mt-auto">
+                                <p class="fw-bold">$19.99</p>
+                                <a href="#" class="botonGenerico">Agregar al carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Producto 2">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Producto 2</h5>
+                            <div class="mt-auto">
+                                <p class="fw-bold">$29.99</p>
+                                <a href="#" class="botonGenerico">Agregar al carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Producto 3">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Producto 3</h5>
+                            <div class="mt-auto">
+                                <p class="fw-bold">$39.99</p>
+                                <a href="#" class="botonGenerico">Agregar al carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="head4 mb-4 mt-4">Más vendidos</h4>
+            <hr>
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Producto 1">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Producto 1</h5>
+                            <div class="mt-auto">
+                                <p class="fw-bold">$19.99</p>
+                                <a href="#" class="botonGenerico">Agregar al carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Producto 2">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Producto 2</h5>
+                            <div class="mt-auto">
+                                <p class="fw-bold">$29.99</p>
+                                <a href="#" class="botonGenerico">Agregar al carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Producto 3">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Producto 3</h5>
+                            <div class="mt-auto">
+                                <p class="fw-bold">$39.99</p>
+                                <a href="#" class="botonGenerico">Agregar al carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock body %}
+<footer class="footer-custom text-white py-4 mt-5">
+    <div class="foot">
+        <div class="row">
+            <!-- Sección izquierda -->
+            <div class="col-md-4 mb-3">
+                <h5 head5>Categorias</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#" class="text-white text-decoration-none">Categoria 1</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white text-decoration-none">Categoria 2</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white text-decoration-none">Categoría 3</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Ayuda</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#" class="text-white text-decoration-none">Contactanos</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white text-decoration-none">Sobre nosotros</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white text-decoration-none">Terminos y condiciones</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sección redes sociales -->
+            <div class="col-md-4 mb-3">
+                <h5>Contacto</h5>
+                <p>Direccion</p>
+                <p>Telefono</p>
+                <p>Correo</p>
+            </div>
+        </div>
+        <hr class="border-light opacity-50">
+        <div class="text-center">
+            <p class="mb-0">&copy; 2025 NovaCommerce. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
