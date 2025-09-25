@@ -10,5 +10,6 @@ urlpatterns = [
     path('sitioLogin/', views.sitioLogin, name='sitioLogin'),
     path('panelControl/', views.panelControl, name='panelControl'),
     path('sitioLogin/', views.sitioLogin, name='sitioLogin'),
-    path('tienda/', views.tienda, name='tienda'),    
+    path('tienda/', views.tienda, name='tienda'),
+    path('producto/<int:producto_id>/', views.producto, name='producto'),
 ]
