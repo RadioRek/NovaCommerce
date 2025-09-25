@@ -34,42 +34,42 @@
 .head1 {
 	font-family: "Poppins", sans-serif;
 	font-size: 42px;
-	color: var(--negro75);
+	color: var(--gris50);
 	font-weight: normal;
 }
 
 .head2 {
 	font-family: "Poppins", sans-serif;
 	font-size: 37px;
-	color: var(--negro75);
+	color: var(--gris50);
 	font-weight: normal;
 }
 
 .head3 {
 	font-family: "Poppins", sans-serif;
 	font-size: 33px;
-	color: var(--negro75);
+	color: var(--gris50);
 	font-weight: normal;
 }
 
 .head4 {
 	font-family: "Poppins", sans-serif;
 	font-size: 29px;
-	color: var(--negro75);
+	color: var(--gris50);
 	font-weight: normal;
 }
 
 .head5 {
 	font-family: "Poppins", sans-serif;
 	font-size: 26px;
-	color: var(--negro75);
+	color: var(--gris50);
 	font-weight: normal;
 }
 
 .head6 {
 	font-family: "Poppins", sans-serif;
 	font-size: 23px;
-	color: var(--negro75);
+	color: var(--gris50);
 	font-weight: normal;
 }
 
@@ -119,7 +119,7 @@
 .parrafo {
 	font-family: "Montserrat", sans-serif;
 	font-size: 21px;
-	color: var(--negro75);
+	color: var(--gris50);
 	font-weight: normal;
 }
 
@@ -133,7 +133,7 @@
 .parrafoPequeño {
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
-    color: var(--negro75);
+    color: var(--gris50);
     font-weight: normal;
 }
 
@@ -147,6 +147,13 @@
 .parrafoPequeñoBlanco {
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.textoMinimoBlanco {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
     color: var(--blanco5);
     font-weight: normal;
 }
@@ -167,7 +174,29 @@
 
 .botonGenerico:hover {
     background-color: var(--azulMain2);
+    color: var(--blanco5);
+
 }
+
+.botonGenerico2 {
+    background-color: var(--verdeOscuroMain);
+    color: var(--blanco5);
+    border-radius: 8px;
+    text-align: center;
+    margin: 0;
+    padding: 8px 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+}
+
+.botonGenerico2:hover {
+    background-color: var(--verdeOscuroMain2);
+    color: var(--blanco5);
+
+}
+
 
 
 .w-90 {
@@ -222,7 +251,11 @@
 }
 
 .navItem:hover {
-    color: var(--amarillo);
+    color: var(--amarilloMain2);
+}
+
+.colorVerde {
+    color: var(--verdeMain);
 }
 
 /*
