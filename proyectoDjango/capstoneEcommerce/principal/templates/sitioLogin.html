@@ -3,33 +3,33 @@
 
 {% block head %}
 <title>Login | Novacommerce</title>
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
 {% endblock head %} 
 
 {% block body %}
-<section class="pantalla">
-	<!-- Título arriba (no seleccionable) -->
-	<h1 class="headBlanco3 novacommerce-grande" style="margin-bottom: 80px">Novacommerce</h1>
+<section class="screen">
+	<!--titulo-->
+	<h1 class="headBlanco1 text-center brand-title">Novacommerce</h1>
+	<!--formulario-->
+	<div class="login-card mx-auto p-24 md:p-32 maxw-720">
+		<div class="centrar col gap-24">
+			<h2 class="parrafo col gap-24">Iniciar Sesion</h2>
+			
+			<div class="centrar col gap-16">
+				<label class="parrafoPequeño" style="text-align: left; width: 100%; display: flex;">Email</label>
+				<input type="email" class="input w-100" placeholder="Ingresa tu email">
 
-	<!-- Tarjeta -->
-	<div class="card card-login">
-		<h2 class="parrafo no-select" style="font-weight: 600; margin-bottom: 16px">Inicio de sesión</h2>
-
-		<form class="form-ui" action="#" method="get">
-			<label class="parrafoPequeño">Email</label>
-			<input type="email" class="campo-falso" placeholder="hey@tuemail.com" />
-
-			<label class="parrafoPequeño">Contraseña</label>
-			<input type="password" class="campo-falso" placeholder="************" />
-
-			<div class="acciones">
-				<button type="button" class="botonGenerico btn-grande boton-centrado">Iniciar sesión</button>
+				<label class="parrafoPequeño" style="text-align: left; width: 100%; display: flex;">Contraseña</label>
+				<input type="password" class="input w-100" placeholder="Ingresa tu contraseña">
 			</div>
-		</form>
 
-		<p class="parrafoPequeño" style="text-align: center; margin-top: 18px">
-			¿No tienes cuenta?
-			<a href="{% url 'registro' %}" class="enlace-accion">Regístrate</a>
-		</p>
-	</div>
+			<div class="centrar col gap-16 mt-24">
+				<button class="botonGenerico w-100">Iniciar Sesion</button>
+				<p class="parrafoPequeño">¿No tienes una cuenta? 
+					<a href="{% url 'registro' %}" class="link">Registrate</a>
+				</p>
+			</div>
+		</div>
 </section>
 {% endblock body %}

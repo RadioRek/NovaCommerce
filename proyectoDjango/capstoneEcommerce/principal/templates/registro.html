@@ -1,37 +1,43 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/app.css' %}">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-<title>Registro Novacommerce</title>
+<title>Registro | Novacommerce</title>
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="{% static 'css/registro.css' %}">
 {% endblock head %}
 
 {% block body %}
-<section class="pantalla">
-  <h1 class="headBlanco3 novacommerce-grande" style="margin-bottom: 80px;">Novacommerce</h1>
+<section class="screen">
+  <div class="screen-container">
+    <h1 class="headBlanco1 brand-title text-center">Novacommerce</h1>
 
-  <div class="card">
-    <div class="card-head">
-      <a href="#" class="botonVolver" aria-label="Volver">❮</a>
-      <span class="parrafoPequeño" style="font-weight: 600;">Registro</span>
+    <div class="register-card p-24 md:p-32"> 
+      <div class="dflex col gap-24">
+        <h2 class="parrafo" align="center">Crear cuenta</h2>
+        <!-- Formulario de registro -->
+        <div class="dflex col gap-16">
+          <label class="parrafoPequeño" for="nombre" display: flex;>Nombre</label>
+          <input type="text" id="nombre" name="nombre" class="input w-100" placeholder="Ingresa tu nombre" required>
+
+          <label class="parrafoPequeño" for="email">Email</label>
+          <input type="email" id="email" name="email" class="input w-100" placeholder="Ingresa tu email" required>
+
+          <label class="parrafoPequeño" for="password">Contraseña</label>
+          <input type="password" id="password" name="password" class="input w-100" placeholder="Ingresa tu contraseña" required>
+
+          <label class="parrafoPequeño" for="confirm_password">Confirmar Contraseña</label>
+          <input type="password" id="confirm_password" name="confirm_password" class="input w-100" placeholder="Confirma tu contraseña" required>
+        </div>
+        <!-- Acciones-->
+        <div class="dflex col gap-16">
+          <button class="botonGenerico w-100">Crear cuenta</button>
+          <p class="parrafoPequeño">¿Ya tienes una cuenta? <a href="{% url 'sitioLogin' %}">Inicia sesión</a></p>
+         </div>
+      </div>
+
     </div>
-
-    <div class="form-ui">
-      <label class="parrafoPequeño">Nombre</label>
-      <input type="text" class="campo-falso" placeholder="PepePapa"></input>
-
-      <label class="parrafoPequeño">Email</label>
-      <input type="text" class="campo-falso" placeholder="Pepe@ejemplo.com"></input>
-
-      <label class="parrafoPequeño">Contraseña</label>
-      <input type="password" class="campo-falso" placeholder="******"></input>
-
-      <button class="botonGenerico boton-centrado" style="margin-top: 10px;">Registrarse</button>
-    </div>
+     
   </div>
 </section>
 {% endblock body %}
