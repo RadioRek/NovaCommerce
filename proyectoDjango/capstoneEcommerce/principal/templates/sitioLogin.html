@@ -4,32 +4,26 @@
 {% block head %}
 <title>Login | Novacommerce</title>
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
-<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="{% static 'css/registro.css' %}">
 {% endblock head %} 
 
 {% block body %}
-<section class="screen">
-	<!--titulo-->
-	<h1 class="headBlanco1 text-center brand-title">Novacommerce</h1>
-	<!--formulario-->
-	<div class="login-card mx-auto p-24 md:p-32 maxw-720">
-		<div class="centrar col gap-24">
-			<h2 class="parrafo col gap-24">Iniciar Sesion</h2>
-			
-			<div class="centrar col gap-16">
-				<label class="parrafoPequeño" style="text-align: left; width: 100%; display: flex;">Email</label>
-				<input type="email" class="input w-100" placeholder="Ingresa tu email">
+<div class="contenedorXD d-flex flex-column py-4 align-items-center min-vh-100">
 
-				<label class="parrafoPequeño" style="text-align: left; width: 100%; display: flex;">Contraseña</label>
-				<input type="password" class="input w-100" placeholder="Ingresa tu contraseña">
-			</div>
+  <h1 class="headBlanco1 text-center mb-4 ">Novacommerce</h1>
 
-			<div class="centrar col gap-16 mt-24">
-				<button class="botonGenerico w-100">Iniciar Sesion</button>
-				<p class="parrafoPequeño">¿No tienes una cuenta? 
-					<a href="{% url 'registro' %}" class="link">Registrate</a>
-				</p>
-			</div>
-		</div>
-</section>
+  <div class="card p-4 d-flex flex-column ">
+	<h2 class="parrafo text-center">Iniciar sesión</h2>
+
+	<label for="usernameInput" class="form-label">Username</label>
+	<input type="text" class="form-control mb-2" id="usernameInput" placeholder="username de usuario" required>
+
+	<label for="passwordInput" class="form-label">Password</label>
+	<input type="password" class="form-control mb-4" id="passwordInput" placeholder="*********" required>
+
+	<button class="botonGenerico my-2 px-4">Iniciar sesión</button>
+	<p class="parrafoPequeño m-0 text-center">¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate</a></p>
+  </div>
+	
+</div>
 {% endblock body %}

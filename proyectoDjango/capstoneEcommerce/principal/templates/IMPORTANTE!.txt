@@ -1,0 +1,29 @@
+mb = margin bottom == margen abajo
+
+mt = margin top == margen arriba
+
+me = margin end == margen al final
+
+ms = margin start == margen al inicio
+
+
+pt = padding top == relleno arriba
+
+pb = padding bottom == relleno abajo
+
+pe = padding end == relleno al final
+
+ps = padding start == relleno al inicio
+
+m = margin == margen en todas las direcciones
+
+p = padding == relleno en todas las direcciones
+
+
+px = padding horizontal == relleno horizontal (izquierda y derecha)
+
+py = padding vertical == relleno vertical (arriba y abajo)
+
+mx = margin horizontal == margen horizontal (izquierda y derecha)
+
+my = margin vertical == margen vertical (arriba y abajo)

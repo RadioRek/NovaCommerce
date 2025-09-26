@@ -1,36 +1,14 @@
-.screen{
-  flex: 1;                                   /* ocupa el alto disponible del <main> */
-  background: var(--verdeOscuroMain2);
-  display: flex; align-items: center; justify-content: center;
-  padding: 24px;                              /* 3*8 */
+.contenedorXD{                
+  background: var(--verdeOscuroMain2);                    
 }
 
-.screen-container{
-  display:flex; flex-direction:column; align-items:center;
-  gap:24px; width:100%; max-width:720px;      /* 90*8 */
+
+.card {
+  width: 90%;
 }
 
-.register-card{
-  background: var(--fondo);
-  border-radius: 16px;                         /* 2*8 */
-  box-shadow: 0 2px 4px 2px var(--gris50);
-  width:100%;
+@media (min-width: 576px) {
+  .card {
+    width: 60%;
+  }
 }
-
-.input{
-  height:40px;                                 /* 5*8 */
-  border-radius:8px;                           /* 1*8 */
-  border:1px solid var(--gris50);
-  background:#ffffff;
-  padding:0 16px;                              /* 2*8 */
-  font-family:"Montserrat", sans-serif;
-  font-size:18px; color:var(--negro85);
-  text-align:left;
-}
-
-.input::placeholder{ color:var(--gris50); opacity:1; }
-.input:focus{ outline:none; border:2px solid var(--azulMain); background:#f8f8f8; }
-
-.dflex{display:flex;}
-.col{flex-direction:column;} 
-.row{flex-direction:row;}
