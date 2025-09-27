@@ -1,15 +1,41 @@
+.categorias {    
+}
 
-hr {
-    border: none;
-        
-    background-color: black;
-   }
+.header-custom {
+  background-color: var(--verdeOpaco);
+  color: var(negro75);
+}
+
+.header-custom .head4 {
+    margin: 0 16px;
+    font-weight: 600;
+    color: var(--negro75);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.header-custom .head4:hover {
+    color: var(--fondo); 
+}
+
+.header-custom svg {
+    fill: var(--negro75);             
+    transition: fill 0.3s ease;
+    cursor: pointer;
+}
+
+.header-custom svg:hover {
+    fill: var(--fondo); 
+}
+h4, h2, h5, p {
+  margin-bottom: 16px; 
+}
+
 .card {
-  border-radius: 8px;   
-  overflow: hidden;
+	border-radius: 8px;
+	overflow: hidden;
 }
 .card img {
-  height: 200px;
-  object-fit: cover;
+	height: 200px;
+	object-fit: cover;
 }
-

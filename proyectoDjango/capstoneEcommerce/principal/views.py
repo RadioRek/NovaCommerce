@@ -1,6 +1,10 @@
 from django.shortcuts import render
 
-# Create your views here.
+# cositas de la API
+from rest_framework import viewsets
+from .models import Producto
+from .serializers import ProductoSerializer
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 def home(request):
@@ -17,3 +21,16 @@ def tienda(request):
 
 def panelControl(request):  
     return render(request, 'panelControl.html')
+
+def producto(request, producto_id):
+    return render(request, 'producto.html', {'producto_id': producto_id})
+
+
+# mas cositas de la API
+class ProductoViewSet(viewsets.ModelViewSet):
+    queryset = Producto.objects.all()
+    serializer_class = ProductoSerializer
+    parser_classes = [MultiPartParser, FormParser]
+
+    def get_serializer_context(self):
+        return {'request': self.request}
