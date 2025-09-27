@@ -211,6 +211,10 @@
     width: 85%;
 }
 
+.w-80 {
+    width: 80%;
+}
+
 .bgColorAzulMain {
     background-color: var(--azulMain);
 }

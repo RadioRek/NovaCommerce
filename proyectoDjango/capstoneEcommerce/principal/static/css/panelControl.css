@@ -2,8 +2,6 @@ body {
     background-color: var(--gris25);
 }
 
-
-
 /* transiciones suaves */
 .table tbody td {
   transition: background-color 0.25s ease, box-shadow 0.25s ease;

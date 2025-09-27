@@ -1,62 +1,65 @@
 .categorias {
-    margin-left: 0;    
-    padding: 16px;      
+	margin-left: 0;
+	padding: 16px;
 }
 hr {
-    border: none;
-    height: 2px;          
-    margin: 16px 0;
-    background-color: black;
-   }
+	border: none;
+	height: 2px;
+	margin: 16px 0;
+	background-color: black;
+}
 
-.tienda-fondo  {
-    background-color: var(--fondo);
+.tienda-fondo {
+	background-color: var(--fondo);
 }
 .header-custom {
-  background-color: var(--verdeOpaco);
-  color: var(negro75);
+	background-color: var(--verdeOpaco);
+	color: var(negro75);
 }
 
 .header-custom .head4 {
-    margin: 0 16px;
-    font-weight: 600;
-    color: var(--negro75);
-    cursor: pointer;
-    transition: color 0.3s ease;
+	margin: 0 16px;
+	font-weight: 600;
+	color: var(--negro75);
+	cursor: pointer;
+	transition: color 0.3s ease;
 }
 
 .header-custom .head4:hover {
-    color: var(--fondo); 
+	color: var(--fondo);
 }
 
 .header-custom svg {
-    fill: var(--negro75);             
-    transition: fill 0.3s ease;
-    cursor: pointer;
+	fill: var(--negro75);
+	transition: fill 0.3s ease;
+	cursor: pointer;
 }
 
 .header-custom svg:hover {
-    fill: var(--fondo); 
+	fill: var(--fondo);
 }
-h4, h2, h5, p {
-  margin-bottom: 16px; 
+h4,
+h2,
+h5,
+p {
+	margin-bottom: 16px;
 }
 
 .card {
-  border-radius: 8px;   
-  overflow: hidden;
+	border-radius: 8px;
+	overflow: hidden;
 }
 
 .card img {
-  height: 200px;
-  object-fit: cover;
+	height: 200px;
+	object-fit: cover;
 }
 
 .foot {
-  font-size: 14px;
-  background-color: var(--verdeOpaco);
+	font-size: 14px;
+	background-color: var(--verdeOpaco);
 }
 nav {
-    display: flex;
-    gap: 24px;
+	display: flex;
+	gap: 24px;
 }
