@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<title>Perfil</title>
+{% endblock head %} 
+
+{% block body %}
+<h1 class="head1 text-center">Mi Perfil</h1>
+<div class="row m-0 p-0 justify-content-center">
+    <div class="container col-12 col-sm-4  d-flex m-0 flex-column p-2 p-sm-4">
+        <div class="card-body text-center">
+            <div class="card h-100 shadow">
+                <h4 class="head4">Información Personal</h4>
+                <!-- Foto -->
+                <img src="https://via.placeholder.com/150" alt="Foto de perfil">
+                <h4 class="head4">Nombre de usuario</h4>
+                <h4 class="head4">email</h4>
+                <h4 class="head4">contraseña</h4>
+            </div>
+        </div>
+    </div>
+    <div class="container col-sm-8  d-flex m-0 flex-column p-2 p-sm-4">
+        <div class="card h-100 shadow">
+            <div class="card-body text-center">
+                <h4 class="head4">Editar Perfil</h4>
+                <form>
+                    <div class=" mb-3">
+                        <label for="nombre" class="form-label">Nombre completo</label>
+                        <input type="text" class="form-control" id="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Nombre de usuario</label>
+                        <input type="text" class="form-control" id="usuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" id="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Nueva contraseña</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <button type="submit" class="botonGenerico">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

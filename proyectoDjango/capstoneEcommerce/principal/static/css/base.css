@@ -1,34 +1,34 @@
 :root {
-    --verdeMain: #00A86B;
-    --verdeMain2: #008051;
-    --verdeMain3: #006641;
+    --verdeMain: #6F4E37;    /* Marrón café suave */
+    --verdeMain2: #5C4033;   /* Marrón tostado */
+    --verdeMain3: #3E2723;   /* Espresso oscuro */
 
-    --azulMain: #00A8A4;
-    --azulMain2: #00807C;
-    --azulMain3: #006664;
+    --azulMain: #C0A080;     /* Latte cremoso */
+    --azulMain2: #A67B5B;    /* Cappuccino */
+    --azulMain3: #8B5E3C;    /* Moka */
 
-    --verdeOscuroMain: #699B7F;
-    --verdeOscuroMain2: #568068;
-    --verdeOscuroMain3: #456654;
+    --verdeOscuroMain: #7B6A58;   /* Grano de café medio */
+    --verdeOscuroMain2: #5E4B3C;  /* Grano tostado */
+    --verdeOscuroMain3: #3C2F2F;  /* Grano muy oscuro */
 
-    --rojoMain: #FF634B;
-    --rojoMain2: #A64030;
-    --rojoMain3: #732C21;
+    --rojoMain: #D2691E;     /* Caramelo */
+    --rojoMain2: #8B4513;    /* Canela */
+    --rojoMain3: #5C3317;    /* Cacao amargo */
 
-    --amarilloMain: #F2E582;
-    --amarilloMain2: #CCC16E;
-    --amarilloMain3: #A69D59;
+    --amarilloMain: #E6C79C; /* Crema */
+    --amarilloMain2: #D2B48C;/* Toffee */
+    --amarilloMain3: #A68A6D;/* Madera clara */
 
 
-	--blanco5: #D4F2E7;
-	--blanco10: #C9E5DB;
-	--gris25: #A7BFB7;
-	--gris50: #70807A;
-	--negro75: #38403D;
-	--negro85: #212624;
+	--blanco5: #F5F5DC;   /* Beige */
+	--blanco10: #EDE0D4;  /* Crema suave */
+	--gris25: #C4A484;   /* Arena */
+	--gris50: #8B7D6B;   /* Café con leche */
+	--negro75: #3E2C23;  /* Espresso */
+	--negro85: #1C1A17;  /* Negro café */
 
-    --fondo: #D2FFE4;
-}
+    --fondo: #FAF3E0;    /* Fondo crema */
+
 
 /* headers */
 .head1 {
@@ -309,4 +309,3 @@ margin-top:8px;
 }
 
 */
-
