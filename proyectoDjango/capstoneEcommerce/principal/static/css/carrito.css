@@ -1,0 +1,29 @@
+hr{
+    height: 5px;
+    width: 100%;
+    background-color: black;
+}
+
+.Contenedor{                
+  background: var(--verdeOscuroMain2);                    
+}
+
+.img-max{
+    max-width: 240px;
+    max-height: 240px;
+}
+
+.sumar-restar{
+    background-color: aliceblue;
+}
+
+.tamaño-cantidad{
+    width: 64px;
+    height: 32px;
+}
+
+.btn-color{
+    font-weight: 500;
+    background-color: var(--azulMain2);
+    color: var(--blanco5);
+}

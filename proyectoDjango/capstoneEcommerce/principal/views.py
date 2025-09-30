@@ -20,3 +20,6 @@ def panelControl(request):
 
 def producto(request, producto_id):
     return render(request, 'producto.html', {'producto_id': producto_id})
+
+def carrito(request):
+    return render(request, 'carrito.html')
