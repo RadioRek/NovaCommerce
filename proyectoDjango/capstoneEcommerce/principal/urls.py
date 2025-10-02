@@ -24,6 +24,7 @@ urlpatterns = [
 
     # rutas de la API
     path('api/', include(router.urls)),
+    path('carrito/', views.carrito, name='carrito'),
 ]
 
 

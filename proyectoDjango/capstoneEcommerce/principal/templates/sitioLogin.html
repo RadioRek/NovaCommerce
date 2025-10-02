@@ -3,33 +3,27 @@
 
 {% block head %}
 <title>Login | Novacommerce</title>
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/registro.css' %}">
 {% endblock head %} 
 
 {% block body %}
-<section class="pantalla">
-	<!-- Título arriba (no seleccionable) -->
-	<h1 class="headBlanco3 novacommerce-grande" style="margin-bottom: 80px">Novacommerce</h1>
+<div class="contenedorXD d-flex flex-column py-4 align-items-center min-vh-100">
 
-	<!-- Tarjeta -->
-	<div class="card card-login">
-		<h2 class="parrafo no-select" style="font-weight: 600; margin-bottom: 16px">Inicio de sesión</h2>
+  <h1 class="headBlanco1 text-center mb-4 ">Novacommerce</h1>
 
-		<form class="form-ui" action="#" method="get">
-			<label class="parrafoPequeño">Email</label>
-			<input type="email" class="campo-falso" placeholder="hey@tuemail.com" />
+  <div class="card p-4 d-flex flex-column ">
+	<h2 class="parrafo text-center">Iniciar sesión</h2>
 
-			<label class="parrafoPequeño">Contraseña</label>
-			<input type="password" class="campo-falso" placeholder="************" />
+	<label for="usernameInput" class="form-label">Username</label>
+	<input type="text" class="form-control mb-2" id="usernameInput" placeholder="username de usuario" required>
 
-			<div class="acciones">
-				<button type="button" class="botonGenerico btn-grande boton-centrado">Iniciar sesión</button>
-			</div>
-		</form>
+	<label for="passwordInput" class="form-label">Password</label>
+	<input type="password" class="form-control mb-4" id="passwordInput" placeholder="*********" required>
 
-		<p class="parrafoPequeño" style="text-align: center; margin-top: 18px">
-			¿No tienes cuenta?
-			<a href="{% url 'registro' %}" class="enlace-accion">Regístrate</a>
-		</p>
-	</div>
-</section>
+	<button class="botonGenerico my-2 px-4">Iniciar sesión</button>
+	<p class="parrafoPequeño m-0 text-center">¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate</a></p>
+  </div>
+	
+</div>
 {% endblock body %}

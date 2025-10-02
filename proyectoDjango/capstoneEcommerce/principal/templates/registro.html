@@ -1,37 +1,60 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/app.css' %}">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-<title>Registro Novacommerce</title>
+<title>Registro | Novacommerce</title>
+<link rel="stylesheet" href="{% static 'css/registro.css' %}">
 {% endblock head %}
 
 {% block body %}
-<section class="pantalla">
-  <h1 class="headBlanco3 novacommerce-grande" style="margin-bottom: 80px;">Novacommerce</h1>
 
-  <div class="card">
-    <div class="card-head">
-      <a href="#" class="botonVolver" aria-label="Volver">❮</a>
-      <span class="parrafoPequeño" style="font-weight: 600;">Registro</span>
-    </div>
+<div class="contenedorXD d-flex flex-column py-4 align-items-center">
 
-    <div class="form-ui">
-      <label class="parrafoPequeño">Nombre</label>
-      <input type="text" class="campo-falso" placeholder="PepePapa"></input>
+  <h1 class="headBlanco1 text-center mb-4 ">Novacommerce</h1>
 
-      <label class="parrafoPequeño">Email</label>
-      <input type="text" class="campo-falso" placeholder="Pepe@ejemplo.com"></input>
+  <div class="card p-4 d-flex flex-column">
+    <h2 class="parrafo text-center">Crear cuenta</h2>
 
-      <label class="parrafoPequeño">Contraseña</label>
-      <input type="password" class="campo-falso" placeholder="******"></input>
+    <label for="usernameInput" class="form-label">Username</label>
+    <input type="text" class="form-control mb-2" id="usernameInput" placeholder="username de usuario" required>
 
-      <button class="botonGenerico boton-centrado" style="margin-top: 10px;">Registrarse</button>
-    </div>
+    <label for="nombreInput" class="form-label">Nombre</label>
+    <input type="text" class="form-control mb-2" id="nombreInput" placeholder="....." required>
+
+    <label for="ApellidoInput" class="form-label">Apellido</label>
+    <input type="text" class="form-control mb-2" id="ApellidoInput" placeholder="....." required>
+
+    <label for="DireccionInput" class="form-label">Direccion</label>
+    <input type="text" class="form-control mb-2" id="DireccionInput" placeholder="dsa" required>
+
+    <label for="TelefonoInput" class="form-label">Telefono</label>
+    <input type="number" class="form-control mb-2" id="TelefonoInput" placeholder="953846738" required>
+
+    <label for="EmailInput" class="form-label">Email</label>
+    <input type="text" class="form-control mb-2" id="EmailInput" placeholder="Tu@email.example">
+
+    <label for="usernameInput" class="form-label">Password</label>
+    <input type="password" class="form-control mb-2" id="usernameInput" required>
+
+    <label for="confPasswordInput" class="form-label">Confirmar password</label>
+    <input type="password" class="form-control mb-4" id="confPasswordInput" required>
+
+    <label class="form-label mb-1">Tipo de usuario</label>
+      <div class="">
+        <input type="radio" id="empleador" name="tipo_usuario" value="empleador" required>
+        <label for="empleador">Empleador</label>
+        <input type="radio" id="administrador" name="tipo_usuario" value="administrador" required>
+        <label for="administrador">Administrador</label>
+      </div> 
+    <button class="botonGenerico my-2 px-4">Crear cuenta</button>
+    <p class="parrafoPequeño m-0 text-center">¿Ya tienes una cuenta? <a href="{% url 'sitioLogin' %}">Inicia sesión</a></p>
   </div>
-</section>
+
+</div>
 {% endblock body %}
+
+
+
+<!--
+solamente agrega los elementos (tags) absolutamente necesarios para equisde
+-->

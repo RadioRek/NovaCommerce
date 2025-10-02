@@ -1,0 +1,92 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block head %}
+<title> Carrito | Novacommerce</title>
+<link rel="stylesheet" href="{% static 'css/carrito.css' %}">
+{% endblock head %} 
+
+{% block body %}
+<div class="Contenedor d-flex flex-column container-fluid py-5">
+    <h3 class="headBlanco3 align-items-start mb-2">Tu carrito</h3>
+    <hr>
+
+    <div class="row align-items-center mb-3">
+        <div class="col-3 d-flex justify-content-center">
+            <img src="{% static 'img/cafe.png' %}" class="img-thumbnail img-max" alt="Producto">
+        </div>
+        <div class="col-9">
+            <div class="row align-items-center">
+                <div class="col-5">
+                    <h5 class="parrafoBlanco mb-1">Nombre del producto</h5>
+                    <p class="parrafoPequeñoBlanco mb-2">Descripcion del producto</p>
+                </div>
+                <div class="col-2 text-center">
+                    <div class="fw-bold">Precio</div>
+                    <div>$x.xx</div>
+                </div>
+                <div class="col-2 text-center">
+                    <div class="fw-bold">Cant.</div>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn btn-outline-secondary btn-sm sumar-restar tamaño-cantidad" onclick="cambiarCantidad(-1)">−</button>
+                        <input id="cantidadInput" type="text" value="1" readonly class="form-control mx-2 text-center tamaño-cantidad">
+                        <button type="button" class="btn btn-outline-secondary btn-sm sumar-restar tamaño-cantidad" onclick="cambiarCantidad(1)">+</button>
+                    </div>
+                </div>
+                <div class="col-3 text-center">
+                    <div class="fw-bold">Subtotal</div>
+                    <div>$x.xx</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <div class="fw-bold fs-5">Resumen</div>
+            <div class="text-muted small">Subtotal</div>
+            <div class="text-muted small">Envío</div>
+            <div class="text-muted small">IVA</div>
+        </div>
+        <div class="col-6 text-end">
+            <div class="fw-bold">&nbsp;</div>
+            <div>$x.xx</div>
+            <div>Pendiente</div>
+            <div>$x.xx</div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row align-items-center mb-3">
+        <div class="col-6 fw-bold fs-5">Total a pagar</div>
+        <div class="col-6 text-end fw-bold fs-5">$x.xx</div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
+            <button class="btn w-100 btn-color">Seguir comprando</button>
+        </div>
+        <div class="col-12 col-md-6">
+            <button class="btn w-100 btn-color" style="font-weight: 500;">Proceder al pago</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="fw-bold fs-5 mb-3">Quizas tambien te interese</div>
+    <div class="row">
+        <div class="col-4 text-center">
+            <img src="{% static 'img/cafe.png' %}" class="img-thumbnail img-max" alt="Recomendado">
+        </div>
+        <div class="col-4 text-center">
+            <img src="{% static 'img/cafe.png' %}" class="img-thumbnail img-max" alt="Recomendado">
+        </div>
+        <div class="col-4 text-center">
+            <img src="{% static 'img/cafe.png' %}" class="img-thumbnail img-max" alt="Recomendado">
+        </div>
+    </div>
+</div>
+{% endblock body %}

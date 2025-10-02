@@ -1,0 +1,14 @@
+.contenedorXD{                
+  background: var(--verdeOscuroMain2);                    
+}
+
+
+.card {
+  width: 90%;
+}
+
+@media (min-width: 576px) {
+  .card {
+    width: 60%;
+  }
+}
