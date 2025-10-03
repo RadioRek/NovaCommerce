@@ -3,9 +3,8 @@ from . import views
 
 # cositas de la API
 from rest_framework.routers import DefaultRouter
-from .views import ProductoViewSet
 router = DefaultRouter()
-router.register(r'productos', ProductoViewSet, basename="producto")
+router.register(r'productos', views.ProductoViewSet, basename="producto")
 
 
 urlpatterns = [
@@ -16,15 +15,14 @@ urlpatterns = [
     path('registro/', views.registro, name='registro'),
     path('sitioLogin/', views.sitioLogin, name='sitioLogin'),
     path('panelControl/', views.panelControl, name='panelControl'),
-    path('sitioLogin/', views.sitioLogin, name='sitioLogin'),
     path('tienda/', views.tienda, name='tienda'),
     path('producto/<int:producto_id>/', views.producto, name='producto'),
     path('perfil/', views.perfil, name='perfil'),
+    path('carrito/', views.carrito, name='carrito'),
 
 
     # rutas de la API
     path('api/', include(router.urls)),
-    path('carrito/', views.carrito, name='carrito'),
 ]
 
 

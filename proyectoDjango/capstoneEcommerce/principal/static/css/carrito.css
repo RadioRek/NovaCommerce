@@ -1,29 +1,29 @@
-hr{
-    height: 5px;
-    width: 100%;
-    background-color: black;
+hr {
+	height: 5px;
+	background-color: var(--negro85);
 }
 
-.Contenedor{                
-  background: var(--verdeOscuroMain2);                    
+.contenedorPrincipal {
+	background: var(--cafeMainSecundario2);
+
 }
 
-.img-max{
-    max-width: 240px;
-    max-height: 240px;
+.contentAncho {
+	width: 90%;
+	background: var(--cafeMainSecundario2);
 }
 
-.sumar-restar{
-    background-color: aliceblue;
+@media (min-width: 576px) {
+    
+	.contentAncho {
+		width: 80%;
+	}
 }
 
-.tamaño-cantidad{
-    width: 64px;
-    height: 32px;
+
+.img-max {
+	max-width: 160px;
+	max-height: 160px;
 }
 
-.btn-color{
-    font-weight: 500;
-    background-color: var(--azulMain2);
-    color: var(--blanco5);
-}
+

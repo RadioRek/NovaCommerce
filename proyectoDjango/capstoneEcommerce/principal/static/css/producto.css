@@ -1,5 +1,5 @@
 .pill {
-    background-color: var(--azulMain);
+    background-color: var(--cafeCrema);
     color: var(--blanco5);
     text-align: center;
     margin: 0;
@@ -11,6 +11,6 @@
 }
 
 .pill:hover {
-    background-color: var(--azulMain2);
+    background-color: var(--cafeCrema2);
     color: var(--blanco5);
 }

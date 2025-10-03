@@ -5,41 +5,68 @@
 {% endblock head %} 
 
 {% block body %}
-<h1 class="head1 text-center">Mi Perfil</h1>
-<div class="row m-0 p-0 justify-content-center">
-    <div class="container col-12 col-sm-4  d-flex m-0 flex-column p-2 p-sm-4">
-        <div class="card-body text-center">
-            <div class="card h-100 shadow">
-                <h4 class="head4">Información Personal</h4>
-                <!-- Foto -->
-                <img src="https://via.placeholder.com/150" alt="Foto de perfil">
-                <h4 class="head4">Nombre de usuario</h4>
-                <h4 class="head4">email</h4>
-                <h4 class="head4">contraseña</h4>
-            </div>
+<div class="row m-0 p-2 p-sm-4 justify-content-center">
+    <div class="col-12">
+        <h1 class="head1 text-center">Mi Perfil</h1>
+    </div>
+
+    <div class="container col-12 col-sm-4 d-flex m-0 flex-column mb-sm-0 mb-2">
+        <div class="card h-100 text-center p-2 p-sm-4">
+            <h4 class="head4">Información Personal</h4>
+            <!-- Foto -->
+            <img src="https://via.placeholder.com/150" alt="Foto de perfil">
+            <h4 class="head4">Nombre de usuario</h4>
+            <h4 class="head4">email</h4>
+            <h4 class="head4">contraseña</h4>
         </div>
     </div>
-    <div class="container col-sm-8  d-flex m-0 flex-column p-2 p-sm-4">
-        <div class="card h-100 shadow">
-            <div class="card-body text-center">
+
+
+    <div class="container col-12 col-sm-8 d-flex m-0 flex-column">
+        <div class="card p-2 p-sm-4">
+            <div class="card-body text-center p-0">
                 <h4 class="head4">Editar Perfil</h4>
                 <form>
-                    <div class=" mb-3">
-                        <label for="nombre" class="form-label">Nombre completo</label>
-                        <input type="text" class="form-control" id="nombre">
-                    </div>
                     <div class="mb-3">
-                        <label for="usuario" class="form-label">Nombre de usuario</label>
-                        <input type="text" class="form-control" id="usuario">
+                        <label for="usernameInput" class="form-label textoMinimo">Username</label>
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="usernameInput" placeholder="username de usuario" required />
                     </div>
+
                     <div class="mb-3">
-                        <label for="email" class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" id="email">
+                        <label for="nombreInput" class="form-label textoMinimo">Nombre</label>
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="nombreInput" placeholder="....." required />
                     </div>
+
                     <div class="mb-3">
-                        <label for="password" class="form-label">Nueva contraseña</label>
-                        <input type="password" class="form-control" id="password">
+                        <label for="ApellidoInput" class="form-label textoMinimo">Apellido</label>
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="ApellidoInput" placeholder="....." required />
                     </div>
+
+                    <div class="mb-3">
+                        <label for="DireccionInput" class="form-label textoMinimo">Direccion</label>
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="DireccionInput" placeholder="Calle Falsa 123" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="TelefonoInput" class="form-label textoMinimo">Telefono</label>
+                        <input type="number" class="form-control mb-2 estiloInput parrafoPequeño" id="TelefonoInput" placeholder="953846738" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="EmailInput" class="form-label textoMinimo">Email</label>
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="EmailInput" placeholder="Tu@email.example" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="passwordInput" class="form-label textoMinimo">Nueva contraseña</label>
+                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño" id="passwordInput" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="passwordConfInput" class="form-label textoMinimo">Confirmar nueva contraseña</label>
+                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño" id="passworConfdInput" required />
+                    </div>
+
                     <button type="submit" class="botonGenerico">Guardar cambios</button>
                 </form>
             </div>

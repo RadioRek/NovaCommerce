@@ -1,15 +1,15 @@
 :root {
-    --verdeMain: #6F4E37;    /* Marrón café suave */
-    --verdeMain2: #5C4033;   /* Marrón tostado */
-    --verdeMain3: #3E2723;   /* Espresso oscuro */
+    --cafeMain: #6F4E37;    /* Marrón café suave */
+    --cafeMain2: #5C4033;   /* Marrón tostado */
+    --cafeMain3: #3E2723;   /* Espresso oscuro */
 
-    --azulMain: #C0A080;     /* Latte cremoso */
-    --azulMain2: #A67B5B;    /* Cappuccino */
-    --azulMain3: #8B5E3C;    /* Moka */
+    --cafeCrema: #C0A080;     /* Latte cremoso */
+    --cafeCrema2: #A67B5B;    /* Cappuccino */
+    --cafeCrema3: #8B5E3C;    /* Moka */
 
-    --verdeOscuroMain: #7B6A58;   /* Grano de café medio */
-    --verdeOscuroMain2: #5E4B3C;  /* Grano tostado */
-    --verdeOscuroMain3: #3C2F2F;  /* Grano muy oscuro */
+    --cafeMainSecundario: #7B6A58;   /* Grano de café medio */
+    --cafeMainSecundario2: #5E4B3C;  /* Grano tostado */
+    --cafeMainSecundario3: #3C2F2F;  /* Grano muy oscuro */
 
     --rojoMain: #D2691E;     /* Caramelo */
     --rojoMain2: #8B4513;    /* Canela */
@@ -152,6 +152,13 @@
     font-weight: normal;
 }
 
+.textoMinimo {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: var(--gris50);
+    font-weight: normal;
+}
+
 .textoMinimoBlanco {
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
@@ -161,7 +168,7 @@
 
 /* botones */
 .botonGenerico {
-    background-color: var(--azulMain);
+    background-color: var(--cafeCrema);
     color: var(--blanco5);
     border-radius: 8px;
     text-align: center;
@@ -174,13 +181,13 @@
 }
 
 .botonGenerico:hover {
-    background-color: var(--azulMain2);
+    background-color: var(--cafeCrema2);
     color: var(--blanco5);
 
 }
 
 .botonGenerico2 {
-    background-color: var(--verdeOscuroMain);
+    background-color: var(--cafeMainSecundario);
     color: var(--blanco5);
     border-radius: 8px;
     text-align: center;
@@ -193,7 +200,7 @@
 }
 
 .botonGenerico2:hover {
-    background-color: var(--verdeOscuroMain2);
+    background-color: var(--cafeMainSecundario2);
     color: var(--blanco5);
 
 }
@@ -215,27 +222,27 @@
 }
 
 .bgColorAzulMain {
-    background-color: var(--azulMain);
+    background-color: var(--cafeCrema);
 }
 
 .bgColorAzulMain2 {
-    background-color: var(--azulMain2);
+    background-color: var(--cafeCrema2);
 }
 
 .bgColorVerdeMain {
-    background-color: var(--verdeMain);
+    background-color: var(--cafeMain);
 }
 
 .bgColorVerdeMain2 {
-    background-color: var(--verdeMain2);
+    background-color: var(--cafeMain2);
 }
 
 .bgColorVerdeOscuroMain {
-    background-color: var(--verdeOscuroMain);
+    background-color: var(--cafeMainSecundario);
 }
 
 .bgColorVerdeOscuroMain2 {
-    background-color: var(--verdeOscuroMain2);
+    background-color: var(--cafeMainSecundario2);
 }
 
 .bgColorGris25 {
@@ -258,8 +265,15 @@
 }
 
 .colorVerde {
-    color: var(--verdeMain);
+    color: var(--cafeMain);
 }
+
+.userIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--blanco5);
+}
+
 
 /*
 Estilos borrados, deberian estar en otra parte
@@ -282,7 +296,7 @@ Estilos borrados, deberian estar en otra parte
 
 .pantalla{
   min-height:100vh;
-  background: var(--verdeMain);
+  background: var(--cafeMain);
   display:flex; flex-direction:column;
   align-items:center; justify-content:center;
   padding:24px;
@@ -292,7 +306,7 @@ Estilos borrados, deberian estar en otra parte
 .botonVolver{
   display:inline-flex; align-items:center; justify-content:center;
   width:36px; height:36px; border-radius:10px;
-  border:2px solid var(--azulMain); color: var(--azulMain);
+  border:2px solid var(--cafeCrema); color: var(--cafeCrema);
   text-decoration:none; font-size:20px; line-height:1;
 }
 
@@ -308,3 +322,30 @@ margin-top:8px;
 }
 
 */
+
+/* Chrome, Edge, Safari */
+input:-webkit-autofill {
+	-webkit-text-fill-color: var(--cafeMain2);
+	font-size: 1rem;
+	font-family: inherit;
+}
+
+/* Firefox */
+input:-moz-autofill {
+	-moz-text-fill-color: var(--cafeMain2);
+	font-size: 1rem;
+	font-family: inherit;
+}
+
+/* Optional focus override */
+input:-webkit-autofill:focus {
+	-webkit-text-fill-color: var(--cafeMain2);
+	font-size: 1rem;
+	font-family: inherit;
+}
+
+.estiloInput:focus {
+	color: var(--gris50) !important;
+	border-color: var(--cafeMain);
+	box-shadow: 0 0 0 0.2rem rgba(111, 78, 55, 0.25);
+}

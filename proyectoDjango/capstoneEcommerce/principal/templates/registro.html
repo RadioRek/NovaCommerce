@@ -3,58 +3,46 @@
 
 {% block head %}
 <title>Registro | Novacommerce</title>
-<link rel="stylesheet" href="{% static 'css/registro.css' %}">
+<link rel="stylesheet" href="{% static 'css/registro.css' %}" />
 {% endblock head %}
 
 {% block body %}
 
-<div class="contenedorXD d-flex flex-column py-4 align-items-center">
+<div class="contenedorRegistro py-4 d-flex flex-column align-items-center">
+	<h1 class="headBlanco1 text-center mb-4">Novacommerce</h1>
 
-  <h1 class="headBlanco1 text-center mb-4 ">Novacommerce</h1>
+	<div class="card p-4 d-flex flex-column">
+		<h2 class="parrafo text-center mb-4">Crear cuenta</h2>
 
-  <div class="card p-4 d-flex flex-column">
-    <h2 class="parrafo text-center">Crear cuenta</h2>
+		<label for="usernameInput" class="form-label textoMinimo">Username</label>
+		<input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="usernameInput" placeholder="username de usuario" required />
 
-    <label for="usernameInput" class="form-label">Username</label>
-    <input type="text" class="form-control mb-2" id="usernameInput" placeholder="username de usuario" required>
+		<label for="nombreInput" class="form-label textoMinimo">Nombre</label>
+		<input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="nombreInput" placeholder="....." required />
 
-    <label for="nombreInput" class="form-label">Nombre</label>
-    <input type="text" class="form-control mb-2" id="nombreInput" placeholder="....." required>
+		<label for="ApellidoInput" class="form-label textoMinimo">Apellido</label>
+		<input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="ApellidoInput" placeholder="....." required />
 
-    <label for="ApellidoInput" class="form-label">Apellido</label>
-    <input type="text" class="form-control mb-2" id="ApellidoInput" placeholder="....." required>
+		<label for="DireccionInput" class="form-label textoMinimo">Direccion</label>
+		<input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="DireccionInput" placeholder="Calle Falsa 123" required />
 
-    <label for="DireccionInput" class="form-label">Direccion</label>
-    <input type="text" class="form-control mb-2" id="DireccionInput" placeholder="dsa" required>
+		<label for="TelefonoInput" class="form-label textoMinimo">Telefono</label>
+		<input type="number" class="form-control mb-2 estiloInput parrafoPequeño" id="TelefonoInput" placeholder="953846738" required />
 
-    <label for="TelefonoInput" class="form-label">Telefono</label>
-    <input type="number" class="form-control mb-2" id="TelefonoInput" placeholder="953846738" required>
+		<label for="EmailInput" class="form-label textoMinimo">Email</label>
+		<input type="email" class="form-control mb-2 estiloInput parrafoPequeño" id="EmailInput" placeholder="Tu@email.example" />
 
-    <label for="EmailInput" class="form-label">Email</label>
-    <input type="text" class="form-control mb-2" id="EmailInput" placeholder="Tu@email.example">
+		<label for="usernameInput" class="form-label textoMinimo">Password</label>
+		<input type="password" class="form-control mb-2 estiloInput parrafoPequeño" id="usernameInput" required />
 
-    <label for="usernameInput" class="form-label">Password</label>
-    <input type="password" class="form-control mb-2" id="usernameInput" required>
+		<label for="confPasswordInput" class="form-label textoMinimo">Confirmar password</label>
+		<input type="password" class="form-control mb-4 estiloInput parrafoPequeño" id="confPasswordInput" required />
 
-    <label for="confPasswordInput" class="form-label">Confirmar password</label>
-    <input type="password" class="form-control mb-4" id="confPasswordInput" required>
-
-    <label class="form-label mb-1">Tipo de usuario</label>
-      <div class="">
-        <input type="radio" id="empleador" name="tipo_usuario" value="empleador" required>
-        <label for="empleador">Empleador</label>
-        <input type="radio" id="administrador" name="tipo_usuario" value="administrador" required>
-        <label for="administrador">Administrador</label>
-      </div> 
-    <button class="botonGenerico my-2 px-4">Crear cuenta</button>
-    <p class="parrafoPequeño m-0 text-center">¿Ya tienes una cuenta? <a href="{% url 'sitioLogin' %}">Inicia sesión</a></p>
-  </div>
-
+		<button class="botonGenerico my-2 px-4">Crear cuenta</button>
+		<p class="parrafoPequeño m-0 text-center">
+			¿Ya tienes una cuenta?
+			<a href="{% url 'sitioLogin' %}" class="parrafoPequeño">Inicia sesión</a>
+		</p>
+	</div>
 </div>
 {% endblock body %}
-
-
-
-<!--
-solamente agrega los elementos (tags) absolutamente necesarios para equisde
--->

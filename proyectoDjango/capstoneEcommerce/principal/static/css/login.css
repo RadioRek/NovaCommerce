@@ -1,4 +1,4 @@
-.input.form-control {
-  border-radius: 12px; /* Ajusta el valor según lo que prefieras */
-  border: 2px solid aquamarine;
+.contenedorLogin {
+	background: var(--cafeMainSecundario2);
+	min-height: 80vh;
 }

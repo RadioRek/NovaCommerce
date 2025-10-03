@@ -6,7 +6,6 @@ me = margin end == margen al final
 
 ms = margin start == margen al inicio
 
-
 pt = padding top == relleno arriba
 
 pb = padding bottom == relleno abajo
