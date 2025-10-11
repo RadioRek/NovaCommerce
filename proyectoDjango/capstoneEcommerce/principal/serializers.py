@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Producto
+from .models import Producto, Categoria
 
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,4 +13,12 @@ class ProductoSerializer(serializers.ModelSerializer):
         return value
     # se usa validate_<NOMBRE DEL CAMPO A VALIDAR>
     # si la validacion falla, la api respondera con un error 400 (bad request)
+
+
+class CategoriaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Categoria
+        fields = "__all__"
+
+
 

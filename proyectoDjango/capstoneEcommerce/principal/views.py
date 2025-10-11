@@ -2,9 +2,12 @@ from django.shortcuts import render
 
 # cositas de la API
 from rest_framework import viewsets
-from .models import Producto
-from .serializers import ProductoSerializer
+from .models import Producto, Categoria
+from .serializers import ProductoSerializer, CategoriaSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
+
+# testing
+import time
 
 
 def home(request):
@@ -40,3 +43,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
 
     def get_serializer_context(self):
         return {'request': self.request}
+    
+class CategoriaViewSet(viewsets.ModelViewSet):
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer

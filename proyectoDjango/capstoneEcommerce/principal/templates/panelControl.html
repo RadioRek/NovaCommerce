@@ -10,7 +10,34 @@
 
 
 <div class="panelControlContainer d-flex m-0 flex-column p-2 p-sm-4">
+    
+    <!-- formulario agregar Categoria -->
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4">
+        <h5 class="head5 m-0 p-0 mx-auto text-center">Rellena el formulario para agregar una categoria</h5>
+        <form action="" id="formularioCategoria">
+            <div class="row m-0 p-0 mt-2 mt-sm-4">
+                <!-- input nombre -->
+                <div class="col-12 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                    <label for="nombreCategoriaInput" class="form-label">Nombre</label>
+                    <input type="text" class="form-control w-95" id="nombreCategoriaInput" placeholder="Nombre de la categoria">
+                </div>
+            </div>
+
+            <div class="row m-0 p-0 mt-4">
+                <!-- boton enviar -->
+                <div class="col-12 justify-content-center d-flex m-0 p-0 mb-sm-0 mb-2">
+                    <button type="submit" class="botonGenerico w-95" id="registrarCategoriaButton">Registrar categoria</button>
+                </div>
+            </div>
+        </form>
+        <!-- for later -->
+
+
+    </div>
+
+
+    <!-- formulario agregar Producto -->
+    <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
         <h5 class="head5 m-0 p-0 mx-auto text-center" id="tituloxd">Rellena el formulario para agregar un producto</h5>
         <form action="">
             <div class="row m-0 p-0 mt-2 mt-sm-4">
@@ -174,6 +201,23 @@
     </div>
 
 </div>
+
+
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="alertaToast">
+        <div class="toast-header">
+            <div class="spinner-border spinner-border-sm me-2" role="status" id="alertaSpinner">
+                <span class="visually-hidden">Cargando...</span>
+            </div>        
+            <strong class="me-auto" id="alertaHeader"></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="alertaBody">
+        </div>
+    </div>
+</div>
+
 
 <script src="{% static 'js/panelControl.js' %}"></script>
 {% endblock body %}

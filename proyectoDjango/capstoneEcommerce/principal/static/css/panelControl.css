@@ -1,18 +1,18 @@
 body {
-    background-color: var(--gris25);
+	background-color: var(--gris25);
 }
 
 /* transiciones suaves */
 .table tbody td {
-  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+	transition: background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 /* sobrescribe el box-shadow de bootstrap en hover */
 .table.table-striped-columns tbody tr:hover td {
-  --bs-table-bg-state: var(--gris25) !important;
+	--bs-table-bg-state: var(--gris25) !important;
 }
 
 /* cambia el cursor al pasar por la fila */
 .table.table-striped-columns tbody tr:hover {
-  cursor: pointer;
+	cursor: pointer;
 }

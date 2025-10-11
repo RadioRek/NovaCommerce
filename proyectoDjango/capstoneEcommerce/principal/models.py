@@ -104,7 +104,8 @@ class Producto(models.Model):
 
 
 class Categoria(models.Model):
-    nombre = models.CharField(max_length=50)
+    # el nombre debe ser unico
+    nombre = models.CharField(max_length=50, unique=True)
 
     class Meta:
         verbose_name = "Categoría"
