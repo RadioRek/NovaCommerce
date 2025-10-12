@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+	// variables
+	let categorias = [];
+	let categoriaSelect = document.getElementById("categoriaSelect");
+	let contenedorPills = document.getElementById("pillContainer");
 
+	// Función para obtener la cookie
 	function getCookie(name) {
 		let cookieValue = null;
 		if (document.cookie && document.cookie !== "") {
@@ -16,76 +21,150 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 	const csrftoken = getCookie("csrftoken");
 
+	// Cargar categorias en el select
+	let selectCategoria = document.getElementById("categoriaSelect");
+	fetch("http://127.0.0.1:8000/api/categorias/", {
+		method: "GET",
+	}).then(async (response) => {
+		if (response.ok) {
+			const data = await response.json();
+			data.forEach((categoria) => {
+				let option = document.createElement("option");
+				option.value = categoria.id;
+				option.textContent = categoria.nombre;
+				selectCategoria.appendChild(option);
+			});
+		} else {
 
+		}
+	}).catch((error) => {
+		console.error("Error en la solicitud:", error);
+	});
 
-	let crearProductoButton = document.getElementById("crearProductoButton");
-    
-	crearProductoButton.addEventListener("click", function (event) {
+	// Manejar selección de categoría
+	categoriaSelect.addEventListener("change", (event) => {
+		let valorSeleccionado = event.target.value;
+		let nombreCategoria = categoriaSelect.options[categoriaSelect.selectedIndex].text;
+		if (valorSeleccionado && !categorias.includes(valorSeleccionado)) {
+			categorias.push(valorSeleccionado);
+
+			let colDiv = document.createElement("div");
+			colDiv.className = "col-auto p-0 m-0";
+
+			let pill = document.createElement("p");
+			pill.className = "pill rounded-pill textoMinimoBlanco";
+			pill.textContent = nombreCategoria;
+
+			colDiv.appendChild(pill);
+			contenedorPills.appendChild(colDiv);
+		}
+	});
+
+	// Manejar envío del formulario de producto
+	let formularioProducto = document.getElementById("formularioProducto");
+	formularioProducto.addEventListener("submit", function (event) {
+
 		event.preventDefault();
+		let alertaToast = document.getElementById("alertaToast");
+		let alertaHeader = document.getElementById("alertaHeader");
+		let alertaBody = document.getElementById("alertaBody");
+		let alertaSpinner = document.getElementById("alertaSpinner");
+		alertaHeader.textContent = "Procesando solicitud...";
+		alertaBody.textContent = "Creando producto, por favor espere";
+		let toast = new bootstrap.Toast(alertaToast, { autohide: false });
+		toast.show();
 
-
-		let inputNombre = document.getElementById("nombreInput").value;
-		let inputPrecio = document.getElementById("precioInput").value;
-
-		let inputImagen = document.getElementById("imgInput").files[0];
-		let inputDescripcion = document.getElementById("descripcionInput").value;
-		let inputStock = document.getElementById("stockInput").value;
-
-
+		let nombreProducto = document.getElementById("nombreInput").value;
+		let precioProducto = document.getElementById("precioInput").value;
+		let imagenProducto = document.getElementById("imgInput").files[0];
+		let descripcionProducto = document.getElementById("descripcionInput").value;
+		let stockProducto = document.getElementById("stockInput").value;
 
 		let formData = new FormData();
-		formData.append("nombre", inputNombre);
-		formData.append("precio", inputPrecio);
-		formData.append("descripcion", inputDescripcion);
-		formData.append("stock", inputStock);
-
-		if (inputImagen) {
-			formData.append("img", inputImagen);
+		formData.append("nombre", nombreProducto);
+		formData.append("precio", precioProducto);
+		formData.append("descripcion", descripcionProducto);
+		formData.append("stock", stockProducto);
+		if (imagenProducto) {
+			formData.append("img", imagenProducto);
 		}
-        
+
 		fetch("http://127.0.0.1:8000/api/productos/", {
 			method: "POST",
 			body: formData,
-		}).then((response) => {
-            if (response.ok) {
-                let botonLimpiarFormularioProd = document.getElementById("botonLimpiarFormularioProd");
-                botonLimpiarFormularioProd.click();
+			headers: {
+				"X-CSRFToken": csrftoken,
+			},
+		}).then(async (response) => {
+			if (response.ok) {
+				alertaHeader.classList.remove("colorRojo3");
+				alertaBody.classList.remove("colorRojo2");
 
-                let tituloxd = document.getElementById("tituloxd");
-                tituloxd.textContent = "WOOOOOW creaste un producto";
-            }
-            if (response.status === 400) { 
-                console.log("Error Pedazo de troll");
-                
-            }
+				formularioProducto.reset();
+				contenedorPills.innerHTML = "";
+				alertaSpinner.classList.add("d-none");
+				alertaHeader.textContent = "Exito";
+				alertaBody.textContent = "Producto creado con exito";
+
+				let data = await response.json();
+				for (let categoriaId of categorias) {
+					let formDataCategoriaProducto = new FormData();
+					formDataCategoriaProducto.append("producto", data.id);
+					formDataCategoriaProducto.append("categoria", categoriaId);
+
+					fetch("http://127.0.0.1:8000/api/categoria-productos/", {
+						method: "POST",
+						body: formDataCategoriaProducto,
+						headers: {
+							"X-CSRFToken": csrftoken,
+						},
+					}).then(async (response) => {
+						if (response.ok) {
+							let dataCategoriaProducto = await response.json();
+						} else {
+							let errorData = await response.json().catch(() => ({}));
+						}
+					}).catch((error) => {
+						console.error("Error en la solicitud:", error);
+					});
+				}
+				categorias = [];
+			}
+			if (!response.ok) {
+				alertaHeader.classList.add("colorRojo3");
+				alertaBody.classList.add("colorRojo2");
+
+				let data = await response.json().catch(() => ({}));
+				alertaSpinner.classList.add("d-none");
+				alertaHeader.textContent = "Error";
+				alertaBody.textContent = "Error al crear el producto. ";
+			}
 		}).catch((error) => {
-				console.error("Error en la solicitud:", error);
-	    });
+			console.error("Error en la solicitud:", error);
+		});
+
 
 	});
 
-
-
-
+	// Manejar envío del formulario de categoria
 	let formularioCategoria = document.getElementById("formularioCategoria");
-
-	formularioCategoria.addEventListener("submit", function(event) {
+	formularioCategoria.addEventListener("submit", function (event) {
 
 		event.preventDefault();
+		let alertaToast = document.getElementById("alertaToast");
+		let alertaHeader = document.getElementById("alertaHeader");
+		let alertaBody = document.getElementById("alertaBody");
+		let alertaSpinner = document.getElementById("alertaSpinner");
+		alertaHeader.textContent = "Procesando solicitud...";
+		alertaBody.textContent = "Creando categoria, por favor espere";
+		let toast = new bootstrap.Toast(alertaToast, { autohide: false });
+		toast.show();
 
 		let inputNombre = document.getElementById("nombreCategoriaInput").value;
 		let formData = new FormData();
 		formData.append("nombre", inputNombre);
 
-		let alertaToast = document.getElementById("alertaToast");
-		let alertaHeader = document.getElementById("alertaHeader");
-		let alertaBody = document.getElementById("alertaBody");
-		let alertaSpinner = document.getElementById("alertaSpinner");
 
-		alertaHeader.textContent = "Procesando solicitud...";
-		alertaBody.textContent = "Creando categoria, por favor espere";
-		let toast = new bootstrap.Toast(alertaToast, { autohide: false })
-		toast.show();
 
 		fetch("http://127.0.0.1:8000/api/categorias/", {
 			method: "POST",
@@ -95,19 +174,24 @@ document.addEventListener("DOMContentLoaded", function () {
 			},
 		}).then(async (response) => {
 			if (response.ok) {
+				alertaHeader.classList.remove("colorRojo3");
+				alertaBody.classList.remove("colorRojo2");
+
 				formularioCategoria.reset();
 				alertaSpinner.classList.add("d-none");
 				alertaHeader.textContent = "Exito";
 				alertaBody.textContent = "Categoria creada con exito";
 			}
 			if (!response.ok) {
+				alertaHeader.classList.add("colorRojo3");
+				alertaBody.classList.add("colorRojo2");
+
 				let data = await response.json().catch(() => ({}));
 				alertaSpinner.classList.add("d-none");
 				alertaHeader.textContent = "Error";
 				if (data.nombre) {
 					alertaBody.textContent = data.nombre;
 				}
-
 				formularioCategoria.reset();
 			}
 		}).catch((error) => {
@@ -115,10 +199,91 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	});
 
+	// poblar tabla de productos
+	let tablaProductosBody = document.getElementById("tablaProductosBody");
+	fetch("http://127.0.0.1:8000/api/productos/", {
+		method: "GET",
+	}).then(async (response) => {
+		if (response.ok) {
+			let data = await response.json();
 
+			data.forEach((producto) => {
+				let row = document.createElement("tr");
+				let tdNombre = document.createElement("td");
+				let tdPrecio = document.createElement("td");
+				let tdStock = document.createElement("td");
+				
+				tdNombre.textContent = producto.nombre;
+				tdPrecio.textContent = producto.precio;
+				tdStock.textContent = producto.stock;
+
+				row.appendChild(tdNombre);
+				row.appendChild(tdPrecio);
+				row.appendChild(tdStock);
+				
+				tablaProductosBody.appendChild(row);
+			});
+
+
+		} else {
+			
+		}
+	}).catch((error) => {
+		console.error("Error en la solicitud:", error);
+	});
+
+	// poblar la tabla de usuarios
+	let tablaUsuariosBody = document.getElementById("tablaUsuariosBody");
+	fetch("http://127.0.0.1:8000/api/users/", {
+		method: "GET",
+	}).then(async (response) => {
+		if (response.ok) {
+			let data = await response.json();
+
+			data.forEach((usuario) => {
+				let row = document.createElement("tr");
+				let tdUsername = document.createElement("td");
+				let tdNombre = document.createElement("td");
+				let tdApellido = document.createElement("td");
+				let tdDireccion = document.createElement("td");
+				let tdTelefono = document.createElement("td");
+				let tdEmail = document.createElement("td");
+				let tdTipo = document.createElement("td");
+
+				tdUsername.textContent = usuario.username;
+				tdNombre.textContent = usuario.nombre;
+				tdApellido.textContent = usuario.apellido;
+				tdDireccion.textContent = usuario.direccion;
+				tdTelefono.textContent = usuario.telefono;
+				tdEmail.textContent = usuario.email;
+				if (usuario.tipoUsuario === 1) {
+					tdTipo.textContent = "Administrador";
+				}
+				if (usuario.tipoUsuario === 2) {
+					tdTipo.textContent = "Cliente";
+				}
+
+				row.appendChild(tdUsername);
+				row.appendChild(tdNombre);
+				row.appendChild(tdApellido);
+				row.appendChild(tdDireccion);
+				row.appendChild(tdTelefono);
+				row.appendChild(tdEmail);
+				row.appendChild(tdTipo);
+
+				tablaUsuariosBody.appendChild(row);
+			});
+		} else {
+		}
+	}).catch((error) => {
+		console.error("Error en la solicitud:", error);
+	});
 
 });
 
+/*
+
+*/
 
 
 

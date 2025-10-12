@@ -1,13 +1,12 @@
 from django.shortcuts import render
 
 # cositas de la API
-from rest_framework import viewsets
-from .models import Producto, Categoria
-from .serializers import ProductoSerializer, CategoriaSerializer
+from rest_framework import viewsets, permissions
+from .models import Producto, Categoria, CategoriaProducto, User
+from .serializers import ProductoSerializer, CategoriaSerializer, CategoriaProductoSerializer, UserSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 
 # testing
-import time
 
 
 def home(request):
@@ -47,3 +46,21 @@ class ProductoViewSet(viewsets.ModelViewSet):
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
+
+class CategoriaProductoViewSet(viewsets.ModelViewSet):
+    queryset = CategoriaProducto.objects.all()
+    serializer_class = CategoriaProductoSerializer
+
+class IsAdministrador(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return (
+            request.user
+            and request.user.is_authenticated
+            and request.user.tipoUsuario
+            and request.user.tipoUsuario.nombre.lower() == "administrador"
+        )
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAdministrador]

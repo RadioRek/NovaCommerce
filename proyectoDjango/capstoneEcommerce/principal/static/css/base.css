@@ -1,33 +1,33 @@
 :root {
-    --cafeMain: #6F4E37;    /* Marrón café suave */
-    --cafeMain2: #5C4033;   /* Marrón tostado */
-    --cafeMain3: #3E2723;   /* Espresso oscuro */
+    --cafeMain: #6F4E37;
+    --cafeMain2: #5C4033;
+    --cafeMain3: #3E2723;
 
-    --cafeCrema: #C0A080;     /* Latte cremoso */
-    --cafeCrema2: #A67B5B;    /* Cappuccino */
-    --cafeCrema3: #8B5E3C;    /* Moka */
+    --cafeCrema: #C0A080;
+    --cafeCrema2: #A67B5B;
+    --cafeCrema3: #8B5E3C;
 
-    --cafeMainSecundario: #7B6A58;   /* Grano de café medio */
-    --cafeMainSecundario2: #5E4B3C;  /* Grano tostado */
-    --cafeMainSecundario3: #3C2F2F;  /* Grano muy oscuro */
+    --cafeMainSecundario: #7B6A58;
+    --cafeMainSecundario2: #5E4B3C;
+    --cafeMainSecundario3: #3C2F2F; 
 
-    --rojoMain: #D2691E;     /* Caramelo */
-    --rojoMain2: #8B4513;    /* Canela */
-    --rojoMain3: #5C3317;    /* Cacao amargo */
+    --rojoMain: #D2691E;
+    --rojoMain2: #8B4513;
+    --rojoMain3: #5C3317;
 
-    --amarilloMain: #E6C79C; /* Crema */
-    --amarilloMain2: #D2B48C;/* Toffee */
-    --amarilloMain3: #A68A6D;/* Madera clara */
+    --amarilloMain: #E6C79C;
+    --amarilloMain2: #D2B48C;
+    --amarilloMain3: #A68A6D;
 
 
-	--blanco5: #F5F5DC;   /* Beige */
-	--blanco10: #EDE0D4;  /* Crema suave */
-	--gris25: #C4A484;   /* Arena */
-	--gris50: #8B7D6B;   /* Café con leche */
-	--negro75: #3E2C23;  /* Espresso */
-	--negro85: #1C1A17;  /* Negro café */
+	--blanco5: #F5F5DC;
+	--blanco10: #EDE0D4;
+	--gris25: #C4A484;
+	--gris50: #8B7D6B;
+	--negro75: #3E2C23;
+	--negro85: #1C1A17; 
 
-    --fondo: #FAF3E0;    /* Fondo crema */
+    --fondo: #FAF3E0;
 
 }
 
@@ -274,54 +274,17 @@
     color: var(--blanco5);
 }
 
-
-/*
-Estilos borrados, deberian estar en otra parte
-
-.campo-falso{
-  height:40px;
-  border-radius:8px;
-  background: var(--gris25);
-  border: none;
-  font-family: "Montserrat", sans-serif;
-  font-size: 18px;
-    color: var(--negro75);
+.colorRojo {
+    color: var(--rojoMain);
 }
 
-.boton-centrado{
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
+.colorRojo2 {
+    color: var(--rojoMain2);
 }
 
-.pantalla{
-  min-height:100vh;
-  background: var(--cafeMain);
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  padding:24px;
+.colorRojo3 {
+    color: var(--rojoMain3);
 }
-
-
-.botonVolver{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:36px; height:36px; border-radius:10px;
-  border:2px solid var(--cafeCrema); color: var(--cafeCrema);
-  text-decoration:none; font-size:20px; line-height:1;
-}
-
-
-.form-ui{
-display:grid; 
-gap:10px; 
-margin-top:8px; 
-}
-
-.novacommerce-grande {
-  font-size: 48px !important;
-}
-
-*/
 
 /* Chrome, Edge, Safari */
 input:-webkit-autofill {

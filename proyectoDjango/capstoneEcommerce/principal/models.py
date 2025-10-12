@@ -60,7 +60,7 @@ class TipoUsuario(models.Model):
         verbose_name_plural = "Tipos de Usuarios"
 
     def __str__(self):
-        return self.nombre
+        return str(self.id) + " - " + self.nombre
 
 
 class MetodoPago(models.Model):
@@ -71,7 +71,7 @@ class MetodoPago(models.Model):
         verbose_name_plural = "Métodos de Pago"
 
     def __str__(self):
-        return self.nombre
+        return str(self.id) + " - " + self.nombre
 
 
 class Venta(models.Model):
@@ -112,7 +112,7 @@ class Categoria(models.Model):
         verbose_name_plural = "Categorías"
 
     def __str__(self):
-        return self.nombre
+        return str(self.id) + " - " + self.nombre
 
 
 class DetalleVenta(models.Model):
@@ -125,7 +125,7 @@ class DetalleVenta(models.Model):
         verbose_name_plural = "Detalles de Venta"
 
     def __str__(self):
-        return f"Detalle {self.id} - Venta {self.venta.id} - Producto {self.producto.nombre}"
+        return str(self.id) + " - " + self.producto.nombre + " - " + str(self.cantidad)
 
 
 class CategoriaProducto(models.Model):
@@ -137,4 +137,4 @@ class CategoriaProducto(models.Model):
         verbose_name_plural = "Categorías de Productos"
 
     def __str__(self):
-        return f"{self.producto.nombre} - {self.categoria.nombre}"
+        return self.producto.nombre + " - " + self.categoria.nombre

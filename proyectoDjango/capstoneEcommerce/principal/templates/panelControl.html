@@ -19,14 +19,14 @@
                 <!-- input nombre -->
                 <div class="col-12 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                     <label for="nombreCategoriaInput" class="form-label">Nombre</label>
-                    <input type="text" class="form-control w-95" id="nombreCategoriaInput" placeholder="Nombre de la categoria">
+                    <input type="text" class="form-control estiloInput" id="nombreCategoriaInput" placeholder="Nombre de la categoria">
                 </div>
             </div>
 
             <div class="row m-0 p-0 mt-4">
                 <!-- boton enviar -->
                 <div class="col-12 justify-content-center d-flex m-0 p-0 mb-sm-0 mb-2">
-                    <button type="submit" class="botonGenerico w-95" id="registrarCategoriaButton">Registrar categoria</button>
+                    <button type="submit" class="botonGenerico w-50" id="registrarCategoriaButton">Registrar categoria</button>
                 </div>
             </div>
         </form>
@@ -35,11 +35,10 @@
 
     </div>
 
-
     <!-- formulario agregar Producto -->
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
         <h5 class="head5 m-0 p-0 mx-auto text-center" id="tituloxd">Rellena el formulario para agregar un producto</h5>
-        <form action="">
+        <form action="" id="formularioProducto">
             <div class="row m-0 p-0 mt-2 mt-sm-4">
                 <!-- input nombre -->
                 <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
@@ -69,6 +68,18 @@
                 <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                     <label for="stockInput" class="form-label">Stock</label>
                     <input type="number" class="form-control w-95" id="stockInput" placeholder="Stock del producto">
+                </div>
+
+                <!-- select categoria -->
+                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                    <label for="categoriaSelect" class="form-label">Categoria</label>
+                    <select class="form-select w-95" id="categoriaSelect" aria-label="Selecciona una categoria">
+                        <option value="" selected disabled>Selecciona una categoria</option>
+                    </select>
+
+                    <div class="row mt-2 w-100 gap-1" id="pillContainer">
+                        <!-- Pills de categorias seleccionadas se agregan aqui -->
+                    </div>
                 </div>
 
             </div>
@@ -107,35 +118,17 @@
             </div>
         </div>
 
-        <div class="mx-2 mx-sm-4 table-responsive">
-            <table class="table table-success table-striped-columns">
+        <div class="mx-2 mx-sm-4 table-responsive tablaProductos">
+            <table class="table table-striped-columns">
                 <thead>
                     <tr>
                         <th scope="col parrafo">Nombre</th>
-                        <th scope="col parrafo">Descripcion</th>
                         <th scope="col parrafo">Precio</th>
                         <th scope="col parrafo">Stock</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                    </tr>
-                    <tr>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                    </tr>
-                    <tr>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                    </tr>
+                <tbody id="tablaProductosBody">
+                    <!-- filas de productos se agregan aqui -->
                 </tbody>
             </table>
         </div>
@@ -160,8 +153,8 @@
             </div>
         </div>
 
-        <div class="mx-2 mx-sm-4 table-responsive">
-            <table class="table table-success table-striped-columns">
+        <div class="mx-2 mx-sm-4 table-responsive tablaUsuarios">
+            <table class="table table-striped-columns">
                 <thead>
                     <tr>
                         <th scope="col parrafo">Username</th>
@@ -173,28 +166,8 @@
                         <th scope="col parrafo">Tipo</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                    </tr>
-                    <tr>
-
-                    </tr>
-                    <tr>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                        <td>Placeholder</td>
-                    </tr>
+                <tbody id="tablaUsuariosBody">
+                    <!-- filas de usuarios se agregan aqui -->
                 </tbody>
             </table>
         </div>

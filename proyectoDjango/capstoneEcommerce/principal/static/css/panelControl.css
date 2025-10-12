@@ -1,18 +1,45 @@
-body {
-	background-color: var(--gris25);
-}
-
 /* transiciones suaves */
 .table tbody td {
 	transition: background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
+.tablaProductos {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.tablaUsuarios {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
 /* sobrescribe el box-shadow de bootstrap en hover */
 .table.table-striped-columns tbody tr:hover td {
-	--bs-table-bg-state: var(--gris25) !important;
+	--bs-table-bg-state: var(--blanco10) !important;
 }
 
 /* cambia el cursor al pasar por la fila */
 .table.table-striped-columns tbody tr:hover {
 	cursor: pointer;
+}
+
+.pill {
+    background-color: var(--cafeCrema);
+    color: var(--blanco5);
+    text-align: center;
+    margin: 0;
+    padding: 4px 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+}
+
+.pill:hover {
+    background-color: var(--cafeCrema2);
+    color: var(--blanco5);
+}
+
+.card {
+	background-color: var(--fondo);
 }
