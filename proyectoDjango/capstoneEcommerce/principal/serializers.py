@@ -1,16 +1,48 @@
+import re
 from rest_framework import serializers
-from .models import Producto
+from .models import Producto, TipoUsuario, User
+
 
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
         fields = "__all__"
 
-    # Puedes agregar validaciones personalizadas si es necesario
-    def validate_precio(self, value):
-        if value < 0:
-            raise serializers.ValidationError("El precio no puede ser negativo.")
-        return value
-    # se usa validate_<NOMBRE DEL CAMPO A VALIDAR>
-    # si la validacion falla, la api respondera con un error 400 (bad request)
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "username",
+            "nombre",
+            "apellido",
+            "direccion",
+            "telefono",
+            "email",
+            "password",
+            "tipoUsuario",
+            "is_active",
+        ]
+        read_only_fields = ["id", "is_active"]
+
+    # validacion para regla de contraseña nico gei
+    def validate_password(self, value):
+        if len(value) < 6:
+            raise serializers.ValidationError("La contraseña debe tener al menos 6 caracteres.")
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', value):
+            raise serializers.ValidationError("La contraseña debe tener al menos un caracter especial.")
+
+        return value
+
+    def create(self, validated_data):
+
+        password = validated_data.pop("password")
+
+        tipo_usuario = TipoUsuario.objects.get(nombre="Cliente")
+        validated_data["tipoUsuario"] = tipo_usuario
+
+        user = User(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user

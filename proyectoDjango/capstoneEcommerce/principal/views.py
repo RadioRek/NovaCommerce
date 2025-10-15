@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 # cositas de la API
 from rest_framework import viewsets
-from .models import Producto
-from .serializers import ProductoSerializer
+from .models import Producto, User
+from .serializers import ProductoSerializer, UserSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 
 
@@ -40,3 +40,8 @@ class ProductoViewSet(viewsets.ModelViewSet):
 
     def get_serializer_context(self):
         return {'request': self.request}
+    
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
