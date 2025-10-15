@@ -1,20 +1,24 @@
 from rest_framework import serializers
 from .models import Producto, Categoria, CategoriaProducto, User
 
+
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
         fields = "__all__"
+
 
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categoria
         fields = "__all__"
 
+
 class CategoriaProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = CategoriaProducto
         fields = "__all__"
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -39,3 +43,8 @@ class UserSerializer(serializers.ModelSerializer):
             user.set_password(password)
             user.save()
         return user
+
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)

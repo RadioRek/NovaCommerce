@@ -10,4 +10,3 @@ admin.site.register(Venta)
 admin.site.register(User)
 admin.site.register(CategoriaProducto)
 admin.site.register(DetalleVenta)
-

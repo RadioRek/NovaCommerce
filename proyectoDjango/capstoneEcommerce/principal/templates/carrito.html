@@ -1,21 +1,25 @@
-{% extends "base.html" %} 
-{% load static %} 
+{% extends "base.html" %}
+{% load static %}
 
 {% block head %}
 <title>Carrito | Novacommerce</title>
 <link rel="stylesheet" href="{% static 'css/carrito.css' %}" />
-{% endblock head %} 
+{% endblock head %}
 
 
 {% block body %}
+
 <div class="contenedorPrincipal d-flex flex-column p-0 m-0 py-5 align-items-center">
-	<div class="contentAncho d-flex flex-column">
-		<h3 class="headBlanco3 align-items-start mb-2">Tu carrito</h3>
-		<hr />
-		<div class="row d-flex">
-			<div class="col-sm-2 col-6  mb-4 mb-sm-0">
-				<img src="{% static 'img/cafe.png' %}" class="img-thumbnail img-max" alt="Producto" />
-			</div>
+
+    <div class="contentAncho d-flex flex-column">
+        <h3 class="headBlanco3 align-items-start mb-2">Tu carrito</h3>
+        <hr />
+
+        <div class="row d-flex">
+
+            <div class="col-sm-2 col-6  mb-4 mb-sm-0">
+                <img src="{% static 'img/cafe.png' %}" class="img-thumbnail img-max" alt="Producto" />
+            </div>
 
             <div class="col-sm-4 align-items-center col-6 mb-4 mb-sm-0">
                 <h5 class="parrafoBlanco mb-1">Nombre del producto</h5>
@@ -28,51 +32,57 @@
             </div>
 
             <div class="col-sm-4 col-6">
+
                 <div class="d-flex justify-content-center align-items-center">
                     <button type="button" class="botonGenerico textoMinimo" onclick="cambiarCantidad(-1)">−</button>
-                    <input id="cantidadInput" type="number" value="" readonly class="form-control text-center tamaño-cantidad" />
+                    <input id="cantidadInput" type="number" value="" readonly
+                        class="form-control text-center tamaño-cantidad" />
                     <button type="button" class="botonGenerico textoMinimo" onclick="cambiarCantidad(1)">+</button>
                 </div>
                 <p class="textoMinimoBlanco m-0 p-0 text-center">Cant.</p>
             </div>
-		</div>
-		<hr />
+        </div>
+        <hr />
 
-		<div class="row">
-			<div class="col-6">
-				<p class="parrafoBlanco">Resumen</p>
-				<p class="textoMinimoBlanco m-0 p-0">Subtotal</p>
-				<p class="textoMinimoBlanco m-0 p-0">Envío</p>
-				<p class="textoMinimoBlanco m-0 p-0">IVA</p>
-			</div>
-			<div class="col-6 text-end align-content-end">
+        <div class="row">
+
+            <div class="col-6">
+                <p class="parrafoBlanco">Resumen</p>
+                <p class="textoMinimoBlanco m-0 p-0">Subtotal</p>
+                <p class="textoMinimoBlanco m-0 p-0">Envío</p>
+                <p class="textoMinimoBlanco m-0 p-0">IVA</p>
+            </div>
+
+            <div class="col-6 text-end align-content-end">
                 <p class="textoMinimoBlanco m-0 p-0">$00.000</p>
-				<p class="textoMinimoBlanco m-0 p-0">Pendiente</p>
-				<p class="textoMinimoBlanco m-0 p-0">$00.000</p>
-			</div>
-		</div>
-		<hr />
+                <p class="textoMinimoBlanco m-0 p-0">Pendiente</p>
+                <p class="textoMinimoBlanco m-0 p-0">$00.000</p>
+            </div>
+        </div>
+        <hr />
 
-		<div class="row align-items-center mb-2 mb-sm-4">
-			<p class="col-6 headBlanco5">Total a pagar</p>
-			<p class="col-6 text-end headBlanco5">$00.000</p>
-		</div>
+        <div class="row align-items-center mb-2 mb-sm-4">
+            <p class="col-6 headBlanco5">Total a pagar</p>
+            <p class="col-6 text-end headBlanco5">$00.000</p>
+        </div>
 
-		<div class="row">
-			<div class="col-6 d-flex justify-content-start">
-				<button class="botonGenerico">Seguir comprando</button>
-			</div>
-			<div class="col-6 d-flex justify-content-end">
-				<button class="botonGenerico">Proceder al pago</button>
-			</div>
-		</div>
-		<hr />
+        <div class="row">
 
-		<p class="mb-2 mb-sm-4 headBlanco5">Quizas tambien te interese</p>
-		<div class="row">
-		</div>
-	</div>
+            <div class="col-6 d-flex justify-content-start">
+                <button class="botonGenerico">Seguir comprando</button>
+            </div>
+
+            <div class="col-6 d-flex justify-content-end">
+                <button class="botonGenerico">Proceder al pago</button>
+            </div>
+        </div>
+        <hr />
+
+        <p class="mb-2 mb-sm-4 headBlanco5">Quizas tambien te interese</p>
+
+        <div class="row">
+        </div>
+    </div>
 </div>
-
 
 {% endblock body %}

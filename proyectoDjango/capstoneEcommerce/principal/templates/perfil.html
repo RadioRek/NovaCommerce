@@ -2,15 +2,18 @@
 {% load static %}
 {% block head %}
 <title>Perfil</title>
-{% endblock head %} 
+{% endblock head %}
 
 {% block body %}
+
 <div class="row m-0 p-2 p-sm-4 justify-content-center">
+
     <div class="col-12">
         <h1 class="head1 text-center">Mi Perfil</h1>
     </div>
 
     <div class="container col-12 col-sm-4 d-flex m-0 flex-column mb-sm-0 mb-2">
+
         <div class="card h-100 text-center p-2 p-sm-4">
             <h4 class="head4">Información Personal</h4>
             <!-- Foto -->
@@ -23,48 +26,59 @@
 
 
     <div class="container col-12 col-sm-8 d-flex m-0 flex-column">
+
         <div class="card p-2 p-sm-4">
+
             <div class="card-body text-center p-0">
                 <h4 class="head4">Editar Perfil</h4>
                 <form>
+
                     <div class="mb-3">
                         <label for="usernameInput" class="form-label textoMinimo">Username</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="usernameInput" placeholder="username de usuario" required />
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="usernameInput"
+                            placeholder="username de usuario" required />
                     </div>
 
                     <div class="mb-3">
                         <label for="nombreInput" class="form-label textoMinimo">Nombre</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="nombreInput" placeholder="....." required />
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="nombreInput"
+                            placeholder="....." required />
                     </div>
 
                     <div class="mb-3">
                         <label for="ApellidoInput" class="form-label textoMinimo">Apellido</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="ApellidoInput" placeholder="....." required />
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="ApellidoInput"
+                            placeholder="....." required />
                     </div>
 
                     <div class="mb-3">
                         <label for="DireccionInput" class="form-label textoMinimo">Direccion</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="DireccionInput" placeholder="Calle Falsa 123" required />
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="DireccionInput"
+                            placeholder="Calle Falsa 123" required />
                     </div>
 
                     <div class="mb-3">
                         <label for="TelefonoInput" class="form-label textoMinimo">Telefono</label>
-                        <input type="number" class="form-control mb-2 estiloInput parrafoPequeño" id="TelefonoInput" placeholder="953846738" required />
+                        <input type="number" class="form-control mb-2 estiloInput parrafoPequeño" id="TelefonoInput"
+                            placeholder="953846738" required />
                     </div>
 
                     <div class="mb-3">
                         <label for="EmailInput" class="form-label textoMinimo">Email</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="EmailInput" placeholder="Tu@email.example" />
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="EmailInput"
+                            placeholder="Tu@email.example" />
                     </div>
 
                     <div class="mb-3">
                         <label for="passwordInput" class="form-label textoMinimo">Nueva contraseña</label>
-                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño" id="passwordInput" required />
+                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño" id="passwordInput"
+                            required />
                     </div>
 
                     <div class="mb-3">
                         <label for="passwordConfInput" class="form-label textoMinimo">Confirmar nueva contraseña</label>
-                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño" id="passworConfdInput" required />
+                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño"
+                            id="passworConfdInput" required />
                     </div>
 
                     <button type="submit" class="botonGenerico">Guardar cambios</button>

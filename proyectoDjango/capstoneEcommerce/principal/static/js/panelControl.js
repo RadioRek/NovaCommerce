@@ -62,15 +62,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Manejar envío del formulario de producto
 	let formularioProducto = document.getElementById("formularioProducto");
-	formularioProducto.addEventListener("submit", function (event) {
-
+	formularioProducto.addEventListener("submit", async function (event) {
 		event.preventDefault();
+
+		// deshabilitar boton submit
+		let botonSubmit = document.getElementById("crearProductoButton");
+		botonSubmit.disabled = true;
+
+
+		// mostrar alerta de procesamiento
 		let alertaToast = document.getElementById("alertaToast");
 		let alertaHeader = document.getElementById("alertaHeader");
 		let alertaBody = document.getElementById("alertaBody");
 		let alertaSpinner = document.getElementById("alertaSpinner");
 		alertaHeader.textContent = "Procesando solicitud...";
 		alertaBody.textContent = "Creando producto, por favor espere";
+		alertaSpinner.classList.remove("d-none");
 		let toast = new bootstrap.Toast(alertaToast, { autohide: false });
 		toast.show();
 
@@ -89,12 +96,13 @@ document.addEventListener("DOMContentLoaded", function () {
 			formData.append("img", imagenProducto);
 		}
 
+		// pausar la funcion 0.5 segundos para que se vea la alerta de procesamiento
+		await new Promise(resolve => setTimeout(resolve, 500));
+
 		fetch("http://127.0.0.1:8000/api/productos/", {
 			method: "POST",
 			body: formData,
-			headers: {
-				"X-CSRFToken": csrftoken,
-			},
+			headers: { "X-CSRFToken": csrftoken, },
 		}).then(async (response) => {
 			if (response.ok) {
 				alertaHeader.classList.remove("colorRojo3");
@@ -115,9 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					fetch("http://127.0.0.1:8000/api/categoria-productos/", {
 						method: "POST",
 						body: formDataCategoriaProducto,
-						headers: {
-							"X-CSRFToken": csrftoken,
-						},
+						headers: { "X-CSRFToken": csrftoken, },
 					}).then(async (response) => {
 						if (response.ok) {
 							let dataCategoriaProducto = await response.json();
@@ -143,37 +149,46 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.error("Error en la solicitud:", error);
 		});
 
+		// habilitar boton submit
+		botonSubmit.disabled = false;
 
 	});
 
 	// Manejar envío del formulario de categoria
 	let formularioCategoria = document.getElementById("formularioCategoria");
-	formularioCategoria.addEventListener("submit", function (event) {
+
+	formularioCategoria.addEventListener("submit", async function (event) {
 
 		event.preventDefault();
+		// deshabilitar boton submit
+		let botonSubmit = document.getElementById("registrarCategoriaButton");
+		botonSubmit.disabled = true;
+
 		let alertaToast = document.getElementById("alertaToast");
 		let alertaHeader = document.getElementById("alertaHeader");
 		let alertaBody = document.getElementById("alertaBody");
 		let alertaSpinner = document.getElementById("alertaSpinner");
 		alertaHeader.textContent = "Procesando solicitud...";
 		alertaBody.textContent = "Creando categoria, por favor espere";
+		alertaSpinner.classList.remove("d-none");
 		let toast = new bootstrap.Toast(alertaToast, { autohide: false });
 		toast.show();
 
 		let inputNombre = document.getElementById("nombreCategoriaInput").value;
+
 		let formData = new FormData();
 		formData.append("nombre", inputNombre);
 
-
+		// pausar la funcion 0.5 segundos para que se vea la alerta de procesamiento
+		await new Promise(resolve => setTimeout(resolve, 500));
 
 		fetch("http://127.0.0.1:8000/api/categorias/", {
 			method: "POST",
 			body: formData,
-			headers: {
-				"X-CSRFToken": csrftoken,
-			},
+			headers: { "X-CSRFToken": csrftoken, },
 		}).then(async (response) => {
 			if (response.ok) {
+
 				alertaHeader.classList.remove("colorRojo3");
 				alertaBody.classList.remove("colorRojo2");
 
@@ -197,6 +212,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		}).catch((error) => {
 			console.error("Error en la solicitud:", error);
 		});
+
+		// habilitar boton submit
+		botonSubmit.disabled = false;
 	});
 
 	// poblar tabla de productos
@@ -208,11 +226,12 @@ document.addEventListener("DOMContentLoaded", function () {
 			let data = await response.json();
 
 			data.forEach((producto) => {
+				console.log(producto);
 				let row = document.createElement("tr");
 				let tdNombre = document.createElement("td");
 				let tdPrecio = document.createElement("td");
 				let tdStock = document.createElement("td");
-				
+
 				tdNombre.textContent = producto.nombre;
 				tdPrecio.textContent = producto.precio;
 				tdStock.textContent = producto.stock;
@@ -220,13 +239,12 @@ document.addEventListener("DOMContentLoaded", function () {
 				row.appendChild(tdNombre);
 				row.appendChild(tdPrecio);
 				row.appendChild(tdStock);
-				
+
 				tablaProductosBody.appendChild(row);
 			});
 
-
 		} else {
-			
+
 		}
 	}).catch((error) => {
 		console.error("Error en la solicitud:", error);

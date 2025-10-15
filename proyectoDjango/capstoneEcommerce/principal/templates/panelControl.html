@@ -1,76 +1,88 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% load static %}
 
 {% block head %}
 <title>panelControl</title>
 <link rel="stylesheet" href="{% static 'css/panelControl.css' %}">
-{% endblock head %} 
+{% endblock head %}
 
 {% block body %}
 
 
 <div class="panelControlContainer d-flex m-0 flex-column p-2 p-sm-4">
-    
     <!-- formulario agregar Categoria -->
+
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4">
         <h5 class="head5 m-0 p-0 mx-auto text-center">Rellena el formulario para agregar una categoria</h5>
         <form action="" id="formularioCategoria">
+
             <div class="row m-0 p-0 mt-2 mt-sm-4">
                 <!-- input nombre -->
+
                 <div class="col-12 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                     <label for="nombreCategoriaInput" class="form-label">Nombre</label>
-                    <input type="text" class="form-control estiloInput" id="nombreCategoriaInput" placeholder="Nombre de la categoria">
+                    <input type="text" class="form-control estiloInput" id="nombreCategoriaInput"
+                        placeholder="Nombre de la categoria">
                 </div>
             </div>
 
             <div class="row m-0 p-0 mt-4">
                 <!-- boton enviar -->
+
                 <div class="col-12 justify-content-center d-flex m-0 p-0 mb-sm-0 mb-2">
-                    <button type="submit" class="botonGenerico w-50" id="registrarCategoriaButton">Registrar categoria</button>
+                    <button type="submit" class="botonGenerico w-50" id="registrarCategoriaButton">Registrar
+                        categoria</button>
                 </div>
             </div>
         </form>
         <!-- for later -->
 
-
     </div>
 
     <!-- formulario agregar Producto -->
+
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
         <h5 class="head5 m-0 p-0 mx-auto text-center" id="tituloxd">Rellena el formulario para agregar un producto</h5>
         <form action="" id="formularioProducto">
+
             <div class="row m-0 p-0 mt-2 mt-sm-4">
                 <!-- input nombre -->
+
                 <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                     <label for="nombreInput" class="form-label">Nombre</label>
                     <input type="text" class="form-control w-95" id="nombreInput" placeholder="Nombre del producto">
                 </div>
 
                 <!-- input precio -->
+
                 <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                     <label for="precioInput" class="form-label">Precio</label>
                     <input type="number" class="form-control w-95" id="precioInput" placeholder="Precio del producto">
                 </div>
 
                 <!-- input imagen -->
+
                 <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                     <label for="imgInput" class="form-label">Imagen</label>
                     <input class="form-control w-95" type="file" id="imgInput">
                 </div>
 
                 <!-- input descripcion -->
+
                 <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                     <label for="descripcionInput" class="form-label">Descripcion</label>
                     <textarea class="form-control w-95" id="descripcionInput" rows="3"></textarea>
                 </div>
 
                 <!-- input stock -->
+
                 <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                     <label for="stockInput" class="form-label">Stock</label>
                     <input type="number" class="form-control w-95" id="stockInput" placeholder="Stock del producto">
                 </div>
 
                 <!-- select categoria -->
+
                 <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                     <label for="categoriaSelect" class="form-label">Categoria</label>
                     <select class="form-select w-95" id="categoriaSelect" aria-label="Selecciona una categoria">
@@ -86,33 +98,41 @@
 
             <div class="row m-0 p-0 mt-4">
                 <!-- boton limpiar formulario -->
+
                 <div class="col-12 col-sm-6 justify-content-center d-flex m-0 p-0 mb-sm-0 mb-2">
-                    <button type="reset" class="botonGenerico w-95" id="botonLimpiarFormularioProd">Limpiar formulario</button>
+                    <button type="reset" class="botonGenerico w-95" id="botonLimpiarFormularioProd">Limpiar
+                        formulario</button>
                 </div>
 
                 <!-- boton enviar -->
+
                 <div class="col-12 col-sm-6 justify-content-center d-flex m-0 p-0 mb-sm-0 mb-2">
-                    <button type="submit" class="botonGenerico w-95" id="crearProductoButton">Registrar producto</button>
+                    <button type="submit" class="botonGenerico w-95" id="crearProductoButton">Registrar
+                        producto</button>
                 </div>
             </div>
         </form>
     </div>
 
     <!-- controles productos -->
+
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
         <h5 class="head5 m-0 p-0 mx-auto text-center">Controles de productos</h5>
 
         <div class="row p-0 m-0 mt-4">
+
             <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
                 <label for="idInput" class="form-label">Id</label>
                 <input type="number" class="form-control w-95" id="idInput" placeholder="Id del producto">
                 <button type="button" class="botonGenerico mt-2 w-75">Buscar</button>
             </div>
+
             <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
                 <label for="nombreInput" class="form-label">Nombre</label>
                 <input type="text" class="form-control w-95" id="nombreInput" placeholder="Nombre del producto">
                 <button type="button" class="botonGenerico mt-2 w-75">Buscar</button>
             </div>
+
             <div class="col-12 text-center mb-sm-4 mb-2 mt-2">
                 <p class="parrafoPequeñoSuave">(deja los campos vacios antes de buscar para traer todo)</p>
             </div>
@@ -135,19 +155,24 @@
     </div>
 
     <!-- controles usuarios -->
+
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
         <h5 class="head5 m-0 p-0 mx-auto text-center">Controles de usuarios</h5>
+
         <div class="row p-0 m-0 mt-4">
+
             <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
                 <label for="idInput" class="form-label">Id</label>
                 <input type="number" class="form-control w-95" id="idInput" placeholder="Id del usuario">
                 <button type="button" class="botonGenerico mt-2 w-75">Buscar</button>
             </div>
+
             <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
                 <label for="nombreInput" class="form-label">Nombre</label>
                 <input type="text" class="form-control w-95" id="nombreInput" placeholder="Nombre del usuario">
                 <button type="button" class="botonGenerico mt-2 w-75">Buscar</button>
             </div>
+
             <div class="col-12 text-center mb-sm-4 mb-2 mt-2">
                 <p class="parrafoPequeñoSuave">(deja los campos vacios antes de buscar para traer todo)</p>
             </div>
@@ -178,14 +203,18 @@
 
 
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
+
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="alertaToast">
+
         <div class="toast-header">
+
             <div class="spinner-border spinner-border-sm me-2" role="status" id="alertaSpinner">
                 <span class="visually-hidden">Cargando...</span>
-            </div>        
+            </div>
             <strong class="me-auto" id="alertaHeader"></strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
+
         <div class="toast-body" id="alertaBody">
         </div>
     </div>
