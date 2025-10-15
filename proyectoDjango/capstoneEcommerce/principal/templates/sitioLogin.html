@@ -11,7 +11,7 @@
 <div class="contenedorLogin d-flex flex-column justify-content-center align-items-center">
 	<h1 class="headBlanco1 mb-4">Novacommerce</h1>
 	<div class="card p-4 d-flex flex-column">
-		<form action="">
+		<form action="" id="loginForm">
 			<h2 class="parrafo text-center">Iniciar sesión</h2>
 
 			<label for="usernameInput" class="form-label textoMinimo">Username</label>
@@ -20,7 +20,7 @@
 			<label for="passwordInput" class="form-label textoMinimo">Password</label>
 			<input type="password" class="form-control mb-4 textoMinimo estiloInput" id="passwordInput" placeholder="*********" required />
 
-			<button class="botonGenerico my-2 px-4">Iniciar sesión</button>
+			<button class="botonGenerico my-2 px-4" type="submit">Iniciar sesión</button>
 			<p class="parrafoPequeño m-0 text-center">
 				¿No tienes una cuenta?
 				<a href="{% url 'registro' %}" class="parrafoPequeño">Regístrate</a>
@@ -28,4 +28,5 @@
 		</form>
 	</div>
 </div>
+<script src="{% static 'js/sitioLogin.js' %}"></script>
 {% endblock body %}

@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				console.error("Error en la solicitud:", error);
 	    });
 
-
+ 
 
 	});
 

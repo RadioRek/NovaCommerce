@@ -14,3 +14,7 @@ class ProductoSerializer(serializers.ModelSerializer):
     # se usa validate_<NOMBRE DEL CAMPO A VALIDAR>
     # si la validacion falla, la api respondera con un error 400 (bad request)
 
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)

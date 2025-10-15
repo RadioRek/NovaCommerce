@@ -9,7 +9,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',  
-        'rest_framework.authentication.BasicAuthentication', 
     ]
 }
 
@@ -37,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'principal',
     'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
