@@ -25,13 +25,9 @@ urlpatterns = [
     path("producto/<int:producto_id>/", views.producto, name="producto"),
     path("perfil/", views.perfil, name="perfil"),
     path("carrito/", views.carrito, name="carrito"),
+
     # rutas de la API
     path("api/", include(router.urls)),
     path("api/login/", views.LoginView.as_view(), name="api-login"),
     path("api/logout/", views.LogoutView.as_view(), name="api-logout"),
-    path('api/', include(router.urls)),
-
-    # Endpoint de login y logout basados en sesión
-    path('api/login/', views.LoginView.as_view(), name='api-login'),
-    path('api/logout/', views.LogoutView.as_view(), name='api-logout'),
 ]

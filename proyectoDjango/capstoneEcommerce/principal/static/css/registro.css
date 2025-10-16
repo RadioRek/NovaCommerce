@@ -12,3 +12,8 @@
 		width: 60%;
 	}
 }
+
+
+#textoAlerta {
+	display: none;
+}
