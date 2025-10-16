@@ -66,8 +66,11 @@ class ProductoViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Producto.objects.all()
         nombre = self.request.query_params.get('nombre', None)
+        idProducto = self.request.query_params.get('id', None)
         if nombre:
             queryset = queryset.filter(nombre__icontains=nombre)
+        if idProducto:
+            queryset = queryset.filter(id=idProducto)
         return queryset
 
 

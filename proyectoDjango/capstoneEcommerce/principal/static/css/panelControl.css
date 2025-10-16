@@ -41,5 +41,9 @@
 }
 
 .card {
-	background-color: var(--fondo);
+	background-color: white;
+}
+
+.panelControlContainer {
+    background-color: var(--blanco5);
 }

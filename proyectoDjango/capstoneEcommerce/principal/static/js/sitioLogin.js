@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
             credentials: 'include'
         }).then(async (response) => {
             if (response.ok) {
-                console.log("Inicio de sesión exitoso");
             } else {
                 let errorData = await response.json();
                 console.error("Error en el inicio de sesión:", errorData);

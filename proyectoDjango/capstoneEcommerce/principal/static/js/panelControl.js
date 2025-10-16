@@ -78,6 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		alertaHeader.textContent = "Procesando solicitud...";
 		alertaBody.textContent = "Creando producto, por favor espere";
 		alertaSpinner.classList.remove("d-none");
+		alertaHeader.classList.remove("colorRojo3");
+		alertaBody.classList.remove("colorRojo2");
+
+		// mostrar alerta de procesamiento
 		let toast = new bootstrap.Toast(alertaToast, { autohide: false });
 		toast.show();
 
@@ -105,16 +109,16 @@ document.addEventListener("DOMContentLoaded", function () {
 			headers: { "X-CSRFToken": csrftoken, },
 		}).then(async (response) => {
 			if (response.ok) {
+				formularioProducto.reset();
 				alertaHeader.classList.remove("colorRojo3");
 				alertaBody.classList.remove("colorRojo2");
-
-				formularioProducto.reset();
 				contenedorPills.innerHTML = "";
 				alertaSpinner.classList.add("d-none");
 				alertaHeader.textContent = "Exito";
 				alertaBody.textContent = "Producto creado con exito";
 
 				let data = await response.json();
+
 				for (let categoriaId of categorias) {
 					let formDataCategoriaProducto = new FormData();
 					formDataCategoriaProducto.append("producto", data.id);
@@ -139,13 +143,17 @@ document.addEventListener("DOMContentLoaded", function () {
 			if (!response.ok) {
 				alertaHeader.classList.add("colorRojo3");
 				alertaBody.classList.add("colorRojo2");
-
 				let data = await response.json().catch(() => ({}));
 				alertaSpinner.classList.add("d-none");
 				alertaHeader.textContent = "Error";
 				alertaBody.textContent = "Error al crear el producto. ";
 			}
 		}).catch((error) => {
+			alertaSpinner.classList.add("d-none");
+			alertaHeader.classList.add("colorRojo3");
+			alertaBody.classList.add("colorRojo2");
+			alertaHeader.textContent = "Error";
+			alertaBody.textContent = "Error al crear el producto";
 			console.error("Error en la solicitud:", error);
 		});
 
@@ -171,6 +179,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		alertaHeader.textContent = "Procesando solicitud...";
 		alertaBody.textContent = "Creando categoria, por favor espere";
 		alertaSpinner.classList.remove("d-none");
+		alertaHeader.classList.remove("colorRojo3");
+		alertaBody.classList.remove("colorRojo2");
+
+		// mostrar alerta de procesamiento
 		let toast = new bootstrap.Toast(alertaToast, { autohide: false });
 		toast.show();
 
@@ -206,10 +218,18 @@ document.addEventListener("DOMContentLoaded", function () {
 				alertaHeader.textContent = "Error";
 				if (data.nombre) {
 					alertaBody.textContent = data.nombre;
+				} else {
+					alertaBody.textContent = "Error al crear la categoria";
 				}
+				//  resetear el formulario
 				formularioCategoria.reset();
 			}
 		}).catch((error) => {
+			alertaSpinner.classList.add("d-none");
+			alertaHeader.classList.add("colorRojo3");
+			alertaBody.classList.add("colorRojo2");
+			alertaHeader.textContent = "Error";
+			alertaBody.textContent = "Error al crear la categoria";
 			console.error("Error en la solicitud:", error);
 		});
 
@@ -226,7 +246,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			let data = await response.json();
 
 			data.forEach((producto) => {
-				console.log(producto);
 				let row = document.createElement("tr");
 				let tdNombre = document.createElement("td");
 				let tdPrecio = document.createElement("td");
@@ -252,6 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// poblar la tabla de usuarios
 	let tablaUsuariosBody = document.getElementById("tablaUsuariosBody");
+
 	fetch("http://127.0.0.1:8000/api/users/", {
 		method: "GET",
 	}).then(async (response) => {
@@ -291,12 +311,82 @@ document.addEventListener("DOMContentLoaded", function () {
 
 				tablaUsuariosBody.appendChild(row);
 			});
-		} else {
 		}
 	}).catch((error) => {
 		console.error("Error en la solicitud:", error);
 	});
 
+
+	// poblar tabla de productos buscando
+	let buscarProductoFormulario = document.getElementById("buscarProductoForm");
+
+	buscarProductoFormulario.addEventListener("submit", function (event) {
+		event.preventDefault();
+
+		let nombreBuscado = document.getElementById("buscarNombreProductoInput").value.trim();
+		let idBuscado = document.getElementById("buscarIdProductoInput").value.trim();
+
+
+		let alertaToast = document.getElementById("alertaToast");
+		let alertaHeader = document.getElementById("alertaHeader");
+		let alertaBody = document.getElementById("alertaBody");
+		let alertaSpinner = document.getElementById("alertaSpinner");
+		alertaHeader.textContent = "Procesando solicitud...";
+		alertaBody.textContent = "Buscando productos, por favor espere";
+		alertaSpinner.classList.remove("d-none");
+		let toast = new bootstrap.Toast(alertaToast, { autohide: false });
+		toast.show();
+
+
+		fetch(`http://127.0.0.1:8000/api/productos/?nombre=${encodeURIComponent(nombreBuscado)}&id=${encodeURIComponent(idBuscado)}`, {
+			method: "GET",
+		}).then(async (response) => {
+			if (response.ok) {
+				let data = await response.json();
+
+				// limpiar tabla antes de llenar
+				tablaProductosBody.innerHTML = "";
+
+				if (data.length === 0) {
+					alertaSpinner.classList.add("d-none");
+					alertaHeader.textContent = "Sin resultados";
+					alertaBody.textContent = "No se encontraron productos";
+				} else {
+					alertaSpinner.classList.add("d-none");
+					alertaHeader.textContent = "Exito";
+					alertaBody.textContent = `Se encontraron ${data.length} productos`;
+
+					data.forEach((producto) => {
+						let row = document.createElement("tr");
+						let tdNombre = document.createElement("td");
+						let tdPrecio = document.createElement("td");
+						let tdStock = document.createElement("td");
+
+						tdNombre.textContent = producto.nombre;
+						tdPrecio.textContent = producto.precio;
+						tdStock.textContent = producto.stock;
+
+						row.appendChild(tdNombre);
+						row.appendChild(tdPrecio);
+						row.appendChild(tdStock);
+
+						tablaProductosBody.appendChild(row);
+					});
+
+				}
+			} else {
+				alertaSpinner.classList.add("d-none");
+				alertaHeader.textContent = "Error";
+				alertaBody.textContent = "Error al buscar productos";
+				console.error("Error en la respuesta del servidor:", response.status);
+			}
+		}).catch((error) => {
+			alertaSpinner.classList.add("d-none");
+			alertaHeader.textContent = "Error";
+			alertaBody.textContent = "Error al buscar productos";
+			console.error("Error en la solicitud:", error);
+		});
+	});
 });
 
 /*
