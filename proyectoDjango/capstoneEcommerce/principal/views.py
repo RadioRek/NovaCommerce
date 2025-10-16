@@ -1,10 +1,16 @@
 from django.shortcuts import render
 
 # cositas de la API
-from rest_framework import viewsets, permissions, status
-from .models import Producto, Categoria, CategoriaProducto, User
-from .serializers import ProductoSerializer, CategoriaSerializer, CategoriaProductoSerializer, UserSerializer, LoginSerializer
+from rest_framework import viewsets, permissions, status, permissions, status
+from .models import Producto, Categoria, CategoriaProducto, User, Categoria, CategoriaProducto, User
+from .serializers import (
+    ProductoSerializer,
+    LoginSerializer,
+), CategoriaSerializer, CategoriaProductoSerializer, UserSerializer, LoginSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
+from django.contrib.auth import authenticate, login, logout
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -62,6 +68,33 @@ class ProductoViewSet(viewsets.ModelViewSet):
 
     def get_serializer_context(self):
         return {'request': self.request}
+
+
+class LoginView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            username = serializer.validated_data["username"]
+            password = serializer.validated_data["password"]
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return Response({"message": "Login exitoso"}, status=status.HTTP_200_OK)
+            return Response(
+                {"error": "Credenciales inválidas"}, status=status.HTTP_401_UNAUTHORIZED
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LogoutView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        logout(request)
+        return Response({"message": "Logout exitoso"}, status=status.HTTP_200_OK)
+
 
     def get_queryset(self):
         queryset = Producto.objects.all()

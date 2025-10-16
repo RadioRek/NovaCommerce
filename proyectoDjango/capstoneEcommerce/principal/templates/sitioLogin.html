@@ -10,11 +10,10 @@
 {% block body %}
 
 <div class="contenedorLogin d-flex flex-column justify-content-center align-items-center">
-    <h1 class="headBlanco1 mb-4">Novacommerce</h1>
-
-    <div class="card p-4 d-flex flex-column">
-        <form action="" id="formularioLogin">
-            <h2 class="parrafo text-center">Iniciar sesión</h2>
+	<h1 class="headBlanco1 mb-4">Novacommerce</h1>
+	<div class="card p-4 d-flex flex-column">
+		<form action="" id="loginForm">
+			<h2 class="parrafo text-center">Iniciar sesión</h2>
 
             <label for="usernameInput" class="form-label textoMinimo">Username</label>
             <input type="text" class="form-control mb-2 textoMinimo estiloInput" id="usernameInput" placeholder="username de usuario" required />
@@ -22,14 +21,13 @@
             <label for="passwordInput" class="form-label textoMinimo">Password</label>
             <input type="password" class="form-control mb-4 textoMinimo estiloInput" id="passwordInput" placeholder="*********" required />
 
-            <button type="submit" class="botonGenerico my-2 px-4">Iniciar sesión</button>
-            <p class="parrafoPequeño m-0 text-center">
-                ¿No tienes una cuenta?
-                <a href="{% url 'registro' %}" class="parrafoPequeño">Regístrate</a>
-            </p>
-        </form>
-    </div>
+			<button class="botonGenerico my-2 px-4" type="submit">Iniciar sesión</button>
+			<p class="parrafoPequeño m-0 text-center">
+				¿No tienes una cuenta?
+				<a href="{% url 'registro' %}" class="parrafoPequeño">Regístrate</a>
+			</p>
+		</form>
+	</div>
 </div>
-
 <script src="{% static 'js/sitioLogin.js' %}"></script>
 {% endblock body %}
