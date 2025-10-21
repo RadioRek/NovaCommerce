@@ -46,7 +46,8 @@ def carrito(request):
 
 
 def perfil(request):
-    return render(request, 'perfil.html')
+    user = request.user
+    return render(request, 'perfil.html', {'user': user})
 
 
 # mas cositas de la API
