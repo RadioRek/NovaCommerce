@@ -2,10 +2,10 @@
 {% load static %}
 
 
-{% block head %} 
+{% block head %}
 <link rel="stylesheet" href="{% static 'css/tienda.css' %}">
 <title>Tienda</title>
-{% endblock head %} 
+{% endblock head %}
 
 
 {% block body %}
@@ -50,7 +50,7 @@
 
 <div class="row m-0 p-2 p-sm-4">
     <!-- Menu de la izquierda -->
-    <div class="col-12 col-sm-4"> 
+    <div class="col-12 col-sm-4">
         <h4 class="head4 ">Categorías</h4>
         <hr>
         <ul class="list-group">
@@ -85,7 +85,7 @@
     <div class="col-12 col-sm-8">
         <h4 class="head4">Productos</h4>
         <hr>
-        <div class="row">
+        <div class="row" id="contenedorProductos">
             <div class="col-6 col-sm-3 mb-2">
                 <div class="card">
                     <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Producto 1">
