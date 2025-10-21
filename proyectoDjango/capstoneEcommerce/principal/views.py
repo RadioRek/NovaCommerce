@@ -1,11 +1,10 @@
-from django.shortcuts import render
-
+from django.shortcuts import redirect, render
 # cositas de la API
 
 from .models import Producto, Categoria, CategoriaProducto, User, Categoria, CategoriaProducto, User
 from .serializers import (
     ProductoSerializer,
-    LoginSerializer, CategoriaSerializer, CategoriaProductoSerializer, UserSerializer, LoginSerializer
+    LoginSerializer, CategoriaSerializer, CategoriaProductoSerializer, UserSerializer, LoginSerializer,
 )
 
 from rest_framework import viewsets, permissions, status, permissions, status
@@ -26,7 +25,9 @@ def registro(request):
 
 
 def sitioLogin(request):
-    return render(request, 'sitioLogin.html')
+    if request.user.is_authenticated:
+        return redirect('perfil')  # usa el nombre de URL de perfil
+    return render(request, 'sitioLogin.html')  # ojo al .html (no .htlm)
 
 
 def tienda(request):
@@ -92,8 +93,6 @@ class CategoriaProductoViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAdministrador]
-
 
 class LoginView(APIView):
     permission_classes = [permissions.AllowAny]
@@ -118,3 +117,6 @@ class LogoutView(APIView):
     def post(self, request):
         logout(request)
         return Response({"message": "Logout exitoso"}, status=status.HTTP_200_OK)
+
+
+
