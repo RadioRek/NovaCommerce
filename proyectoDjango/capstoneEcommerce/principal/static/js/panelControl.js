@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Cargar categorias en el select
 	let selectCategoria = document.getElementById("categoriaSelect");
-	fetch("http://127.0.0.1:8000/api/categorias/", {
+	fetch("/api/categorias/", {
 		method: "GET",
 	}).then(async (response) => {
 		if (response.ok) {
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		// pausar la funcion 0.5 segundos para que se vea la alerta de procesamiento
 		await new Promise(resolve => setTimeout(resolve, 500));
 
-		fetch("http://127.0.0.1:8000/api/productos/", {
+		fetch("/api/productos/", {
 			method: "POST",
 			body: formData,
 			headers: { "X-CSRFToken": csrftoken, },
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					formDataCategoriaProducto.append("producto", data.id);
 					formDataCategoriaProducto.append("categoria", categoriaId);
 
-					fetch("http://127.0.0.1:8000/api/categoria-productos/", {
+					fetch("/api/categoria-productos/", {
 						method: "POST",
 						body: formDataCategoriaProducto,
 						headers: { "X-CSRFToken": csrftoken, },
@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		// pausar la funcion 0.5 segundos para que se vea la alerta de procesamiento
 		await new Promise(resolve => setTimeout(resolve, 500));
 
-		fetch("http://127.0.0.1:8000/api/categorias/", {
+		fetch("/api/categorias/", {
 			method: "POST",
 			body: formData,
 			headers: { "X-CSRFToken": csrftoken, },
@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// poblar tabla de productos
 	let tablaProductosBody = document.getElementById("tablaProductosBody");
-	fetch("http://127.0.0.1:8000/api/productos/", {
+	fetch("/api/productos/", {
 		method: "GET",
 	}).then(async (response) => {
 		if (response.ok) {
@@ -272,7 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// poblar la tabla de usuarios
 	let tablaUsuariosBody = document.getElementById("tablaUsuariosBody");
 
-	fetch("http://127.0.0.1:8000/api/users/", {
+	fetch("/api/users/", {
 		method: "GET",
 	}).then(async (response) => {
 		if (response.ok) {
@@ -338,7 +338,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		toast.show();
 
 
-		fetch(`http://127.0.0.1:8000/api/productos/?nombre=${encodeURIComponent(nombreBuscado)}&id=${encodeURIComponent(idBuscado)}`, {
+		fetch(`/api/productos/?nombre=${encodeURIComponent(nombreBuscado)}&id=${encodeURIComponent(idBuscado)}`, {
 			method: "GET",
 		}).then(async (response) => {
 			if (response.ok) {

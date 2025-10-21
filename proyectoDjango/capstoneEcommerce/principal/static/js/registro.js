@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		formData.append("password", password);
 
 
-        fetch("http://127.0.0.1:8000/api/users/", {
+        fetch("/api/users/", {
 			method: "POST",
 			body: formData,
 			headers: {
