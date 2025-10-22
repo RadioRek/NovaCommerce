@@ -129,7 +129,6 @@
                 <input type="text" class="form-control w-95" id="buscarNombreProductoInput" placeholder="Nombre del producto">
             </div>
 
-
             <div class="col-12 text-center mb-sm-4 mb-2 mt-2">
                 <button type="submit" class="botonGenerico mt-2 w-75">Buscar</button>
                 <p class="parrafoPequeñoSuave">(deja los campos vacios antes de buscar para traer todo)</p>
@@ -140,9 +139,9 @@
             <table class="table table-striped-columns">
                 <thead>
                     <tr>
-                        <th scope="col parrafo">Nombre</th>
-                        <th scope="col parrafo">Precio</th>
-                        <th scope="col parrafo">Stock</th>
+                        <th scope="col" class="parrafoPequeño">Nombre</th>
+                        <th scope="col" class="parrafoPequeño">Precio</th>
+                        <th scope="col" class="parrafoPequeño">Stock</th>
                     </tr>
                 </thead>
                 <tbody id="tablaProductosBody">
@@ -157,36 +156,37 @@
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
         <h5 class="head5 m-0 p-0 mx-auto text-center">Controles de usuarios</h5>
 
-        <div class="row p-0 m-0 mt-4">
-
+        <form action="" class="row p-0 m-0 mt-4" id="buscarUsuarioForm">
             <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
-                <label for="idInput" class="form-label">Id</label>
-                <input type="number" class="form-control w-95" id="idInput" placeholder="Id del usuario">
-                <button type="button" class="botonGenerico mt-2 w-75">Buscar</button>
+                <label for="buscarIdUsuarioInput" class="form-label">Id</label>
+                <input type="number" class="form-control w-95" id="buscarIdUsuarioInput" placeholder="Id del usuario">
+
             </div>
 
             <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
-                <label for="nombreInput" class="form-label">Nombre</label>
-                <input type="text" class="form-control w-95" id="nombreInput" placeholder="Nombre del usuario">
-                <button type="button" class="botonGenerico mt-2 w-75">Buscar</button>
+                <label for="buscarUsernameUsuarioInput" class="form-label">Nombre</label>
+                <input type="text" class="form-control w-95" id="buscarUsernameUsuarioInput" placeholder="Nombre del usuario">
+
             </div>
 
             <div class="col-12 text-center mb-sm-4 mb-2 mt-2">
+                <button type="submit" class="botonGenerico mt-2 w-75">Buscar</button>
                 <p class="parrafoPequeñoSuave">(deja los campos vacios antes de buscar para traer todo)</p>
             </div>
-        </div>
+
+        </form>
 
         <div class="mx-2 mx-sm-4 table-responsive tablaUsuarios">
             <table class="table table-striped-columns">
                 <thead>
                     <tr>
-                        <th scope="col parrafo">Username</th>
-                        <th scope="col parrafo">Nombre</th>
-                        <th scope="col parrafo">Apellido</th>
-                        <th scope="col parrafo">Direccion</th>
-                        <th scope="col parrafo">Telefono</th>
-                        <th scope="col parrafo">Email</th>
-                        <th scope="col parrafo">Tipo</th>
+                        <th scope="col" class="parrafoPequeño">Username</th>
+                        <th scope="col" class="parrafoPequeño">Nombre</th>
+                        <th scope="col" class="parrafoPequeño">Apellido</th>
+                        <th scope="col" class="parrafoPequeño">Direccion</th>
+                        <th scope="col" class="parrafoPequeño">Telefono</th>
+                        <th scope="col" class="parrafoPequeño">Email</th>
+                        <th scope="col" class="parrafoPequeño">Tipo</th>
                     </tr>
                 </thead>
                 <tbody id="tablaUsuariosBody">

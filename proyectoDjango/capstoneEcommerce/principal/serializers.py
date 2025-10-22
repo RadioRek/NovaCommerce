@@ -1,6 +1,6 @@
 import re
 from rest_framework import serializers
-from .models import Producto, Categoria, CategoriaProducto, TipoUsuario, User
+from .models import Producto, Categoria, CategoriaProducto, TipoUsuario, User, Carrito, DetalleCarrito
 
 
 class ProductoSerializer(serializers.ModelSerializer):
@@ -19,31 +19,6 @@ class CategoriaProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = CategoriaProducto
         fields = "__all__"
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = "__all__"
-        extra_kwargs = {
-            "password": {"write_only": True}
-        }
-
-    def create(self, validated_data):
-        password = validated_data.pop("password", None)
-        user = super().create(validated_data)
-        if password:
-            user.set_password(password)
-            user.save()
-        return user
-
-    def update(self, instance, validated_data):
-        password = validated_data.pop("password", None)
-        user = super().update(instance, validated_data)
-        if password:
-            user.set_password(password)
-            user.save()
-        return user
 
 
 class LoginSerializer(serializers.Serializer):
@@ -88,3 +63,13 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+class CarritoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Carrito
+        fields = "__all__"
+
+class DetalleCarritoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DetalleCarrito
+        fields = "__all__"

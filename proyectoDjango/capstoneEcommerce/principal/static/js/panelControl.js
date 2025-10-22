@@ -251,6 +251,10 @@ document.addEventListener("DOMContentLoaded", function () {
 				let tdPrecio = document.createElement("td");
 				let tdStock = document.createElement("td");
 
+				tdNombre.className = "textoMinimo";
+				tdPrecio.className = "textoMinimo";
+				tdStock.className = "textoMinimo";
+
 				tdNombre.textContent = producto.nombre;
 				tdPrecio.textContent = producto.precio;
 				tdStock.textContent = producto.stock;
@@ -287,6 +291,15 @@ document.addEventListener("DOMContentLoaded", function () {
 				let tdTelefono = document.createElement("td");
 				let tdEmail = document.createElement("td");
 				let tdTipo = document.createElement("td");
+
+				tdUsername.className = "textoMinimo";
+				tdNombre.className = "textoMinimo";
+				tdApellido.className = "textoMinimo";
+				tdDireccion.className = "textoMinimo";
+				tdTelefono.className = "textoMinimo";
+				tdEmail.className = "textoMinimo";
+				tdTipo.className = "textoMinimo";
+
 
 				tdUsername.textContent = usuario.username;
 				tdNombre.textContent = usuario.nombre;
@@ -326,7 +339,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		let nombreBuscado = document.getElementById("buscarNombreProductoInput").value.trim();
 		let idBuscado = document.getElementById("buscarIdProductoInput").value.trim();
 
-
 		let alertaToast = document.getElementById("alertaToast");
 		let alertaHeader = document.getElementById("alertaHeader");
 		let alertaBody = document.getElementById("alertaBody");
@@ -362,6 +374,10 @@ document.addEventListener("DOMContentLoaded", function () {
 						let tdPrecio = document.createElement("td");
 						let tdStock = document.createElement("td");
 
+						tdNombre.className = "textoMinimo";
+						tdPrecio.className = "textoMinimo";
+						tdStock.className = "textoMinimo";
+
 						tdNombre.textContent = producto.nombre;
 						tdPrecio.textContent = producto.precio;
 						tdStock.textContent = producto.stock;
@@ -387,6 +403,100 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.error("Error en la solicitud:", error);
 		});
 	});
+
+	// poblar tabla de usuarios buscando
+	let buscarUsuarioFormulario = document.getElementById("buscarUsuarioForm");
+
+	buscarUsuarioFormulario.addEventListener("submit", function (event) {
+		event.preventDefault();
+
+		let nombreBuscado = document.getElementById("buscarUsernameUsuarioInput").value.trim();
+		let idBuscado = document.getElementById("buscarIdUsuarioInput").value.trim();
+
+		let alertaToast = document.getElementById("alertaToast");
+		let alertaHeader = document.getElementById("alertaHeader");
+		let alertaBody = document.getElementById("alertaBody");
+		let alertaSpinner = document.getElementById("alertaSpinner");
+		alertaHeader.textContent = "Procesando solicitud...";
+		alertaBody.textContent = "Buscando usuarios, por favor espere";
+		alertaSpinner.classList.remove("d-none");
+		let toast = new bootstrap.Toast(alertaToast, { autohide: false });
+		toast.show();
+
+		fetch(`/api/users/?username=${encodeURIComponent(nombreBuscado)}&id=${encodeURIComponent(idBuscado)}`, {
+			method: "GET",
+		}).then(async (response) => {
+			if (response.ok) {
+				let data = await response.json();
+
+				// limpiar tabla antes de llenar
+				tablaUsuariosBody.innerHTML = "";
+
+				if (data.length === 0) {
+					alertaSpinner.classList.add("d-none");
+					alertaHeader.textContent = "Sin resultados";
+					alertaBody.textContent = "No se encontraron usuarios";
+				} else {
+					alertaSpinner.classList.add("d-none");
+					alertaHeader.textContent = "Exito";
+					alertaBody.textContent = `Se encontraron ${data.length} usuarios`;
+
+					data.forEach((usuario) => {
+						let row = document.createElement("tr");
+						let tdUsername = document.createElement("td");
+						let tdNombre = document.createElement("td");
+						let tdApellido = document.createElement("td");
+						let tdDireccion = document.createElement("td");
+						let tdTelefono = document.createElement("td");
+						let tdEmail = document.createElement("td");
+						let tdTipo = document.createElement("td");
+
+						tdUsername.className = "textoMinimo";
+						tdNombre.className = "textoMinimo";
+						tdApellido.className = "textoMinimo";
+						tdDireccion.className = "textoMinimo";
+						tdTelefono.className = "textoMinimo";
+						tdEmail.className = "textoMinimo";
+						tdTipo.className = "textoMinimo";
+						tdUsername.textContent = usuario.username;
+						tdNombre.textContent = usuario.nombre;
+						tdApellido.textContent = usuario.apellido;
+						tdDireccion.textContent = usuario.direccion;
+						tdTelefono.textContent = usuario.telefono;
+						tdEmail.textContent = usuario.email;
+						if (usuario.tipoUsuario === 1) {
+							tdTipo.textContent = "Administrador";
+						}
+						if (usuario.tipoUsuario === 2) {
+							tdTipo.textContent = "Cliente";
+						}
+
+						row.appendChild(tdUsername);
+						row.appendChild(tdNombre);
+						row.appendChild(tdApellido);
+						row.appendChild(tdDireccion);
+						row.appendChild(tdTelefono);
+						row.appendChild(tdEmail);
+						row.appendChild(tdTipo);
+
+						tablaUsuariosBody.appendChild(row);
+					});
+				}
+			} else {
+				alertaSpinner.classList.add("d-none");
+				alertaHeader.textContent = "Error";
+				alertaBody.textContent = "Error al buscar usuarios";
+				console.error("Error en la respuesta del servidor:", response.status);
+			}
+		}).catch((error) => {
+			alertaSpinner.classList.add("d-none");
+			alertaHeader.textContent = "Error";
+			alertaBody.textContent = "Error al buscar usuarios";
+			console.error("Error en la solicitud:", error);
+		});
+
+	});
+
 });
 
 /*

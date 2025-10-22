@@ -138,3 +138,27 @@ class CategoriaProducto(models.Model):
 
     def __str__(self):
         return self.producto.nombre + " - " + self.categoria.nombre
+
+
+class Carrito(models.Model):
+    usuario = models.ForeignKey('User', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Carrito"
+        verbose_name_plural = "Carritos"
+
+    def __str__(self):
+        return "Carrito " + str(self.id) + " - " + self.usuario.username
+
+
+class DetalleCarrito(models.Model):
+    cantidad = models.IntegerField()
+    producto = models.ForeignKey('Producto', on_delete=models.CASCADE)
+    carrito = models.ForeignKey('Carrito', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Detalle de carrito"
+        verbose_name_plural = "Detalles de carritos"
+
+    def __str__(self):
+        return str(self.id) + " - " + self.producto.nombre + " - " + str(self.cantidad)

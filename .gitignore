@@ -2,3 +2,13 @@
 *.pyc
 __pycache__/
 .vscode
+migrations/
+
+# ignorar imagenes de productos
+media/
+
+# ignorar archivos de entorno virtual
+.venv/
+
+# ignorar sqlite database
+db.sqlite3

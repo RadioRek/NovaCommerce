@@ -9,7 +9,7 @@
 
     --cafeMainSecundario: #7B6A58;
     --cafeMainSecundario2: #5E4B3C;
-    --cafeMainSecundario3: #3C2F2F; 
+    --cafeMainSecundario3: #3C2F2F;
 
     --rojoMain: #D2691E;
     --rojoMain2: #8B4513;
@@ -19,148 +19,155 @@
     --amarilloMain2: #D2B48C;
     --amarilloMain3: #A68A6D;
 
-
-	--blanco5: #F5F5DC;
-	--blanco10: #EDE0D4;
-	--gris25: #C4A484;
-	--gris50: #8B7D6B;
-	--negro75: #3E2C23;
-	--negro85: #1C1A17; 
+    --blanco5: #F5F5DC;
+    --blanco10: #EDE0D4;
+    --gris25: #C4A484;
+    --gris50: #8B7D6B;
+    --negro75: #3E2C23;
+    --negro85: #1C1A17;
 
     --fondo: #FAF3E0;
 
 }
 
+/*
+    fuente para titulos: quintessential
+    fuente para parrafos: luxurious roman
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Quintessential&display=swap');
+
+
 /* headers */
 .head1 {
-	font-family: "Poppins", sans-serif;
-	font-size: 42px;
-	color: var(--gris50);
-	font-weight: normal;
+    font-family: "Quintessential", serif;
+    font-size: 42px;
+    color: var(--negro75);
+    font-weight: normal;
 }
 
 .head2 {
-	font-family: "Poppins", sans-serif;
-	font-size: 37px;
-	color: var(--gris50);
-	font-weight: normal;
+    font-family: "Quintessential", serif;
+    font-size: 37px;
+    color: var(--negro75);
+    font-weight: normal;
 }
 
 .head3 {
-	font-family: "Poppins", sans-serif;
-	font-size: 33px;
-	color: var(--gris50);
-	font-weight: normal;
+    font-family: "Quintessential", serif;
+    font-size: 33px;
+    color: var(--negro75);
+    font-weight: normal;
 }
 
 .head4 {
-	font-family: "Poppins", sans-serif;
-	font-size: 29px;
-	color: var(--gris50);
-	font-weight: normal;
+    font-family: "Quintessential", serif;
+    font-size: 29px;
+    color: var(--negro75);
+    font-weight: normal;
 }
 
 .head5 {
-	font-family: "Poppins", sans-serif;
-	font-size: 26px;
-	color: var(--gris50);
-	font-weight: normal;
+    font-family: "Quintessential", serif;
+    font-size: 26px;
+    color: var(--negro75);
+    font-weight: normal;
 }
 
 .head6 {
-	font-family: "Poppins", sans-serif;
-	font-size: 23px;
-	color: var(--gris50);
-	font-weight: normal;
+    font-family: "Quintessential", serif;
+    font-size: 23px;
+    color: var(--negro75);
+    font-weight: normal;
 }
 
 .headBlanco1 {
-	font-family: "Poppins", sans-serif;
-	font-size: 42px;
-	color: var(--blanco5);
-	font-weight: normal;
+    font-family: "Quintessential", serif;
+    font-size: 42px;
+    color: var(--negro75);
+    font-weight: normal;
 }
 
 .headBlanco2 {
-    font-family: "Poppins", sans-serif;
+    font-family: "Quintessential", serif;
     font-size: 37px;
-    color: var(--blanco5);
+    color: var(--negro75);
     font-weight: normal;
 }
 
 
 .headBlanco3 {
-    font-family: "Poppins", sans-serif;
+    font-family: "Quintessential", serif;
     font-size: 33px;
-    color: var(--blanco5);
+    color: var(--negro75);
     font-weight: normal;
 }
 
 .headBlanco4 {
-    font-family: "Poppins", sans-serif;
+    font-family: "Quintessential", serif;
     font-size: 29px;
     color: var(--blanco5);
     font-weight: normal;
 }
 
 .headBlanco5 {
-    font-family: "Poppins", sans-serif;
+    font-family: "Quintessential", serif;
     font-size: 26px;
     color: var(--blanco5);
     font-weight: normal;
 }
 
 .headBlanco6 {
-    font-family: "Poppins", sans-serif;
+    font-family: "Quintessential", serif;
     font-size: 23px;
     color: var(--blanco5);
     font-weight: normal;
 }
 
 .parrafo {
-	font-family: "Montserrat", sans-serif;
-	font-size: 21px;
-	color: var(--gris50);
-	font-weight: normal;
+    font-family: "Luxurious Roman", serif;
+    font-size: 21px;
+    color: var(--gris50);
+    font-weight: normal;
 }
 
 .parrafoBlanco {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Luxurious Roman", serif;
     font-size: 21px;
     color: var(--blanco5);
     font-weight: normal;
 }
 
 .parrafoPequeño {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Luxurious Roman", serif;
     font-size: 18px;
-    color: var(--gris50);
+    color: var(--negro75);
     font-weight: normal;
 }
 
 .parrafoPequeñoSuave {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Luxurious Roman", serif;
     font-size: 18px;
-    color: var(--gris50);
+    color: var(--negro75);
     font-weight: normal;
 }
 
 .parrafoPequeñoBlanco {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Luxurious Roman", serif;
     font-size: 18px;
     color: var(--blanco5);
     font-weight: normal;
 }
 
 .textoMinimo {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Luxurious Roman", serif;
     font-size: 14px;
-    color: var(--gris50);
+    color: var(--negro75);
     font-weight: normal;
 }
 
 .textoMinimoBlanco {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Luxurious Roman", serif;
     font-size: 14px;
     color: var(--blanco5);
     font-weight: normal;
@@ -168,6 +175,7 @@
 
 /* botones */
 .botonGenerico {
+    font-family: "Luxurious Roman", serif;
     background-color: var(--cafeCrema);
     color: var(--blanco5);
     border-radius: 8px;
@@ -187,6 +195,7 @@
 }
 
 .botonGenerico2 {
+    font-family: "Luxurious Roman", serif;
     background-color: var(--cafeMainSecundario);
     color: var(--blanco5);
     border-radius: 8px;
@@ -250,11 +259,24 @@
 }
 
 .card {
-    box-shadow: 0 2px 4px 2px var(--gris50);   
+    box-shadow: 0 2px 4px 2px var(--gris50);
 }
 
+@media (min-width: 576px) {
+    .navbar {
+        height: 8rem;
+    }
+
+    .imgNav {
+        width: 6rem;
+        height: 6rem;
+    }
+}
+
+
+
 .navItem {
-    font-family: "Poppins", sans-serif;
+    font-family: "Quintessential", serif;
     font-size: 23px;
     color: var(--blanco5);
     font-weight: normal;
@@ -288,27 +310,47 @@
 
 /* Chrome, Edge, Safari */
 input:-webkit-autofill {
-	-webkit-text-fill-color: var(--cafeMain2);
-	font-size: 1rem;
-	font-family: inherit;
+    -webkit-text-fill-color: var(--cafeMain2);
+    font-size: 1rem;
+    font-family: inherit;
 }
 
 /* Firefox */
 input:-moz-autofill {
-	-moz-text-fill-color: var(--cafeMain2);
-	font-size: 1rem;
-	font-family: inherit;
+    -moz-text-fill-color: var(--cafeMain2);
+    font-size: 1rem;
+    font-family: inherit;
 }
 
 /* Optional focus override */
 input:-webkit-autofill:focus {
-	-webkit-text-fill-color: var(--cafeMain2);
-	font-size: 1rem;
-	font-family: inherit;
+    -webkit-text-fill-color: var(--cafeMain2);
+    font-size: 1rem;
+    font-family: inherit;
 }
 
 .estiloInput:focus {
-	color: var(--gris50) !important;
-	border-color: var(--cafeMain);
-	box-shadow: 0 0 0 0.2rem rgba(111, 78, 55, 0.25);
+    font-family: "Luxurious Roman", serif;
+    color: var(--negro75) !important;
+    border-color: var(--cafeMain);
+    box-shadow: 0 0 0 0.2rem rgba(111, 78, 55, 0.25);
+}
+
+.form-control {
+    font-family: "Luxurious Roman", serif;
+    color: var(--negro75);
+}
+
+.form-label {
+    font-family: "Luxurious Roman", serif;
+    color: var(--negro75);
+}
+
+.form-select {
+    font-family: "Luxurious Roman", serif;
+    color: var(--negro75);
+}
+
+.noDecor {
+    text-decoration: none !important;
 }

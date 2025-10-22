@@ -2,10 +2,9 @@ from django.shortcuts import render
 
 # cositas de la API
 
-from .models import Producto, Categoria, CategoriaProducto, User, Categoria, CategoriaProducto, User
+from .models import Producto, Categoria, CategoriaProducto, User, Categoria, CategoriaProducto, User, Carrito, DetalleCarrito
 from .serializers import (
-    ProductoSerializer,
-    LoginSerializer, CategoriaSerializer, CategoriaProductoSerializer, UserSerializer, LoginSerializer
+    ProductoSerializer, LoginSerializer, CategoriaSerializer, CategoriaProductoSerializer, UserSerializer, LoginSerializer, CarritoSerializer, DetalleCarritoSerializer
 )
 
 from rest_framework import viewsets, permissions, status, permissions, status
@@ -38,8 +37,12 @@ def panelControl(request):
 
 
 def producto(request, producto_id):
-    return render(request, 'producto.html', {'producto_id': producto_id})
-
+    producto = Producto.objects.get(id=producto_id)
+    categorias = CategoriaProducto.objects.filter(producto=producto)
+    if producto:
+        return render(request, 'producto.html', {'producto': producto, 'categorias': categorias})
+    else:
+        return render(request, 'home.html')
 
 def carrito(request):
     return render(request, 'carrito.html')
@@ -56,8 +59,7 @@ class IsAdministrador(permissions.BasePermission):
         return (
             request.user
             and request.user.is_authenticated
-            and request.user.tipoUsuario
-            and request.user.tipoUsuario.nombre.lower() == "administrador"
+            and request.user.tipoUsuario and request.user.tipoUsuario.nombre.lower() == "administrador"
         )
 
 
@@ -93,8 +95,17 @@ class CategoriaProductoViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAdministrador]
 
+    def get_queryset(self):
+        queryset = User.objects.all()
+        username = self.request.query_params.get('username', None)
+        idUsuario = self.request.query_params.get('id', None)
+
+        if username:
+            queryset = queryset.filter(username__icontains=username)
+        if idUsuario:
+            queryset = queryset.filter(id=idUsuario)
+        return queryset
 
 class LoginView(APIView):
     permission_classes = [permissions.AllowAny]
@@ -119,3 +130,11 @@ class LogoutView(APIView):
     def post(self, request):
         logout(request)
         return Response({"message": "Logout exitoso"}, status=status.HTTP_200_OK)
+
+class CarritoViewSet(viewsets.ModelViewSet):
+    queryset = Carrito.objects.all()
+    serializer_class = CarritoSerializer
+
+class DetalleCarritoViewSet(viewsets.ModelViewSet):
+    queryset = DetalleCarrito.objects.all()
+    serializer_class = DetalleCarritoSerializer

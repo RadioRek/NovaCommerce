@@ -4,13 +4,14 @@ from . import views
 
 # cositas de la API
 from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 router = DefaultRouter()
 router.register(r'productos', views.ProductoViewSet, basename="producto")
 router.register(r'categorias', views.CategoriaViewSet, basename="categoria")
 router.register(r'categoria-productos', views.CategoriaProductoViewSet, basename="categoria-producto")
 router.register(r'users', views.UserViewSet, basename="user")
-
+router.register(r'carritos', views.CarritoViewSet, basename="carrito")
+router.register(r'detalle-carritos', views.DetalleCarritoViewSet, basename="detalle-carrito")
 
 urlpatterns = [
     # aqui se agregan las urls de la app principal (las rutas que se ingresan en el navegador)

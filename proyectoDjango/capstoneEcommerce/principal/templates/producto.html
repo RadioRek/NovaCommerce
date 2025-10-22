@@ -17,27 +17,26 @@
     </div>
 
     <div class="col-12 col-sm-8 align-content-center">
-        <h4 class="head4 mb-2 mb-sm-4">Nombre del producto</h4>
+        <h4 class="head4 mb-2 mb-sm-4">{{ producto.nombre }}</h4>
         <p class="parrafo mb-2 mb-sm-4">
-            Descripcion del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat atque maiores enim
-            quis culpa dicta voluptates quas accusamus, repellendus facere voluptatem similique, doloremque accusantium
-            dolorem et, perferendis ea quibusdam reiciendis.
+            {{ producto.descripcion }}
         </p>
-        <h5 class="head5 colorVerde mb-2 mb-sm-4">$ 999999</h5>
-        <h6 class="head6 mb-2 mb-sm-4">Stock disponible: 99</h6>
+        <h5 class="head5 colorVerde mb-2 mb-sm-4">${{ producto.precio }}</h5>
+        <h6 class="head6 mb-2 mb-sm-4">Stock disponible: {{ producto.stock }}</h6>
         <button class="btn botonGenerico2 mb-2 mb-sm-4">Agregar al carrito</button>
 
-        <div class="d-flex">
-            <p class="pill rounded-pill textoMinimoBlanco me-2">Categoria 1</p>
-            <p class="pill rounded-pill textoMinimoBlanco me-2">Categoria 1</p>
-            <p class="pill rounded-pill textoMinimoBlanco me-2">Categoria 1</p>
+        <div class="row mt-2 w-100 gap-1">
+            {% for categoria in categorias %}
+                <div class="col-auto p-0 m-0">
+                    <p class="pill rounded-pill textoMinimoBlanco">{{ categoria.categoria.nombre }}</p>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </div>
 
 <hr class="my-4">
 <h3 class="head3 text-center mb-2">Productos relacionados</h3>
-
 
 <div class="row m-0 p-0">
 
