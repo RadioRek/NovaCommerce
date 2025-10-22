@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const csrftoken = getCookie('csrftoken');
 
                 // petición PUT al endpoint
-                const response = await fetch('/api/perfil/', {
+                const response = await fetch('/api/users/', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

@@ -42,9 +42,6 @@ class UserSerializer(serializers.ModelSerializer):
             "is_active",
         ]
         read_only_fields = ["id", "is_active"]
-        extra_kwargs = {
-            "password": {"write_only": True, "required": False}
-        }
 
     # validacion para regla de contraseña
     def validate_password(self, value):
@@ -66,19 +63,15 @@ class UserSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         password = validated_data.pop("password", None)
-        # actualiza los campos
+
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
 
-        # Si se proporcionó una nueva contraseña, actualizarla
         if password:
             instance.set_password(password)
 
         instance.save()
         return instance
-
-
-
 
 class CarritoSerializer(serializers.ModelSerializer):
     class Meta:

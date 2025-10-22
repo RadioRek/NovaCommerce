@@ -39,7 +39,6 @@
 
             <div class="card-body text-center p-0">
                 <h4 class="head4">Editar Perfil</h4>
-                {% if user.is_authenticated %}
                 <form id="formPerfil">
                     {% csrf_token %}
 
@@ -99,9 +98,6 @@
 
                     <button type="submit" class="botonGenerico">Guardar cambios</button>
                 </form>
-                {% else %}
-                <p class="parrafoPequeño">Por favor, inicia sesión para editar tu perfil.</p>
-                {% endif %}
             </div>
         </div>
     </div>

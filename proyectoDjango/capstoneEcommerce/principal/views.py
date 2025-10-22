@@ -29,7 +29,7 @@ def registro(request):
 
 def sitioLogin(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('perfil')
     return render(request, 'sitioLogin.html')
 
 
@@ -54,10 +54,19 @@ def carrito(request):
 
 
 def perfil(request):
+
+    user = request.user
+
     context = {
-        'user': request.user if request.user.is_authenticated else None
+        'user': user,
     }
-    return render(request, 'perfil.html', context)
+
+    if user.is_authenticated:
+        return render(request, 'perfil.html', context)
+    else:
+        return redirect('sitioLogin')
+
+
 
 
 # mas cositas de la API
@@ -122,6 +131,14 @@ class UserViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(id=idUsuario)
         return queryset
 
+    def put(self, request):
+        """Actualizar datos del perfil del usuario autenticado"""
+        serializer = UserSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class LoginView(APIView):
     permission_classes = [permissions.AllowAny]
 
@@ -146,39 +163,6 @@ class LogoutView(APIView):
         logout(request)
         return Response({"message": "Logout exitoso"}, status=status.HTTP_200_OK)
 
-
-class PerfilView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get(self, request):
-        """Obtener datos del perfil del usuario autenticado"""
-        serializer = UserSerializer(request.user)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def put(self, request):
-        """Actualizar datos del perfil del usuario autenticado"""
-        serializer = UserSerializer(request.user, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class PerfilView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get(self, request):
-        """Obtener datos del perfil del usuario autenticado"""
-        serializer = UserSerializer(request.user)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def put(self, request):
-        """Actualizar datos del perfil del usuario autenticado"""
-        serializer = UserSerializer(request.user, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CarritoViewSet(viewsets.ModelViewSet):
     queryset = Carrito.objects.all()
