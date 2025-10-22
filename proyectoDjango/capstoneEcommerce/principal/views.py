@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # cositas de la API
 
@@ -12,6 +12,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
 
 # testing
 
@@ -21,10 +22,14 @@ def home(request):
 
 
 def registro(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     return render(request, 'registro.html')
 
 
 def sitioLogin(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     return render(request, 'sitioLogin.html')
 
 
@@ -49,8 +54,10 @@ def carrito(request):
 
 
 def perfil(request):
-    user = request.user
-    return render(request, 'perfil.html', {'user': user})
+    context = {
+        'user': request.user if request.user.is_authenticated else None
+    }
+    return render(request, 'perfil.html', context)
 
 
 # mas cositas de la API
@@ -67,6 +74,14 @@ class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
     parser_classes = [MultiPartParser, FormParser]
+
+    # paginacion para productos
+    class ProductoPagination(PageNumberPagination):
+        page_size = 8
+        page_size_query_param = 'page_size'
+        max_page_size = 100
+
+    pagination_class = ProductoPagination
 
     def get_serializer_context(self):
         return {'request': self.request}
@@ -130,6 +145,40 @@ class LogoutView(APIView):
     def post(self, request):
         logout(request)
         return Response({"message": "Logout exitoso"}, status=status.HTTP_200_OK)
+
+
+class PerfilView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        """Obtener datos del perfil del usuario autenticado"""
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request):
+        """Actualizar datos del perfil del usuario autenticado"""
+        serializer = UserSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PerfilView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        """Obtener datos del perfil del usuario autenticado"""
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request):
+        """Actualizar datos del perfil del usuario autenticado"""
+        serializer = UserSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CarritoViewSet(viewsets.ModelViewSet):
     queryset = Carrito.objects.all()

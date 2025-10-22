@@ -42,20 +42,20 @@ class UserSerializer(serializers.ModelSerializer):
             "is_active",
         ]
         read_only_fields = ["id", "is_active"]
+        extra_kwargs = {
+            "password": {"write_only": True, "required": False}
+        }
 
-    # validacion para regla de contraseña nico gei
+    # validacion para regla de contraseña
     def validate_password(self, value):
         if len(value) < 6:
             raise serializers.ValidationError("La contraseña debe tener al menos 6 caracteres.")
         if not re.search(r'[!@#$%^&*(),.?":{}|<>]', value):
             raise serializers.ValidationError("La contraseña debe tener al menos un caracter especial.")
-
         return value
 
     def create(self, validated_data):
-
         password = validated_data.pop("password")
-
         tipo_usuario = TipoUsuario.objects.get(nombre="Cliente")
         validated_data["tipoUsuario"] = tipo_usuario
 
@@ -63,6 +63,22 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+    def update(self, instance, validated_data):
+        password = validated_data.pop("password", None)
+        # actualiza los campos
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        # Si se proporcionó una nueva contraseña, actualizarla
+        if password:
+            instance.set_password(password)
+
+        instance.save()
+        return instance
+
+
+
 
 class CarritoSerializer(serializers.ModelSerializer):
     class Meta:

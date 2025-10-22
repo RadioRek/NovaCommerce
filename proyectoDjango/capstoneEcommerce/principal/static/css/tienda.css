@@ -1,9 +1,15 @@
-.carousel-item img {   
+.carousel-item img {
   max-height: 40vh;
-  object-fit: cover;     
-  object-position: bottom;   
+  object-fit: cover;
+  object-position: bottom;
 }
-
+.pagination .page-item .page-link {
+  color: var(--cafeMain3);
+}
+.pagination .page-item.active .page-link {
+  background-color: var(--cafeCrema);
+  border-color: var(--cafeCrema);
+}
 body {
   background-color: var(--fondo);
 }
