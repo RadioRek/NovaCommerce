@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
+
+
 {% block head %}
 <title>Perfil</title>
-<script src="{% static 'js/perfil.js' %}" defer></script>
 {% endblock head %}
 
 {% block body %}
-
-
 <div class="row m-0 p-2 p-sm-4 justify-content-center">
 
     <div class="col-12">
@@ -17,18 +16,13 @@
     <div class="container col-12 col-sm-4 d-flex m-0 flex-column mb-sm-0 mb-2">
 
         <div class="card h-100 text-center p-2 p-sm-4">
-
             <h4 class="head4">Información Personal</h4>
-            {% if user.is_authenticated %}
-                <h4 class="head4">{{ user.username }}</h4>
-                <p class="parrafoPequeño"><strong>Nombre:</strong> {{ user.nombre|default:"No especificado" }}</p>
-                <p class="parrafoPequeño"><strong>Apellido:</strong> {{ user.apellido|default:"No especificado" }}</p>
-                <p class="parrafoPequeño"><strong>Email:</strong> {{ user.email }}</p>
-                <p class="parrafoPequeño"><strong>Dirección:</strong> {{ user.direccion|default:"No especificado" }}</p>
-                <p class="parrafoPequeño"><strong>Teléfono:</strong> {{ user.telefono|default:"No especificado" }}</p>
-            {% else %}
-                <p class="parrafoPequeño">Por favor, inicia sesión para ver tu perfil.</p>
-            {% endif %}
+            <h4 class="head4">{{ user.username }}</h4>
+            <p class="parrafoPequeño"><strong>Nombre:</strong> {{ user.nombre|default:"No especificado" }}</p>
+            <p class="parrafoPequeño"><strong>Apellido:</strong> {{ user.apellido|default:"No especificado" }}</p>
+            <p class="parrafoPequeño"><strong>Email:</strong> {{ user.email }}</p>
+            <p class="parrafoPequeño"><strong>Dirección:</strong> {{ user.direccion|default:"No especificado" }}</p>
+            <p class="parrafoPequeño"><strong>Teléfono:</strong> {{ user.telefono|default:"No especificado" }}</p>
         </div>
     </div>
 
@@ -44,56 +38,42 @@
 
                     <div class="mb-3">
                         <label for="usernameInput" class="form-label textoMinimo">Username</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño"
-                            id="usernameInput" name="username"
-                            placeholder="username de usuario" value="{{ user.username }}" required />
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="usernameInput" name="username" placeholder="username de usuario" value="{{ user.username }}" required />
                     </div>
 
                     <div class="mb-3">
                         <label for="nombreInput" class="form-label textoMinimo">Nombre</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño"
-                            id="nombreInput" name="nombre"
-                            placeholder="....." value="{{ user.nombre }}" required />
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="nombreInput" name="nombre" placeholder="....." value="{{ user.nombre }}" required />
                     </div>
 
                     <div class="mb-3">
                         <label for="ApellidoInput" class="form-label textoMinimo">Apellido</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño"
-                            id="ApellidoInput" name="apellido"
-                            placeholder="....." value="{{ user.apellido }}" required />
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="ApellidoInput" name="apellido" placeholder="....." value="{{ user.apellido }}" required />
                     </div>
 
                     <div class="mb-3">
                         <label for="DireccionInput" class="form-label textoMinimo">Direccion</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño"
-                            id="DireccionInput" name="direccion"
-                            placeholder="Calle Falsa 123" value="{{ user.direccion }}" required />
+                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="DireccionInput" name="direccion" placeholder="Calle Falsa 123" value="{{ user.direccion }}" required />
                     </div>
 
                     <div class="mb-3">
                         <label for="TelefonoInput" class="form-label textoMinimo">Telefono</label>
-                        <input type="number" class="form-control mb-2 estiloInput parrafoPequeño"
-                            id="TelefonoInput" name="telefono"
-                            placeholder="953846738" value="{{ user.telefono|default:'' }}" required />
+                        <input type="number" class="form-control mb-2 estiloInput parrafoPequeño" id="TelefonoInput" name="telefono" placeholder="953846738" value="{{ user.telefono|default:'' }}" required />
                     </div>
 
                     <div class="mb-3">
                         <label for="EmailInput" class="form-label textoMinimo">Email</label>
-                        <input type="email" class="form-control mb-2 estiloInput parrafoPequeño"
-                            id="EmailInput" name="email"
-                            placeholder="Tu@email.example" value="{{ user.email }}" required />
+                        <input type="email" class="form-control mb-2 estiloInput parrafoPequeño" id="EmailInput" name="email" placeholder="Tu@email.example" value="{{ user.email }}" required />
                     </div>
 
                     <div class="mb-3">
                         <label for="passwordInput" class="form-label textoMinimo">Nueva contraseña</label>
-                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño"
-                            id="passwordInput" name="password" />
+                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño" id="passwordInput" name="password" />
                     </div>
 
                     <div class="mb-3">
                         <label for="passwordConfInput" class="form-label textoMinimo">Confirmar nueva contraseña</label>
-                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño"
-                            id="passwordConfInput" name="password_confirmation" />
+                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño" id="passwordConfInput" name="password_confirmation" />
                     </div>
 
                     <button type="submit" class="botonGenerico">Guardar cambios</button>
@@ -102,4 +82,6 @@
         </div>
     </div>
 </div>
+
+<script src="{% static 'js/perfil.js' %}"></script>
 {% endblock body %}
