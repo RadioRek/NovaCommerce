@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
 							let errorData = await response.json().catch(() => ({}));
 						}
 					}).catch((error) => {
-						console.error("Error en la solicitud:", error);
+						console.error("Error en la solicitud:", error);"/api/productos/";
 					});
 				}
 				categorias = [];
