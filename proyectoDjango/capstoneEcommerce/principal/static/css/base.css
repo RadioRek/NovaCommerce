@@ -1,33 +1,40 @@
 :root {
-    --cafeMain: #6F4E37;
-    --cafeMain2: #5C4033;
-    --cafeMain3: #3E2723;
+/* BASE PRINCIPAL: MARRÓN (Café, Tonalidades Profundas) */
+/* BASE PRINCIPAL: MARRÓN (Café, Tonalidades Profundas) */
+    --cafeMain: #6F4E37;    /* Marrón Café (Color de marca principal) */
+    --cafeMain2: #5B3A2C;   /* Marrón Oscuro Profundo (Para texto o fondo oscuro) */
+    --cafeMain3: #3A251D;   /* Marrón Espresso (El más oscuro y rico) */
 
-    --cafeCrema: #C0A080;
-    --cafeCrema2: #A67B5B;
-    --cafeCrema3: #8B5E3C;
+    /* ACENTO CÁLIDO: NARANJA QUEMADO/TERRACOTA (Energía, Llamada a la Acción, Calidez) */
+    --cafeCrema: #D2691E;   /* Naranja Quemado (Acento principal para botones y CTA) */
+    --cafeCrema2: #B05718;  /* Terracota Oscuro */
+    --cafeCrema3: #8C4513;  /* Marrón Rojizo (Para acentos sutiles) */
 
-    --cafeMainSecundario: #7B6A58;
-    --cafeMainSecundario2: #5E4B3C;
-    --cafeMainSecundario3: #3C2F2F;
+    /* NEUTROS CÁLIDOS: BEIGE / CREMA CÁLIDO (Sustituto de los Grises) */
+    --cafeMainSecundario: #C0A080; /* Beige Medio Cálido */
+    --cafeMainSecundario2: #A67B5B; /* Beige Oscuro/Bronce Suave */
+    --cafeMainSecundario3: #8B5E3C; /* Bronce Oscuro */
 
-    --rojoMain: #D2691E;
-    --rojoMain2: #8B4513;
-    --rojoMain3: #5C3317;
+    /* ROJOS DE ALERTA AJUSTADOS: ROJO VIBRANTE Y CLARO (Para stock/errores) */
+    --rojoMain: #D9534F;    /* Rojo Ladrillo Brillante (Más Rojo y llamativo) */
+    --rojoMain2: #C94C4C;   /* Rojo Puro Medio */
+    --rojoMain3: #B23D3D;   /* Rojo Oscuro Intenso */
 
-    --amarilloMain: #E6C79C;
-    --amarilloMain2: #D2B48C;
-    --amarilloMain3: #A68A6D;
+    /* AMARILLOS AJUSTADOS: DORADO / ÁMBAR VIBRANTE (Para resaltar información) */
+    --amarilloMain: #FFC300; /* Dorado Brillante/Ámbar (Muy visible y amarillo) */
+    --amarilloMain2: #E8B400; /* Dorado Medio */
+    --amarilloMain3: #D0A500; /* Dorado Oscuro */
 
-    --blanco5: #F5F5DC;
-    --blanco10: #EDE0D4;
-    --gris25: #C4A484;
-    --gris50: #8B7D6B;
-    --negro75: #3E2C23;
-    --negro85: #1C1A17;
+    /* Tonos Neutros Cálidos y Oscuros (Sustituyendo Gris/Negro) */
+    --blanco5: #FFFFFF;     /* Blanco Puro */
+    --blanco10: #FFF9F5;    /* Blanco Roto Muy Cálido */
+    --gris25: #EDE0D4;      /* Crema Muy Claro */
+    --gris50: #C4A484;      /* Beige Medio */
+    --negro75: #3E2C23;     /* Marrón Carbón (Para texto principal) */
+    --negro85: #1C1A17;     /* Marrón Casi Negro (Texto secundario) */
 
+    /* Fondo principal: Beige muy claro y cálido (Fondo limpio) */
     --fondo: #FAF3E0;
-
 }
 
 /*
