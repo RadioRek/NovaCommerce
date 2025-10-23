@@ -159,8 +159,14 @@ class LoginView(APIView):
 class LogoutView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
+    def get(self, request):
+        logout(request)
+        return redirect('sitioLogin')
+
     def post(self, request):
         logout(request)
+        if 'text/html' in request.META.get('HTTP_ACCEPT', ''):
+            return redirect('sitioLogin')
         return Response({"message": "Logout exitoso"}, status=status.HTTP_200_OK)
 
 
