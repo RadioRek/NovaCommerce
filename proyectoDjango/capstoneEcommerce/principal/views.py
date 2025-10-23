@@ -163,12 +163,6 @@ class LogoutView(APIView):
         logout(request)
         return redirect('sitioLogin')
 
-    def post(self, request):
-        logout(request)
-        if 'text/html' in request.META.get('HTTP_ACCEPT', ''):
-            return redirect('sitioLogin')
-        return Response({"message": "Logout exitoso"}, status=status.HTTP_200_OK)
-
 
 class CarritoViewSet(viewsets.ModelViewSet):
     queryset = Carrito.objects.all()

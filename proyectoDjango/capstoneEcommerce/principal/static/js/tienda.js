@@ -132,12 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	}
 
-	function showError(message) {
-		if (!grid) return;
-		grid.innerHTML = `<div class="col-12 text-center text-danger py-4">${message}</div>`;
-		if (paginationEl) paginationEl.innerHTML = "";
-	}
-
 	function renderProducts(products) {
 		if (!products.length) {
 			grid.innerHTML = `<div class="col-12 text-center py-4">No hay productos disponibles.</div>`;
