@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Checkout | Novacommerce</title>
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}" />
+{% endblock head %}
+
+{% block body %}
+
+<div class="row contenedorPrincipalCheckout mx-0">
+
+    <div class="col-12 col-sm-4 d-flex flex-column justify-content-center contenedorIzquierda mx-0">
+
+        <div class="d-flex justify-content-between">
+            <p class="mb-0 parrafoPequeño">Articulos: 1</p>
+            <a href="{% url 'carrito' %}" class="parrafoPequeño mb-0">Editar carrito</a>
+        </div>
+
+        <div class="card mb-3">
+
+            <div class="row g-0">
+
+                <div class="col-4 d-flex justify-content-center align-items-center">
+                    <img src="{% static 'img/cafe.png' %}" class="imgCheck" alt="...">
+                </div>
+
+                <div class="col-8">
+
+                    <div class="card-body">
+                        <h6 class="head6 mb-0">Cafe rico</h6>
+                        <p class="parrafoPequeño mb-0">$1.000</p>
+                        <p class="textoMinimo mb-0">Cantidad: 1</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="parrafo align-self-end mb-0">Subtotal: $1.000</p>
+        <h6 class="head6 align-self-end mb-0">Total: $1.000</h6>
+
+    </div>
+
+    <div class="col-12 col-sm-8 contenedorDerecha mx-0">
+        <form action="" id="formularioRegistro">
+            <label for="nombreInput" class="form-label textoMinimo">Nombre</label>
+            <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="nombreInput" placeholder="....."
+                required />
+
+            <label for="apellidoInput" class="form-label textoMinimo">Apellido</label>
+            <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="apellidoInput"
+                placeholder="....." required />
+
+            <label for="regionInput" class="form-label textoMinimo">Region</label>
+            <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="regionInput"
+                placeholder="Region" required />
+
+            <label for="comunaInput" class="form-label textoMinimo">Comuna</label>
+            <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="comunaInput"
+                placeholder="Comuna" required />
+
+            <label for="direccionInput" class="form-label textoMinimo">Direccion</label>
+            <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="direccionInput"
+                placeholder="Calle Falsa 123" required />
+
+            <label for="telefonoInput" class="form-label textoMinimo">Telefono</label>
+            <input type="number" class="form-control mb-2 estiloInput parrafoPequeño" id="telefonoInput"
+                placeholder="953846738" required />
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="botonGenerico px-4" id="botonPedido">Realizar pedido</button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+{% endblock body %}

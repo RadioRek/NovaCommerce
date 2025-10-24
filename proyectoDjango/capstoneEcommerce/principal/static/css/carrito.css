@@ -3,14 +3,8 @@ hr {
 	background-color: var(--negro85);
 }
 
-.contenedorPrincipal {
-	background: var(--cafeMainSecundario2);
-
-}
-
 .contentAncho {
 	width: 90%;
-	background: var(--cafeMainSecundario2);
 }
 
 @media (min-width: 576px) {
@@ -24,4 +18,9 @@ hr {
 .img-max {
 	max-width: 160px;
 	max-height: 160px;
+}
+
+
+.imgCheck {
+    max-width: 100%;
 }

@@ -52,6 +52,8 @@ def producto(request, producto_id):
 def carrito(request):
     return render(request, 'carrito.html')
 
+def checkout(request):
+    return render(request, 'checkout.html')
 
 def perfil(request):
 
@@ -65,8 +67,6 @@ def perfil(request):
         return render(request, 'perfil.html', context)
     else:
         return redirect('sitioLogin')
-
-
 
 
 # mas cositas de la API
@@ -95,7 +95,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
     def get_serializer_context(self):
         return {'request': self.request}
 
-    def get_queryset(self): 
+    def get_queryset(self):
         queryset = Producto.objects.all()
         nombre = self.request.query_params.get('nombre', None)
         idProducto = self.request.query_params.get('id', None)
@@ -109,12 +109,6 @@ class ProductoViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(categoriaproducto__categoria__id__in=categorias).distinct()
 
         return queryset
-
-
-
-
-
-
 
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()

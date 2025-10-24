@@ -27,7 +27,8 @@ urlpatterns = [
     path("producto/<int:producto_id>/", views.producto, name="producto"),
     path("perfil/", views.perfil, name="perfil"),
     path("carrito/", views.carrito, name="carrito"),
-    
+    path("checkout/", views.checkout, name="checkout"),
+
 
     # rutas de la API
     path("api/", include(router.urls)),

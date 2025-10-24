@@ -141,14 +141,14 @@
 .parrafoPequeño {
     font-family: "Luxurious Roman", serif;
     font-size: 18px;
-    color: var(--negro75);
+    color: var(--gris50);
     font-weight: normal;
 }
 
 .parrafoPequeñoSuave {
     font-family: "Luxurious Roman", serif;
     font-size: 18px;
-    color: var(--negro75);
+    color: var(--gris50);
     font-weight: normal;
 }
 
@@ -162,7 +162,7 @@
 .textoMinimo {
     font-family: "Luxurious Roman", serif;
     font-size: 14px;
-    color: var(--negro75);
+    color: var(--gris50);
     font-weight: normal;
 }
 
@@ -259,7 +259,7 @@
 }
 
 .card {
-    box-shadow: 0 2px 4px 2px var(--gris50);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 576px) {
