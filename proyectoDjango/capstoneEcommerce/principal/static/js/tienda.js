@@ -2,8 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	let API_URL = "/api/productos/";
 
-	let paginaActual = 1;
-
 	let grid = document.getElementById("productosGrid");
 	let paginationEl = document.getElementById("pagination");
 
@@ -13,12 +11,17 @@ document.addEventListener("DOMContentLoaded", function () {
 		maximumFractionDigits: 0,
 	});
 
-
-	async function fetchProducts(page) {
+	async function fetchProducts(page, query = "") {
 
 		setLoading(true);
 
-		fetch(API_URL + `?page=${encodeURIComponent(page)}`, {
+		let url = API_URL + `?page=${encodeURIComponent(page)}`;
+
+		if (query) {
+			url += "&" + query;
+		}
+
+		fetch(url, {
 			method: "GET",
 			credentials: "same-origin",
 		}).then(async (response) => {
@@ -143,7 +146,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		products.forEach((p) => {
 			const img = p.img;
 			const nombre = p.nombre || "Producto";
-			const precio = typeof p.precio === "number" ? currency.format(p.precio) : "";
+			let precio;
+
+			if (typeof p.precio === "number") {
+				precio = currency.format(p.precio);
+			} else {
+				precio = "";
+			}
 			const detalleUrl = `/producto/${p.id}/`;
 
 			items += `
@@ -155,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						<div class="mt-auto">
 						<p class="fw-bold mb-2">${precio}</p>
 						<a href="${detalleUrl}" class="botonGenerico w-100">Ver detalle</a>
+						<button class="botonGenerico">Agregar al carrito</button>
 						</div>
 					</div>
 					</div>
@@ -175,4 +185,103 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	if (grid) fetchProducts(1);
+
+
+	// Cargar categorias en el select
+	let categorias = [];
+	let contenedorPills = document.getElementById("pillContainer");
+
+	let categoriaSelect = document.getElementById("categoriaSelect");
+	fetch("/api/categorias/", {
+		method: "GET",
+	}).then(async (response) => {
+		if (response.ok) {
+			const data = await response.json();
+			data.forEach((categoria) => {
+				let option = document.createElement("option");
+				option.value = categoria.id;
+				option.textContent = categoria.nombre;
+				categoriaSelect.appendChild(option);
+			});
+		} else {
+
+		}
+	}).catch((error) => {
+		console.error("Error en la solicitud:", error);
+	});
+
+	// Manejar selección de categoría
+	categoriaSelect.addEventListener("change", (event) => {
+		let valorSeleccionado = event.target.value;
+		let nombreCategoria = categoriaSelect.options[categoriaSelect.selectedIndex].text;
+
+		if (valorSeleccionado && !categorias.includes(valorSeleccionado)) {
+			categorias.push(valorSeleccionado);
+
+			let colDiv = document.createElement("div");
+			colDiv.className = "col-auto p-0 m-0";
+
+			let pill = document.createElement("p");
+			pill.className = "pill rounded-pill textoMinimoBlanco d-flex align-items-center"; // d-flex para alinear X
+			pill.textContent = nombreCategoria;
+
+			// Crear botón de eliminar
+			let closeBtn = document.createElement("span");
+			closeBtn.textContent = "×"; // símbolo de X
+			closeBtn.style.cursor = "pointer";
+			closeBtn.style.marginLeft = "8px";
+			closeBtn.addEventListener("click", () => {
+				// Eliminar del array
+				const index = categorias.indexOf(valorSeleccionado);
+				if (index > -1) categorias.splice(index, 1);
+
+				// Eliminar del DOM
+				colDiv.remove();
+			});
+
+			pill.appendChild(closeBtn);
+			colDiv.appendChild(pill);
+			contenedorPills.appendChild(colDiv);
+		}
+	});
+
+
+	let formularioBuscar = document.getElementById("buscarProductosCategorias");
+
+	formularioBuscar.addEventListener("submit", function (e) {
+		e.preventDefault();
+
+		let query = "";
+
+		categorias.forEach((id, index) => {
+			if (index > 0) query += "&";
+			query += "categorias=" + encodeURIComponent(id);
+		});
+
+
+		fetchProducts(1, query);
+	});
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

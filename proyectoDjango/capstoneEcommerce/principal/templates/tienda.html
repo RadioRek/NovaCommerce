@@ -63,44 +63,31 @@
 <div class="row m-0 p-2 p-sm-4">
     <!-- Menu de la izquierda -->
 
-    <div class="col-12 col-sm-4">
+    <div class="col-12 col-sm-3">
         <h4 class="head4 ">Categorías</h4>
         <hr>
-        <ul class="list-group">
-            <li class="list-group-item">
-                <a href="#">Categoria 1</a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">Categoria 2</a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">Categoria 3</a>
-            </li>
-        </ul>
-        <h4 class="head4">Rango de precios</h4>
-        <hr>
-        <h4 class="head4">Ordenar por</h4>
-        <hr>
-        <ul class="list-group">
-            <li class="list-group-item">
-                <a href="#">Categoria 1</a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">Categoria 2</a>
-            </li>
-            <li class="list-group-item">
-                <a href="#">Categoria 3</a>
-            </li>
-        </ul>
+        <select class="form-select w-100" id="categoriaSelect" aria-label="Selecciona una categoria">
+            <option value="" selected disabled>Selecciona una categoria</option>
+        </select>
+
+        <div class="row mt-2 w-100 gap-1" id="pillContainer">
+            <!-- Pills de categorias seleccionadas se agregan aqui -->
+        </div>
+        <form action="" id="buscarProductosCategorias">
+            <button type="submit" class="botonGenerico mt-2 w-100">Buscar</button>
+        </form>
+
     </div>
 
     <!-- contenido productos-->
 
-    <div class="col-12 col-sm-8">
+    <div class="col-12 col-sm-9">
         <h4 class="head4">Productos</h4>
         <hr>
 
-        <div id="productosGrid" class="row"></div>
+        <div id="productosGrid" class="row">
+
+        </div>
 
         <nav aria-label="Paginación de productos" class="mt-3">
             <ul id="pagination" class="pagination justify-content-center">

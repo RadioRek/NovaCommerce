@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 	// variables
 	let categorias = [];
-	let categoriaSelect = document.getElementById("categoriaSelect");
-	let contenedorPills = document.getElementById("pillContainer");
 
 	// Función para obtener la cookie
 	function getCookie(name) {
@@ -22,7 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	const csrftoken = getCookie("csrftoken");
 
 	// Cargar categorias en el select
-	let selectCategoria = document.getElementById("categoriaSelect");
+	let contenedorPills = document.getElementById("pillContainer");
+
+	let categoriaSelect = document.getElementById("categoriaSelect");
 	fetch("/api/categorias/", {
 		method: "GET",
 	}).then(async (response) => {
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				let option = document.createElement("option");
 				option.value = categoria.id;
 				option.textContent = categoria.nombre;
-				selectCategoria.appendChild(option);
+				categoriaSelect.appendChild(option);
 			});
 		} else {
 
@@ -239,11 +239,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// poblar tabla de productos
 	let tablaProductosBody = document.getElementById("tablaProductosBody");
-	fetch("/api/productos/", {
+
+	fetch("/api/productos/?page_size=999999", {
 		method: "GET",
 	}).then(async (response) => {
 		if (response.ok) {
 			let data = await response.json();
+			data = data.results;
 
 			data.forEach((producto) => {
 				let row = document.createElement("tr");
@@ -350,11 +352,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		toast.show();
 
 
-		fetch(`/api/productos/?nombre=${encodeURIComponent(nombreBuscado)}&id=${encodeURIComponent(idBuscado)}`, {
+		fetch(`/api/productos/?page_size=999999&nombre=${encodeURIComponent(nombreBuscado)}&id=${encodeURIComponent(idBuscado)}`, {
 			method: "GET",
 		}).then(async (response) => {
 			if (response.ok) {
 				let data = await response.json();
+				data = data.results;
 
 				// limpiar tabla antes de llenar
 				tablaProductosBody.innerHTML = "";

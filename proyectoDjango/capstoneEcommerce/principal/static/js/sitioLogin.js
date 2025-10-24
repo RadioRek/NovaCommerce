@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 	// Función para obtener la cookie
 	function getCookie(name) {
 		let cookieValue = null;
@@ -31,22 +31,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		fetch("/api/login/", {
 			method: "POST",
-			headers: {"content-type": "application/json", "X-CSRFToken": csrftoken},
+			headers: { "content-type": "application/json", "X-CSRFToken": csrftoken },
 			body: datosJSON,
 			credentials: "include",
-		})
-			.then(async (response) => {
-				if (response.ok) {
-					// Login exitoso, redirigir a la página principal
-					window.location.href = "http://127.0.0.1:8000/";
-
-				} else {
-					let errorData = await response.json();
-					console.error("Error en el login:", errorData);
-				}
-			})
-			.catch((error) => {
-				console.error("Error en la solicitud:", error);
-			});
+		}).then(async (response) => {
+			if (response.ok) {
+				// Login exitoso, redirigir a la página principal
+				window.location.href = "/";
+			} else {
+				let errorData = await response.json();
+				console.error("Error en el login:", errorData);
+			}
+		}).catch((error) => {
+			console.error("Error en la solicitud:", error);
+		});
 	});
 });

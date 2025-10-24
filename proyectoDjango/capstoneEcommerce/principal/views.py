@@ -88,22 +88,32 @@ class ProductoViewSet(viewsets.ModelViewSet):
     class ProductoPagination(PageNumberPagination):
         page_size = 8
         page_size_query_param = 'page_size'
-        max_page_size = 100
+        max_page_size = 999999
 
     pagination_class = ProductoPagination
 
     def get_serializer_context(self):
         return {'request': self.request}
 
-    def get_queryset(self):
+    def get_queryset(self): 
         queryset = Producto.objects.all()
         nombre = self.request.query_params.get('nombre', None)
         idProducto = self.request.query_params.get('id', None)
+        categorias = self.request.query_params.getlist('categorias')  # lista de IDs
+
         if nombre:
             queryset = queryset.filter(nombre__icontains=nombre)
         if idProducto:
             queryset = queryset.filter(id=idProducto)
+        if categorias:
+            queryset = queryset.filter(categoriaproducto__categoria__id__in=categorias).distinct()
+
         return queryset
+
+
+
+
+
 
 
 class CategoriaViewSet(viewsets.ModelViewSet):
@@ -132,7 +142,6 @@ class UserViewSet(viewsets.ModelViewSet):
         return queryset
 
     def put(self, request):
-        """Actualizar datos del perfil del usuario autenticado"""
         serializer = UserSerializer(request.user, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
