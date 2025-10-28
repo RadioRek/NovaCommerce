@@ -75,8 +75,14 @@ class MetodoPago(models.Model):
 
 
 class Venta(models.Model):
-    totalVenta = models.IntegerField()
-    fechaHora = models.DateTimeField()
+    totalVenta = models.IntegerField(default=0)
+    fechaHora = models.DateTimeField(auto_now_add=True)
+    nombreDestinatario = models.CharField(max_length=100, default="")
+    apellidoDestinatario = models.CharField(max_length=100, default="")
+    region = models.CharField(max_length=100, default="")
+    comuna = models.CharField(max_length=100, default="")
+    direccionEnvio = models.CharField(max_length=255, default="")
+    telefonoContacto = models.BigIntegerField(default=0)
     usuario = models.ForeignKey('User', on_delete=models.CASCADE)
     metodoPago = models.ForeignKey('MetodoPago', on_delete=models.CASCADE)
 
@@ -85,7 +91,7 @@ class Venta(models.Model):
         verbose_name_plural = "Ventas"
 
     def __str__(self):
-        return str(self.id) + " - " + self.totalVenta + " - " + str(self.fechaHora)
+        return str(self.id) + " - " + str(self.totalVenta) + " - " + str(self.fechaHora)
 
 
 class Producto(models.Model):
@@ -94,6 +100,7 @@ class Producto(models.Model):
     precio = models.IntegerField()
     img = models.ImageField(upload_to="productos/", blank=True, null=True)
     stock = models.IntegerField()
+    categoriaPrincipal = models.ForeignKey('Categoria', on_delete=models.CASCADE, related_name='categoria_principal', null=True)
 
     class Meta:
         verbose_name = "Producto"
@@ -114,6 +121,7 @@ class Categoria(models.Model):
     def __str__(self):
         return str(self.id) + " - " + self.nombre
 
+
 class CategoriaProducto(models.Model):
     producto = models.ForeignKey('Producto', on_delete=models.CASCADE)
     categoria = models.ForeignKey('Categoria', on_delete=models.CASCADE)
@@ -124,7 +132,6 @@ class CategoriaProducto(models.Model):
 
     def __str__(self):
         return self.producto.nombre + " - " + self.categoria.nombre
-
 
 
 class DetalleVenta(models.Model):
@@ -138,8 +145,6 @@ class DetalleVenta(models.Model):
 
     def __str__(self):
         return str(self.id) + " - " + self.producto.nombre + " - " + str(self.cantidad)
-
-
 
 
 class Carrito(models.Model):

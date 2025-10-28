@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				// redirigir al usuario al login despues de 2 segundos
 				setTimeout(() => {
 					// aqui despues hay que cambiar al dominio real
-					window.location.href = "http://localhost:8000/sitioLogin/";
+					window.location.href = "/sitioLogin/";
 				}, 2000);
 				return;
 			}

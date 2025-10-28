@@ -1,7 +1,5 @@
 from django.urls import path, include
 from . import views
-from django.contrib.auth.views import LogoutView
-
 
 # cositas de la API
 from rest_framework.routers import DefaultRouter
@@ -13,6 +11,8 @@ router.register(r'categoria-productos', views.CategoriaProductoViewSet, basename
 router.register(r'users', views.UserViewSet, basename="user")
 router.register(r'carritos', views.CarritoViewSet, basename="carrito")
 router.register(r'detalle-carritos', views.DetalleCarritoViewSet, basename="detalle-carrito")
+router.register(r'detalle-ventas', views.DetalleVentaViewSet, basename="detalle-venta")
+router.register(r'ventas', views.VentaViewSet, basename="venta")
 
 urlpatterns = [
     # aqui se agregan las urls de la app principal (las rutas que se ingresan en el navegador)
@@ -28,6 +28,7 @@ urlpatterns = [
     path("perfil/", views.perfil, name="perfil"),
     path("carrito/", views.carrito, name="carrito"),
     path("checkout/", views.checkout, name="checkout"),
+    path("metricas/", views.metricas, name="metricas"),
 
 
     # rutas de la API

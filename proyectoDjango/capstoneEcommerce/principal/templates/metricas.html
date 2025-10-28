@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Métricas | Novacommerce</title>
+<link rel="stylesheet" href="{% static 'css/metricas.css' %}" />
+{% endblock head %}
+
+{% block body %}
+
+<div class="row m-0 primeraRow">
+
+    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center text-center align-content-center m-0 p-4">
+        <h6 class="head6">Total ventas del mes: <p class="parrafo" id="totalMes"></p>
+        </h6>
+        <h6 class="head6">Cantidad ventas del mes: <p class="parrafo" id="cantidadMes"></p>
+        </h6>
+        <h6 class="head6">Total ventas del dia: <p class="parrafo" id="totalDia"></p>
+        </h6>
+        <h6 class="head6">Cantidad ventas del dia: <p class="parrafo" id="cantidadDia"></p>
+        </h6>
+    </div>
+
+
+    <div class="col-12 col-sm-6 d-flex flex-column  justify-content-center align-items-center m-0 p-0 p-sm-4 text-center">
+        <canvas id="categoriasChart"></canvas>
+    </div>
+</div>
+
+<div class="row m-0 segundaRow">
+
+    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center m-0 p-0 p-sm-4">
+        <canvas id="usuariosChart"></canvas>
+    </div>
+
+
+
+    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center m-0 p-0 p-sm-4">
+        <canvas id="productosChart"></canvas>
+    </div>
+
+</div>
+
+
+
+<script src="{% static 'js/metricas.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock body %}

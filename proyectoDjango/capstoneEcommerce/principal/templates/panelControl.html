@@ -21,7 +21,8 @@
 
                 <div class="col-12 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                     <label for="nombreCategoriaInput" class="form-label">Nombre</label>
-                    <input type="text" class="form-control estiloInput" id="nombreCategoriaInput" placeholder="Nombre de la categoria">
+                    <input type="text" class="form-control estiloInput" id="nombreCategoriaInput"
+                        placeholder="Nombre de la categoria">
                 </div>
             </div>
 
@@ -80,6 +81,15 @@
                     <input type="number" class="form-control w-95" id="stockInput" placeholder="Stock del producto">
                 </div>
 
+                <!-- select categoria principal -->
+
+                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                    <label for="categoriaPrincipalSelect" class="form-label">Categoria principal</label>
+                    <select class="form-select w-95" id="categoriaPrincipalSelect" aria-label="Selecciona una categoria">
+                        <option value="" selected disabled>Selecciona una categoria</option>
+                    </select>
+                </div>
+
                 <!-- select categoria -->
 
                 <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
@@ -119,14 +129,16 @@
         <h5 class="head5 m-0 p-0 mx-auto text-center">Controles de productos</h5>
 
         <form class="row p-0 m-0 mt-4" id="buscarProductoForm">
-            <div  class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
+
+            <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
                 <label for="buscarIdProductoInput" class="form-label">Id</label>
                 <input type="number" class="form-control w-95" id="buscarIdProductoInput" placeholder="Id del producto">
             </div>
 
             <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
                 <label for="buscarNombreProductoInput" class="form-label">Nombre</label>
-                <input type="text" class="form-control w-95" id="buscarNombreProductoInput" placeholder="Nombre del producto">
+                <input type="text" class="form-control w-95" id="buscarNombreProductoInput"
+                    placeholder="Nombre del producto">
             </div>
 
             <div class="col-12 text-center mb-sm-4 mb-2 mt-2">
@@ -158,6 +170,7 @@
         <h5 class="head5 m-0 p-0 mx-auto text-center">Controles de usuarios</h5>
 
         <form action="" class="row p-0 m-0 mt-4" id="buscarUsuarioForm">
+
             <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
                 <label for="buscarIdUsuarioInput" class="form-label">Id</label>
                 <input type="number" class="form-control w-95" id="buscarIdUsuarioInput" placeholder="Id del usuario">
@@ -166,7 +179,8 @@
 
             <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
                 <label for="buscarUsernameUsuarioInput" class="form-label">Nombre</label>
-                <input type="text" class="form-control w-95" id="buscarUsernameUsuarioInput" placeholder="Nombre del usuario">
+                <input type="text" class="form-control w-95" id="buscarUsernameUsuarioInput"
+                    placeholder="Nombre del usuario">
 
             </div>
 

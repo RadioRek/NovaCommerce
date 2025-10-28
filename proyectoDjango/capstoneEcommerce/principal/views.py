@@ -1,11 +1,20 @@
 from django.shortcuts import render, redirect
+from datetime import datetime
 
 # cositas de la API
 
-from .models import Producto, Categoria, CategoriaProducto, User, Categoria, CategoriaProducto, User, Carrito, DetalleCarrito
+from .models import Producto, Categoria, CategoriaProducto, User, Categoria, CategoriaProducto, User, Carrito, DetalleCarrito, DetalleVenta, Venta, MetodoPago
 from .serializers import (
-    ProductoSerializer, LoginSerializer, CategoriaSerializer, CategoriaProductoSerializer, UserSerializer, LoginSerializer, CarritoSerializer, DetalleCarritoSerializer
-)
+    ProductoSerializer,
+    LoginSerializer,
+    CategoriaSerializer,
+    CategoriaProductoSerializer,
+    UserSerializer,
+    LoginSerializer,
+    CarritoSerializer,
+    DetalleCarritoSerializer,
+    DetalleVentaSerializer,
+    VentaSerializer)
 
 from rest_framework import viewsets, permissions, status, permissions, status
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -14,7 +23,17 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 
+from rest_framework.decorators import action
+
+
+# para las metricas
+from django.db.models import Sum, Count, OuterRef, Subquery
+from django.utils.timezone import now
+from django.db.models.functions import Coalesce
+
+
 # testing
+import random
 
 
 def home(request):
@@ -49,11 +68,18 @@ def producto(request, producto_id):
     else:
         return render(request, 'home.html')
 
+
 def carrito(request):
     return render(request, 'carrito.html')
 
+
 def checkout(request):
     return render(request, 'checkout.html')
+
+
+def metricas(request):
+    return render(request, 'metricas.html')
+
 
 def perfil(request):
 
@@ -110,6 +136,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
 
         return queryset
 
+
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
@@ -142,6 +169,7 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class LoginView(APIView):
     permission_classes = [permissions.AllowAny]
 
@@ -171,6 +199,73 @@ class CarritoViewSet(viewsets.ModelViewSet):
     queryset = Carrito.objects.all()
     serializer_class = CarritoSerializer
 
+
 class DetalleCarritoViewSet(viewsets.ModelViewSet):
     queryset = DetalleCarrito.objects.all()
     serializer_class = DetalleCarritoSerializer
+
+
+class DetalleVentaViewSet(viewsets.ModelViewSet):
+    queryset = DetalleVenta.objects.all()
+    serializer_class = DetalleVentaSerializer
+
+
+class VentaViewSet(viewsets.ModelViewSet):
+    queryset = Venta.objects.all()
+    serializer_class = VentaSerializer
+
+
+class VentaViewSet(viewsets.ModelViewSet):
+    queryset = Venta.objects.all()
+    serializer_class = VentaSerializer
+
+    @action(detail=False, methods=['get'], url_path='metricas')
+    def metricas(self, request):
+        today = now().date()
+        first_day_of_month = today.replace(day=1)
+
+        ventas_mes = Venta.objects.filter(fechaHora__date__gte=first_day_of_month)
+        ventas_dia = Venta.objects.filter(fechaHora__date=today)
+
+        total_ventas_mes = ventas_mes.aggregate(total=Coalesce(Sum('totalVenta'), 0))['total']
+        cantidad_ventas_mes = ventas_mes.count()
+
+        total_ventas_dia = ventas_dia.aggregate(total=Coalesce(Sum('totalVenta'), 0))['total']
+        cantidad_ventas_dia = ventas_dia.count()
+
+        top_productos = (
+            DetalleVenta.objects
+            .values('producto__nombre')
+            .annotate(total_vendido=Sum('cantidad'))
+            .order_by('-total_vendido')[:10]
+        )
+
+        categoria_subquery = CategoriaProducto.objects.filter(
+            producto=OuterRef('producto')
+        ).values('categoria__nombre')[:1]
+
+        top_categorias = (
+            DetalleVenta.objects
+            .values('producto__categoriaPrincipal__nombre')
+            .annotate(total_vendido=Sum('cantidad'))
+            .order_by('-total_vendido')[:5]
+        )
+
+        top_usuarios = (
+            Venta.objects
+            .values('usuario__username')
+            .annotate(total_compras=Count('id'))
+            .order_by('-total_compras')[:10]
+        )
+
+        data = {
+            'total_ventas_mes': total_ventas_mes,
+            'cantidad_ventas_mes': cantidad_ventas_mes,
+            'total_ventas_dia': total_ventas_dia,
+            'cantidad_ventas_dia': cantidad_ventas_dia,
+            'top_productos': list(top_productos),
+            'top_categorias': list(top_categorias),
+            'top_usuarios': list(top_usuarios),
+        }
+
+        return Response(data, status=200)

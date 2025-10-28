@@ -19,10 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 	const csrftoken = getCookie("csrftoken");
 
-	// Cargar categorias en el select
+	// Cargar categorias en el select categoriaPrincipal y select categoria
 	let contenedorPills = document.getElementById("pillContainer");
 
 	let categoriaSelect = document.getElementById("categoriaSelect");
+	let categoriaPrincipalSelect = document.getElementById("categoriaPrincipalSelect");
+
 	fetch("/api/categorias/", {
 		method: "GET",
 	}).then(async (response) => {
@@ -33,6 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
 				option.value = categoria.id;
 				option.textContent = categoria.nombre;
 				categoriaSelect.appendChild(option);
+				let optionPrincipal = document.createElement("option");
+				optionPrincipal.value = categoria.id;
+				optionPrincipal.textContent = categoria.nombre;
+				categoriaPrincipalSelect.appendChild(optionPrincipal);
 			});
 		} else {
 
@@ -45,6 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	categoriaSelect.addEventListener("change", (event) => {
 		let valorSeleccionado = event.target.value;
 		let nombreCategoria = categoriaSelect.options[categoriaSelect.selectedIndex].text;
+
+
 		if (valorSeleccionado && !categorias.includes(valorSeleccionado)) {
 			categorias.push(valorSeleccionado);
 
@@ -58,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			colDiv.appendChild(pill);
 			contenedorPills.appendChild(colDiv);
 		}
+
 	});
 
 	// Manejar envío del formulario de producto
@@ -90,12 +99,14 @@ document.addEventListener("DOMContentLoaded", function () {
 		let imagenProducto = document.getElementById("imgInput").files[0];
 		let descripcionProducto = document.getElementById("descripcionInput").value;
 		let stockProducto = document.getElementById("stockInput").value;
+		let categoriaPrincipalProducto = categoriaPrincipalSelect.value;
 
 		let formData = new FormData();
 		formData.append("nombre", nombreProducto);
 		formData.append("precio", precioProducto);
 		formData.append("descripcion", descripcionProducto);
 		formData.append("stock", stockProducto);
+		formData.append("categoriaPrincipal", categoriaPrincipalProducto);
 		if (imagenProducto) {
 			formData.append("img", imagenProducto);
 		}
@@ -135,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
 							let errorData = await response.json().catch(() => ({}));
 						}
 					}).catch((error) => {
-						console.error("Error en la solicitud:", error);"/api/productos/";
+						console.error("Error en la solicitud:", error); "/api/productos/";
 					});
 				}
 				categorias = [];
@@ -502,9 +513,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-/*
 
-*/
 
 
 
