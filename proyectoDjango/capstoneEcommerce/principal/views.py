@@ -204,72 +204,6 @@ class DetalleCarritoViewSet(viewsets.ModelViewSet):
     queryset = DetalleCarrito.objects.all()
     serializer_class = DetalleCarritoSerializer
 
-
-class DetalleVentaViewSet(viewsets.ModelViewSet):
-    queryset = DetalleVenta.objects.all()
-    serializer_class = DetalleVentaSerializer
-
-
-class VentaViewSet(viewsets.ModelViewSet):
-    queryset = Venta.objects.all()
-    serializer_class = VentaSerializer
-
-
-class VentaViewSet(viewsets.ModelViewSet):
-    queryset = Venta.objects.all()
-    serializer_class = VentaSerializer
-
-    @action(detail=False, methods=['get'], url_path='metricas')
-    def metricas(self, request):
-        today = now().date()
-        first_day_of_month = today.replace(day=1)
-
-        ventas_mes = Venta.objects.filter(fechaHora__date__gte=first_day_of_month)
-        ventas_dia = Venta.objects.filter(fechaHora__date=today)
-
-        total_ventas_mes = ventas_mes.aggregate(total=Coalesce(Sum('totalVenta'), 0))['total']
-        cantidad_ventas_mes = ventas_mes.count()
-
-        total_ventas_dia = ventas_dia.aggregate(total=Coalesce(Sum('totalVenta'), 0))['total']
-        cantidad_ventas_dia = ventas_dia.count()
-
-        top_productos = (
-            DetalleVenta.objects
-            .values('producto__nombre')
-            .annotate(total_vendido=Sum('cantidad'))
-            .order_by('-total_vendido')[:10]
-        )
-
-        categoria_subquery = CategoriaProducto.objects.filter(
-            producto=OuterRef('producto')
-        ).values('categoria__nombre')[:1]
-
-        top_categorias = (
-            DetalleVenta.objects
-            .values('producto__categoriaPrincipal__nombre')
-            .annotate(total_vendido=Sum('cantidad'))
-            .order_by('-total_vendido')[:5]
-        )
-
-        top_usuarios = (
-            Venta.objects
-            .values('usuario__username')
-            .annotate(total_compras=Count('id'))
-            .order_by('-total_compras')[:10]
-        )
-
-        data = {
-            'total_ventas_mes': total_ventas_mes,
-            'cantidad_ventas_mes': cantidad_ventas_mes,
-            'total_ventas_dia': total_ventas_dia,
-            'cantidad_ventas_dia': cantidad_ventas_dia,
-            'top_productos': list(top_productos),
-            'top_categorias': list(top_categorias),
-            'top_usuarios': list(top_usuarios),
-        }
-
-        return Response(data, status=200)
-
     def create(self, request):
         # Verificar que el usuario esté autenticado
         if not request.user.is_authenticated:
@@ -302,5 +236,58 @@ class VentaViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+class DetalleVentaViewSet(viewsets.ModelViewSet):
+    queryset = DetalleVenta.objects.all()
+    serializer_class = DetalleVentaSerializer
 
 
+class VentaViewSet(viewsets.ModelViewSet):
+    queryset = Venta.objects.all()
+    serializer_class = VentaSerializer
+
+    @action(detail=False, methods=['get'], url_path='metricas')
+    def metricas(self, request):
+        today = now().date()
+        first_day_of_month = today.replace(day=1)
+
+        ventas_mes = Venta.objects.filter(fechaHora__date__gte=first_day_of_month)
+        ventas_dia = Venta.objects.filter(fechaHora__date=today)
+
+        total_ventas_mes = ventas_mes.aggregate(total=Coalesce(Sum('totalVenta'), 0))['total']
+        cantidad_ventas_mes = ventas_mes.count()
+
+        total_ventas_dia = ventas_dia.aggregate(total=Coalesce(Sum('totalVenta'), 0))['total']
+        cantidad_ventas_dia = ventas_dia.count()
+
+        top_productos = (
+            DetalleVenta.objects
+            .values('producto__nombre')
+            .annotate(total_vendido=Sum('cantidad'))
+            .order_by('-total_vendido')[:10]
+        )
+
+        top_categorias = (
+            DetalleVenta.objects
+            .values('producto__categoriaPrincipal__nombre')
+            .annotate(total_vendido=Sum('cantidad'))
+            .order_by('-total_vendido')[:5]
+        )
+
+        top_usuarios = (
+            Venta.objects
+            .values('usuario__username')
+            .annotate(total_compras=Count('id'))
+            .order_by('-total_compras')[:10]
+        )
+
+        data = {
+            'total_ventas_mes': total_ventas_mes,
+            'cantidad_ventas_mes': cantidad_ventas_mes,
+            'total_ventas_dia': total_ventas_dia,
+            'cantidad_ventas_dia': cantidad_ventas_dia,
+            'top_productos': list(top_productos),
+            'top_categorias': list(top_categorias),
+            'top_usuarios': list(top_usuarios),
+        }
+
+        return Response(data, status=200)

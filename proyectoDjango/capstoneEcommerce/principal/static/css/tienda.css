@@ -33,10 +33,7 @@
 .cartita {
   display: flex;
   flex-direction: column;
-  height: 450px;              
-  border: 1px lightgray solid;
-  align-items: center;
-  width: 100%;
+  height: 450px;
 }
 
 .cartitaImg {
@@ -48,21 +45,4 @@
   flex-shrink: 0;
 }
 
-.cartita .titulo {
-  font-family: "Luxurious Roman", serif;
-  font-weight: bold;
-  font-size: 1.9rem;
-  text-align: center;
-}
-.cartita .head3 {
-  font-family: "Luxurious Roman", serif;
-  font-weight: bold;
-  font-size: 1.7rem;
-  text-align: center;
-}
-.cartita .botonGenerico {
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
+

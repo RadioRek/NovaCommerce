@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-
 	let API_URL = "/api/productos/";
 
 	let grid = document.getElementById("productosGrid");
@@ -43,10 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		setLoading(false);
 		paginaActual = page;
-
-
-
-
 
 	}
 
@@ -157,18 +152,18 @@ document.addEventListener("DOMContentLoaded", function () {
 			const detalleUrl = `/producto/${p.id}/`;
 
 			items += `
-				<div class="col-6 col-sm-3 mb-2">
-					<div class="cartita">
-					<img src="${img}" class="cartitaImg" alt="${escapeHtml(nombre)}">
-					<div class="card-body d-flex flex-column">
-						<h5 class="titulo">${escapeHtml(nombre)}</h5>
-						<div class="mt-auto">
-						<h3 class=" head3">${precio}</h3>
-						<button class="botonGenerico" onclick="agregarAlCarrito(${p.id})">Agregar al carrito</button>
+				<a href="${detalleUrl}" class="col-6 col-sm-3 mb-2 mb-sm-4 text-decoration-none">
+					<div class="cartita card">
+						<img src="${img}" class="cartitaImg" alt="${escapeHtml(nombre)}">
+						<div class="card-body d-flex flex-column">
+							<h6 class="head6 m-0">${escapeHtml(nombre)}</h6>
+							<parrafo class="parrafoPequeño">${precio}</parrafo>
+							<div class="mt-auto">
+								<button class="botonGenerico" onclick="agregarAlCarrito(${p.id})">Agregar al carrito</button>
+							</div>
 						</div>
 					</div>
-					</div>
-				</div>
+				</a>
 			`;
 		});
 
@@ -225,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			colDiv.className = "col-auto p-0 m-0";
 
 			let pill = document.createElement("p");
-			pill.className = "pill rounded-pill textoMinimoBlanco d-flex align-items-center"; // d-flex para alinear X
+			pill.className = "pill rounded-pill textoMinimoBlanco d-flex align-items-center";
 			pill.textContent = nombreCategoria;
 
 			// Crear botón de eliminar
@@ -266,72 +261,91 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 });
+
+// Función para obtener la cookie
+function getCookie(name) {
+	let cookieValue = null;
+	if (document.cookie && document.cookie !== "") {
+		const cookies = document.cookie.split(";");
+		for (let i = 0; i < cookies.length; i++) {
+			const cookie = cookies[i].trim();
+			if (cookie.substring(0, name.length + 1) === name + "=") {
+				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+				break;
+			}
+		}
+	}
+	return cookieValue;
+}
+
+const csrftoken = getCookie("csrftoken");
+
 async function agregarAlCarrito(productId) {
-	console.log("Agregar al carrito:", productId);
-	try {
-		const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-		const response = await fetch("/api/detalle-carritos/", {
-			method: "POST",
-			headers: {
-				'Content-Type': 'application/json',
-				'X-CSRFToken': csrftoken,
-			},
-			body: JSON.stringify({
-				producto_id: productId,
-				cantidad: 1
-			})
-		});
+
+	fetch("/api/detalle-carritos/", {
+		method: "POST",
+		headers: {
+			'Content-Type': 'application/json',
+			'X-CSRFToken': csrftoken,
+		},
+		body: JSON.stringify({
+			producto_id: productId,
+			cantidad: 1
+		})
+	}).then(async (response) => {
+		let data = await response.json();
 
 		if (response.ok) {
 			mostrarMensaje("Producto agregado al carrito exitosamente", "success");
-		} else if (response.status === 401) {
-			mostrarMensaje("Debes iniciar sesión para agregar productos al carrito", "error");
-			setTimeout(() => {
-				window.location.href = "/sitioLogin/";
-			}, 2000);
+
 		} else {
-			const data = await response.json();
-			mostrarMensaje(data.error || "Error al agregar al carrito", "error");
+			if (response.status === 401) {
+				mostrarMensaje("Debes iniciar sesión para agregar productos al carrito", "error");
+				setTimeout(() => {
+					window.location.href = "/sitioLogin/";
+				}, 2000);
+			} else {
+				mostrarMensaje(data.error || "Error al agregar al carrito", "error");
+			}
+
 		}
-	} catch (error) {
-		console.error("Error:", error);
-		mostrarMensaje("Error de conexión. Por favor, intenta de nuevo.", "error");
-	}
+	}).catch((error) => {
+		console.error("Error en la solicitud:", error);
+	});
 }
 
 // para mostrar mensajes al usuario
 function mostrarMensaje(mensaje, tipo) {
-    // para eliminar mensaje anterior si existe
-    const mensajeAnterior = document.querySelector('.mensaje-alerta');
+	// para eliminar mensaje anterior si existe
+	const mensajeAnterior = document.querySelector('.mensaje-alerta');
 
-    if (mensajeAnterior) {
-        mensajeAnterior.remove();
-    }
+	if (mensajeAnterior) {
+		mensajeAnterior.remove();
+	}
 
-    // crea el elemento del mensaje
-    const div = document.createElement('div');
+	// crea el elemento del mensaje
+	const div = document.createElement('div');
 
-    if (tipo === 'success') {
-        div.className = 'mensaje-alerta alert alert-success alert-dismissible fade show';
-    } else {
-        div.className = 'mensaje-alerta alert alert-danger alert-dismissible fade show';
-    }
-
-
-    div.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+	if (tipo === 'success') {
+		div.className = 'mensaje-alerta alert alert-success alert-dismissible fade show';
+	} else {
+		div.className = 'mensaje-alerta alert alert-danger alert-dismissible fade show';
+	}
 
 
-    div.innerHTML = `
+	div.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+
+	div.innerHTML = `
         ${mensaje}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     `;
 
-    document.body.appendChild(div);
+	document.body.appendChild(div);
 
-    // auto-elimina después de 5 segundos
-    setTimeout(() => {
-        div.remove();
-    }, 5000);
+	// auto-elimina después de 5 segundos
+	setTimeout(() => {
+		div.remove();
+	}, 5000);
 }
 
 

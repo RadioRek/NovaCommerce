@@ -11,5 +11,5 @@ media/
 .venv/
 
 # ignorar sqlite database
-db.sqlite3
+*.sqlite3
 proyectoDjango/capstoneEcommerce/db.sqlite3
