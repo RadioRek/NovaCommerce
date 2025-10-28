@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+
 	let API_URL = "/api/productos/";
 
 	let grid = document.getElementById("productosGrid");
@@ -11,22 +12,18 @@ document.addEventListener("DOMContentLoaded", function () {
 		maximumFractionDigits: 0,
 	});
 
+
 	async function fetchProducts(page, query = "") {
-
 		setLoading(true);
-
 		let url = API_URL + `?page=${encodeURIComponent(page)}`;
-
 		if (query) {
 			url += "&" + query;
 		}
-
 		fetch(url, {
 			method: "GET",
 			credentials: "same-origin",
 		}).then(async (response) => {
 			if (response.ok) {
-
 				let data = await response.json();
 
 				if (data && data.results) {
@@ -46,6 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		setLoading(false);
 		paginaActual = page;
+
+
+
+
 
 	}
 
@@ -157,14 +158,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			items += `
 				<div class="col-6 col-sm-3 mb-2">
-					<div class="card h-100">
-					<img src="${img}" class="card-img-top" alt="${escapeHtml(nombre)}">
+					<div class="cartita">
+					<img src="${img}" class="cartitaImg" alt="${escapeHtml(nombre)}">
 					<div class="card-body d-flex flex-column">
-						<h5 class="card-title mb-3">${escapeHtml(nombre)}</h5>
+						<h5 class="titulo">${escapeHtml(nombre)}</h5>
 						<div class="mt-auto">
-						<p class="fw-bold mb-2">${precio}</p>
-						<a href="${detalleUrl}" class="botonGenerico w-100">Ver detalle</a>
-						<button class="botonGenerico">Agregar al carrito</button>
+						<h3 class=" head3">${precio}</h3>
+						<button class="botonGenerico" onclick="agregarAlCarrito(${p.id})">Agregar al carrito</button>
 						</div>
 					</div>
 					</div>
@@ -192,9 +192,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	let contenedorPills = document.getElementById("pillContainer");
 
 	let categoriaSelect = document.getElementById("categoriaSelect");
+
 	fetch("/api/categorias/", {
 		method: "GET",
 	}).then(async (response) => {
+
 		if (response.ok) {
 			const data = await response.json();
 			data.forEach((categoria) => {
@@ -206,6 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		} else {
 
 		}
+
 	}).catch((error) => {
 		console.error("Error en la solicitud:", error);
 	});
@@ -263,6 +266,74 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 });
+async function agregarAlCarrito(productId) {
+	console.log("Agregar al carrito:", productId);
+	try {
+		const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+		const response = await fetch("/api/detalle-carritos/", {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json',
+				'X-CSRFToken': csrftoken,
+			},
+			body: JSON.stringify({
+				producto_id: productId,
+				cantidad: 1
+			})
+		});
+
+		if (response.ok) {
+			mostrarMensaje("Producto agregado al carrito exitosamente", "success");
+		} else if (response.status === 401) {
+			mostrarMensaje("Debes iniciar sesión para agregar productos al carrito", "error");
+			setTimeout(() => {
+				window.location.href = "/sitioLogin/";
+			}, 2000);
+		} else {
+			const data = await response.json();
+			mostrarMensaje(data.error || "Error al agregar al carrito", "error");
+		}
+	} catch (error) {
+		console.error("Error:", error);
+		mostrarMensaje("Error de conexión. Por favor, intenta de nuevo.", "error");
+	}
+}
+
+// para mostrar mensajes al usuario
+function mostrarMensaje(mensaje, tipo) {
+    // para eliminar mensaje anterior si existe
+    const mensajeAnterior = document.querySelector('.mensaje-alerta');
+
+    if (mensajeAnterior) {
+        mensajeAnterior.remove();
+    }
+
+    // crea el elemento del mensaje
+    const div = document.createElement('div');
+
+    if (tipo === 'success') {
+        div.className = 'mensaje-alerta alert alert-success alert-dismissible fade show';
+    } else {
+        div.className = 'mensaje-alerta alert alert-danger alert-dismissible fade show';
+    }
+
+
+    div.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+
+
+    div.innerHTML = `
+        ${mensaje}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+
+    document.body.appendChild(div);
+
+    // auto-elimina después de 5 segundos
+    setTimeout(() => {
+        div.remove();
+    }, 5000);
+}
+
 
 
 

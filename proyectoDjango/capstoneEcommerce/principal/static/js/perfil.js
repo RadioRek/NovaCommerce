@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(async (response) => {
 
             if (response.ok) {
-                mostrarMensaje("✓ Perfil actualizado exitosamente", "success");
+                mostrarMensaje("Perfil actualizado exitosamente", "success");
 
                 // recarga la página después de 1.5 segundos para mostrar actualizados
                 setTimeout(() => {
