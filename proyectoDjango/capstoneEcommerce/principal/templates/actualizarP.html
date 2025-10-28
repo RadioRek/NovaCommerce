@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<title>ActualizarProducto | Novacommerce</title>
+<link rel="stylesheet" href="{% static 'css/actualizarP.css' %}">
+{% endblock head %}
+
+
+
+{% block body %}
+
+<div class="contenedorRegistro py-4 d-flex flex-column align-items-center">
+    <h2 class="parrafo" mb-4>Novacommerce</h2>
+    <div class="ContenedorSecundario card d-flex flex-column p-4">
+        <form action="" id="editarproducto" class="w-100">
+            <h3 class="text-center mb-3">Actualizar Producto {{producto.nombre}}</h3>
+
+            <label for="editarNombre" class="form-label">Nombre</label>
+            <input type="text" id="editNombreInput" class="form-control" placeholder="Nombre del producto" value="{{producto.nombre}}">
+
+            <label for="editarPrecio" class="form-label">Precio</label>
+            <input type="text" id="editPrecioInput" class="form-control" placeholder="Precio" value="{{producto.precio}}">
+
+            <label for="editarDescripcion" class="form-label">Descripcion</label>
+            <input type="text" id="editDescripcion" class="form-control" placeholder="Precio" value="{{producto.descripcion}}">
+
+            <label for="editarStock" class="form-label">Stock</label>
+            <input type="text" id="editStockInput" class="form-control" placeholder="Stock" min="0" step="1" inputmode="numeric" pattern="\d*" value="{{producto.stock}}">
+
+            <label for="editarImg" class="form-label">Imagen</label>
+            <input type="file" id="editImgInput" class="form-control" accept="image/*">
+
+            <img id="editImgPreview" src="" alt="preview" style="max-width:200px; max-height:200px; display:none; object-fit:contain; border:1px solid #ddd; padding:4px;">
+
+            <label for="editCategoria" class="form-label mt-3">Categorias</label>
+            <select name="" id="editCategoriaInput" class="form-select mb-2" aria-label="Selecciona una categoria">
+                <option value="" selected disabled>Selecciona una categoria</option>
+            </select>
+
+            <div id="editPill" class="row mt-2 w-100 gap-1 ">
+                {% for categoria in categorias %}
+                <div class="col-auto p-0 m-0">
+                    <p class="pill rounded-pill textoMinimoBlanco">{{ categoria.categoria.nombre }}</p>
+                </div>
+            {% endfor %}
+            </div>
+
+            <div class="d-flex gap-2 justify-content-between" id="editCambios">
+                <a href="{% url 'panelControl' %}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="{% static 'js/actualizarP.js' %}"></script>
+{% endblock body %}
+
+

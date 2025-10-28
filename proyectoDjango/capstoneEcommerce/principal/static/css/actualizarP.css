@@ -1,0 +1,45 @@
+.pill {
+    background-color: var(--cafeCrema);
+    color: var(--blanco5);
+    text-align: center;
+    margin: 0;
+    padding: 4px 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+}
+
+.pill:hover {
+    background-color: var(--cafeCrema2);
+    color: var(--blanco5);
+}
+
+
+.contenedorRegistro {
+	background-color: var(--cafeMainSecundario2);
+	min-height: 80vh;
+}
+
+.parrafo {
+    font-size: 4rem;            /* tamaño grande */
+    font-weight: 500;           /* opcional: más grueso */
+    line-height: 1.1;
+    margin: 0 0 0.5rem 0;
+}
+
+@media (max-width: 576px) {
+    .parrafo {
+        font-size: 1.4rem;
+    }
+    .card {
+        width: 50%;
+    }
+}
+
+.ContenedorSecundario.card {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
