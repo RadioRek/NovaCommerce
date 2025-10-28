@@ -95,7 +95,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
     def get_serializer_context(self):
         return {'request': self.request}
 
-    def get_queryset(self): 
+    def get_queryset(self):
         queryset = Producto.objects.all()
         nombre = self.request.query_params.get('nombre', None)
         idProducto = self.request.query_params.get('id', None)
@@ -180,3 +180,38 @@ class CarritoViewSet(viewsets.ModelViewSet):
 class DetalleCarritoViewSet(viewsets.ModelViewSet):
     queryset = DetalleCarrito.objects.all()
     serializer_class = DetalleCarritoSerializer
+
+    def create(self, request):
+        # Verificar que el usuario esté autenticado
+        if not request.user.is_authenticated:
+            return Response(
+                {'error': 'Debes iniciar sesión para agregar productos al carrito'},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+
+        producto_id = request.data.get('producto_id')
+        cantidad = request.data.get('cantidad', 1)
+
+        # Obtener o crear carrito
+        carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
+
+        # Obtener producto
+        producto = Producto.objects.get(id=producto_id)
+
+        # Crear o actualizar detalle del carrito
+        detalle, created = DetalleCarrito.objects.get_or_create(
+            carrito=carrito,
+            producto=producto,
+            defaults={'cantidad': cantidad}
+        )
+
+        if not created:
+            detalle.cantidad = detalle.cantidad + int(cantidad)
+            detalle.save()
+
+        serializer = DetalleCarritoSerializer(detalle)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+
+
