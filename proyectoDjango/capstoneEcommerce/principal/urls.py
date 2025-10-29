@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from django.contrib.auth.views import LogoutView 
+from django.contrib.auth.views import LogoutView
 
 
 # cositas de la API
@@ -27,6 +27,7 @@ urlpatterns = [
     path("producto/<int:producto_id>/", views.producto, name="producto"),
     path("perfil/", views.perfil, name="perfil"),
     path("carrito/", views.carrito, name="carrito"),
+    path("actualizarP/<int:producto_id>/", views.actualizarP, name="actualizarP"),
 
     # rutas de la API
     path("api/", include(router.urls)),

@@ -171,3 +171,11 @@ class CarritoViewSet(viewsets.ModelViewSet):
 class DetalleCarritoViewSet(viewsets.ModelViewSet):
     queryset = DetalleCarrito.objects.all()
     serializer_class = DetalleCarritoSerializer
+
+def actualizarP(request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    categorias = CategoriaProducto.objects.filter(producto=producto)
+    if producto:
+        return render(request, 'actualizarP.html', {'producto': producto, 'categorias': categorias})
+    else:
+        return render(request, 'panelControl.html')
