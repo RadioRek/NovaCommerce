@@ -335,6 +335,13 @@ input:-webkit-autofill:focus {
     box-shadow: 0 0 0 0.2rem rgba(111, 78, 55, 0.25);
 }
 
+.form-control:focus {
+    font-family: "Luxurious Roman", serif;
+    color: var(--negro75) !important;
+    border-color: var(--cafeMain);
+    box-shadow: 0 0 0 0.2rem rgba(111, 78, 55, 0.25);
+}
+
 .form-control {
     font-family: "Luxurious Roman", serif;
     color: var(--negro75);

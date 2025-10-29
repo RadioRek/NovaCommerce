@@ -2,11 +2,35 @@ import re
 from rest_framework import serializers
 from .models import Producto, Categoria, CategoriaProducto, TipoUsuario, User, Carrito, DetalleCarrito, DetalleVenta, Venta, MetodoPago
 
-
 class ProductoSerializer(serializers.ModelSerializer):
+    categorias = serializers.ListField(
+        child=serializers.IntegerField(), write_only=True, required=False
+    )
+    categorias_actuales = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Producto
-        fields = "__all__"
+        fields = [
+            'id', 'nombre', 'precio', 'descripcion', 'stock',
+            'img', 'categoriaPrincipal', 'categorias', 'categorias_actuales'
+        ]
+
+    def get_categorias_actuales(self, obj):
+        return [
+            cp.categoria.id
+            for cp in obj.categoriaproducto_set.all()
+        ]
+
+    def update(self, instance, validated_data):
+        categorias = validated_data.pop('categorias', None)
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        if categorias is not None:
+            instance.categoriaproducto_set.all().delete()
+            for cat_id in categorias:
+                CategoriaProducto.objects.create(producto=instance, categoria_id=cat_id)
+        return instance
 
 
 class CategoriaSerializer(serializers.ModelSerializer):
@@ -16,6 +40,8 @@ class CategoriaSerializer(serializers.ModelSerializer):
 
 
 class CategoriaProductoSerializer(serializers.ModelSerializer):
+    categoria = CategoriaSerializer(read_only=True)
+
     class Meta:
         model = CategoriaProducto
         fields = "__all__"

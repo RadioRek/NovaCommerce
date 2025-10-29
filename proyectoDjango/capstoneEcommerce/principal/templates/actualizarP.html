@@ -11,50 +11,78 @@
 {% block body %}
 
 <div class="contenedorRegistro py-4 d-flex flex-column align-items-center">
-    <h2 class="parrafo" mb-4>Novacommerce</h2>
-    <div class="ContenedorSecundario card d-flex flex-column p-4">
-        <form action="" id="editarproducto" class="w-100">
-            <h3 class="text-center mb-3">Actualizar Producto {{producto.nombre}}</h3>
 
-            <label for="editarNombre" class="form-label">Nombre</label>
-            <input type="text" id="editNombreInput" class="form-control" placeholder="Nombre del producto" value="{{producto.nombre}}">
+    <input type="number" id="productoId" value="{{producto.id}}" hidden>
+    <input type="number" id="categoriaPrincipalId" value="{{producto.categoriaPrincipal.id}}" hidden>
 
-            <label for="editarPrecio" class="form-label">Precio</label>
-            <input type="text" id="editPrecioInput" class="form-control" placeholder="Precio" value="{{producto.precio}}">
+    <div class="ContenedorSecundario card p-4">
+        <form action="" id="editarproducto" class="row">
+            <h3 class="text-center mb-3 head3">Actualizar Producto {{producto.nombre}}</h3>
 
-            <label for="editarDescripcion" class="form-label">Descripcion</label>
-            <input type="text" id="editDescripcion" class="form-control" placeholder="Precio" value="{{producto.descripcion}}">
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-2 d-flex flex-column align-items-center">
+                <label for="editNombreInput" class="form-label">Nombre</label>
+                <input type="text" id="editNombreInput" class="form-control" placeholder="Nombre del producto"
+                    value="{{producto.nombre}}">
+            </div>
 
-            <label for="editarStock" class="form-label">Stock</label>
-            <input type="text" id="editStockInput" class="form-control" placeholder="Stock" min="0" step="1" inputmode="numeric" pattern="\d*" value="{{producto.stock}}">
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                <label for="editPrecioInput" class="form-label">Precio</label>
+                <input type="text" id="editPrecioInput" class="form-control" placeholder="Precio"
+                    value="{{producto.precio}}">
+            </div>
 
-            <label for="editarImg" class="form-label">Imagen</label>
-            <input type="file" id="editImgInput" class="form-control" accept="image/*">
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                <label for="editDescripcion" class="form-label">Descripcion</label>
+                <input type="text" id="editDescripcion" class="form-control" placeholder="Precio"
+                    value="{{producto.descripcion}}">
+            </div>
 
-            <img id="editImgPreview" src="" alt="preview" style="max-width:200px; max-height:200px; display:none; object-fit:contain; border:1px solid #ddd; padding:4px;">
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                <label for="editStockInput" class="form-label">Stock</label>
+                <input type="text" id="editStockInput" class="form-control" placeholder="Stock" min="0" step="1"
+                    inputmode="numeric" pattern="\d*" value="{{producto.stock}}">
+            </div>
 
-            <label for="editCategoria" class="form-label mt-3">Categorias</label>
-            <select name="" id="editCategoriaInput" class="form-select mb-2" aria-label="Selecciona una categoria">
-                <option value="" selected disabled>Selecciona una categoria</option>
-            </select>
 
-            <div id="editPill" class="row mt-2 w-100 gap-1 ">
-                {% for categoria in categorias %}
-                <div class="col-auto p-0 m-0">
-                    <p class="pill rounded-pill textoMinimoBlanco">{{ categoria.categoria.nombre }}</p>
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                <label for="categoriaPrincipalInput" class="form-label">Categoria principal</label>
+                <select name="" id="categoriaPrincipalInput" class="form-select mb-2">
+                </select>
+            </div>
+
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                <label for="editarImg" class="form-label">Imagen</label>
+                <input type="file" id="editImgInput" class="form-control" accept="image/*">
+            </div>
+
+
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+
+                <label for="editCategoriaInput" class="form-label">Categorias</label>
+                <select name="" id="editCategoriaInput" class="form-select mb-2" aria-label="Selecciona una categoria">
+                    <option value="" selected disabled>Selecciona una categoria</option>
+                </select>
+
+                <div id="editPill" class="row w-100 gap-1">
+
                 </div>
-            {% endfor %}
             </div>
 
-            <div class="d-flex gap-2 justify-content-between" id="editCambios">
-                <a href="{% url 'panelControl' %}" class="btn btn-secondary">Cancelar</a>
-                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
+                <img id="imgPreview" src="{{ producto.img.url }}" class="img-fluid rounded">
+                {{producto.img}}
             </div>
+
+
+            <div class="col-12 m-0 p-0 px-2 d-flex justify-content-between mt-2">
+                <a href="{% url 'panelControl' %}" class="botonGenerico">Cancelar</a>
+                <button type="submit" class="botonGenerico">Guardar cambios</button>
+            </div>
+
         </form>
     </div>
+
 </div>
 
 <script src="{% static 'js/actualizarP.js' %}"></script>
 {% endblock body %}
-
-

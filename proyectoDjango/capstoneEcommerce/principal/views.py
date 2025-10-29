@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from datetime import datetime
 
 # cositas de la API
 
-from .models import Producto, Categoria, CategoriaProducto, User, Categoria, CategoriaProducto, User, Carrito, DetalleCarrito, DetalleVenta, Venta, MetodoPago
+from .models import Producto, Categoria, CategoriaProducto, User, Categoria, CategoriaProducto, User, Carrito, DetalleCarrito, DetalleVenta, Venta
 from .serializers import (
     ProductoSerializer,
     LoginSerializer,
@@ -27,13 +26,12 @@ from rest_framework.decorators import action
 
 
 # para las metricas
-from django.db.models import Sum, Count, OuterRef, Subquery
+from django.db.models import Sum, Count
 from django.utils.timezone import now
 from django.db.models.functions import Coalesce
 
 
 # testing
-import random
 
 
 def home(request):
@@ -67,6 +65,11 @@ def producto(request, producto_id):
         return render(request, 'producto.html', {'producto': producto, 'categorias': categorias})
     else:
         return render(request, 'home.html')
+
+def actualizarProducto(request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    categorias = CategoriaProducto.objects.filter(producto=producto)
+    return render(request, 'actualizarP.html', {'producto': producto, 'categorias': categorias})
 
 
 def carrito(request):
@@ -145,6 +148,15 @@ class CategoriaViewSet(viewsets.ModelViewSet):
 class CategoriaProductoViewSet(viewsets.ModelViewSet):
     queryset = CategoriaProducto.objects.all()
     serializer_class = CategoriaProductoSerializer
+
+    def get_queryset(self):
+        queryset = CategoriaProducto.objects.all()
+        producto_id = self.request.query_params.get('producto_id', None)
+
+        if producto_id:
+            queryset = queryset.filter(producto__id=producto_id)
+
+        return queryset
 
 
 class UserViewSet(viewsets.ModelViewSet):

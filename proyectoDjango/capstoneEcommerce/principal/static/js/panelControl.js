@@ -263,10 +263,30 @@ document.addEventListener("DOMContentLoaded", function () {
 				let tdNombre = document.createElement("td");
 				let tdPrecio = document.createElement("td");
 				let tdStock = document.createElement("td");
+				let tdActualizar = document.createElement("td");
+				let tdEliminar = document.createElement("td");
+
+				let vinculoActualizar = document.createElement("a");
+				vinculoActualizar.href = `/actualizarProducto/${producto.id}/`;
+				vinculoActualizar.className = "textoMinimo";
+				vinculoActualizar.textContent = "Modificar produto ➔";
+				tdActualizar.appendChild(vinculoActualizar);
+
+				let vinculoEliminar = document.createElement("a");
+				vinculoEliminar.href = "";
+				vinculoEliminar.className = "textoMinimo";
+				vinculoEliminar.textContent = "Eliminar produto X";
+				vinculoEliminar.onclick = function (event) {
+					event.preventDefault();
+					eliminarProducto(producto.id);
+				}
+				tdEliminar.appendChild(vinculoEliminar);
 
 				tdNombre.className = "textoMinimo";
 				tdPrecio.className = "textoMinimo";
 				tdStock.className = "textoMinimo";
+				tdActualizar.className = "textoMinimo";
+				tdEliminar.className = "textoMinimo";
 
 				tdNombre.textContent = producto.nombre;
 				tdPrecio.textContent = producto.precio;
@@ -275,6 +295,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				row.appendChild(tdNombre);
 				row.appendChild(tdPrecio);
 				row.appendChild(tdStock);
+				row.appendChild(tdActualizar);
+				row.appendChild(tdEliminar);
 
 				tablaProductosBody.appendChild(row);
 			});
@@ -343,6 +365,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 
+	async function eliminarProducto(productoId) {
+
+	}
+
 	// poblar tabla de productos buscando
 	let buscarProductoFormulario = document.getElementById("buscarProductoForm");
 
@@ -387,10 +413,31 @@ document.addEventListener("DOMContentLoaded", function () {
 						let tdNombre = document.createElement("td");
 						let tdPrecio = document.createElement("td");
 						let tdStock = document.createElement("td");
+						let tdActualizar = document.createElement("td");
+						let tdEliminar = document.createElement("td");
+
+						let vinculoActualizar = document.createElement("a");
+						vinculoActualizar.href = `/actualizarProducto/${producto.id}/`;
+						vinculoActualizar.className = "textoMinimo";
+						vinculoActualizar.textContent = "Modificar produto ➔";
+						tdActualizar.appendChild(vinculoActualizar);
+
+						let vinculoEliminar = document.createElement("a");
+						vinculoEliminar.href = "";
+						vinculoEliminar.className = "textoMinimo";
+						vinculoEliminar.textContent = "Eliminar produto X";
+						vinculoEliminar.onclick = function (event) {
+							event.preventDefault();
+							eliminarProducto(producto.id);
+						}
+						tdEliminar.appendChild(vinculoEliminar);
+
 
 						tdNombre.className = "textoMinimo";
 						tdPrecio.className = "textoMinimo";
 						tdStock.className = "textoMinimo";
+						tdActualizar.className = "textoMinimo";
+						tdEliminar.className = "textoMinimo";
 
 						tdNombre.textContent = producto.nombre;
 						tdPrecio.textContent = producto.precio;
@@ -399,6 +446,8 @@ document.addEventListener("DOMContentLoaded", function () {
 						row.appendChild(tdNombre);
 						row.appendChild(tdPrecio);
 						row.appendChild(tdStock);
+						row.appendChild(tdActualizar);
+						row.appendChild(tdEliminar);
 
 						tablaProductosBody.appendChild(row);
 					});

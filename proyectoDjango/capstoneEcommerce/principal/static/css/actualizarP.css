@@ -18,28 +18,14 @@
 
 .contenedorRegistro {
 	background-color: var(--cafeMainSecundario2);
-	min-height: 80vh;
 }
 
-.parrafo {
-    font-size: 4rem;            /* tamaño grande */
-    font-weight: 500;           /* opcional: más grueso */
-    line-height: 1.1;
-    margin: 0 0 0.5rem 0;
+.card {
+    width: 95%;
 }
 
-@media (max-width: 576px) {
-    .parrafo {
-        font-size: 1.4rem;
-    }
+@media (min-width: 576px) {
     .card {
-        width: 50%;
+        width: 70%;
     }
-}
-
-.ContenedorSecundario.card {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    box-sizing: border-box;
 }
