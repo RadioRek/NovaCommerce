@@ -15,18 +15,18 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # cositas para la producción
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 DEBUG = False
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 
 # cambiar cuando compremos el dominio
-ALLOWED_HOSTS = ['tu-dominio.com', 'www.tu-dominio.com']
+ALLOWED_HOSTS = ['tu-dominio.com', 'www.tu-dominio.com', '72.61.50.136']
 
 
 # para la api
