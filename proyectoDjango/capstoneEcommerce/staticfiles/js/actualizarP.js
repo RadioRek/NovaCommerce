@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 crearElementoToast("Error", "No se pudo actualizar el producto.", "error");
             }
         }).catch((error) => {
-            createElementoToast("Error", "No se pudo actualizar el producto.", "error");
+            crearElementoToast("Error", "No se pudo actualizar el producto.", "error");
             console.error("Error en la solicitud de actualización:", error);
         });
     });

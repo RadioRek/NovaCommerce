@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 crearElementoToast("Error", "No se pudo actualizar el usuario.", "error");
             }
         }).catch((error) => {
-            createElementoToast("Error", "No se pudo actualizar el usuario.", "error");
+            crearElementoToast("Error", "No se pudo actualizar el usuario.", "error");
             console.error("Error:", error);
         });
 

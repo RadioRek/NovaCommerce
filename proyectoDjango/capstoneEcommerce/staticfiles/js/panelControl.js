@@ -84,7 +84,7 @@ function poblarTablaVentasPendientes(idVentaBuscar = null, csrfToken = null) {
 		});
 
 	}).catch((error) => {
-		createElementoToast("Error", "Error al buscar ventas pendientes", "error");
+		crearElementoToast("Error", "Error al buscar ventas pendientes", "error");
 		console.error("Error en la solicitud:", error);
 	});
 }
@@ -186,7 +186,7 @@ function poblarTablaUsuarios(idUsuarioBuscar = null, nombreUsuarioBuscar = null,
 		});
 
 	}).catch((error) => {
-		createElementoToast("Error", "Error al buscar usuarios", "error");
+		crearElementoToast("Error", "Error al buscar usuarios", "error");
 		console.error("Error en la solicitud:", error);
 	});
 
@@ -272,7 +272,7 @@ function poblarTablaProductos(idProductoBuscar = null, nombreProductoBuscar = nu
 		});
 
 	}).catch((error) => {
-		createElementoToast("Error", "Error al buscar productos", "error");
+		crearElementoToast("Error", "Error al buscar productos", "error");
 		console.error("Error en la solicitud:", error);
 	});
 }
