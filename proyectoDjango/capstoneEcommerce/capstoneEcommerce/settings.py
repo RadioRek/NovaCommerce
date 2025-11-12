@@ -26,7 +26,7 @@ DEBUG = False
 SECURE_SSL_REDIRECT = False
 
 # cambiar cuando compremos el dominio
-ALLOWED_HOSTS = ['tu-dominio.com', 'www.tu-dominio.com', '72.61.50.136']
+ALLOWED_HOSTS = ['tu-dominio.com', 'www.tu-dominio.com', '72.61.50.136', '*']
 
 
 # para la api

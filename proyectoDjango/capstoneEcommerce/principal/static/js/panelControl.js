@@ -223,10 +223,10 @@ function poblarTablaProductos(idProductoBuscar = null, nombreProductoBuscar = nu
 		if (data.length === 0) {
 			crearElementoToast("Sin resultados", "No se encontraron productos", "info");
 		} else {
-			crearElementoToast("Exito", `Se encontraron ${data.length} productos`, "success");
+			crearElementoToast("Exito", `Se encontraron ${data.results.length} productos`, "success");
 		}
 
-		data.forEach((producto) => {
+		data.results.forEach((producto) => {
 			let row = document.createElement("tr");
 			let tdNombre = document.createElement("td");
 			let tdPrecio = document.createElement("td");
@@ -290,8 +290,7 @@ function eliminarProducto(productoId, csrfToken = null) {
 			if (response.ok) {
 				crearElementoToast("Exito", "Producto eliminado con exito", "info");
 				// recargar la tabla de productos
-				tablaProductosBody.innerHTML = "";
-				cargarProductos();
+				poblarTablaProductos();
 			} else {
 				crearElementoToast("Error", "Error al eliminar el producto", "error");
 			}
@@ -304,7 +303,7 @@ function eliminarProducto(productoId, csrfToken = null) {
 	crearElementoModal(
 		"Confirmacion requerida",
 		"¿Está seguro de que desea eliminar el producto?",
-		() => funcionParaModal(productoId),
+		() => funcionParaModal(productoId, csrfToken),
 		"confirmacion"
 	);
 }
@@ -465,7 +464,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	//===========================================================================
-	// Manejar envío del formulario de producto
+	// Manejar envío del formulario de producto				tablaProductosBody.innerHTML = "";
+
 	formularioProducto.addEventListener("submit", async function (event) {
 		event.preventDefault();
 

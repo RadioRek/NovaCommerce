@@ -28,9 +28,9 @@ from rest_framework.decorators import action
 
 
 # para las metricas
+from datetime import datetime, time
 from django.utils import timezone
-from django.db.models import Sum, Count
-from django.utils.timezone import now
+from django.db.models import Sum
 from django.db.models.functions import Coalesce
 
 
@@ -610,8 +610,15 @@ class VentaViewSet(viewsets.ModelViewSet):
         today = timezone.localdate()
         first_day_of_month = today.replace(day=1)
 
-        ventas_mes = Venta.objects.filter(fechaHora__date__gte=first_day_of_month)
-        ventas_dia = Venta.objects.filter(fechaHora__date=today)
+        start_today = timezone.make_aware(datetime.combine(today, time.min))
+        end_today = timezone.make_aware(datetime.combine(today, time.max))
+
+        start_month = timezone.make_aware(datetime.combine(first_day_of_month, time.min))
+        end_month = timezone.make_aware(datetime.combine(today, time.max))
+
+        ventas_mes = Venta.objects.filter(fechaHora__gte=start_month, fechaHora__lte=end_month)
+        ventas_dia = Venta.objects.filter(fechaHora__gte=start_today, fechaHora__lte=end_today)
+
 
         total_ventas_mes = ventas_mes.aggregate(total=Coalesce(Sum('totalVenta'), 0))['total']
         cantidad_ventas_mes = ventas_mes.count()
