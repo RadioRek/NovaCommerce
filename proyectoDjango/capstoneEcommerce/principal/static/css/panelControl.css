@@ -13,6 +13,11 @@
 	overflow-y: auto;
 }
 
+.tablaVentConfirmar {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
 /* sobrescribe el box-shadow de bootstrap en hover */
 .table.table-striped-columns tbody tr:hover td {
 	--bs-table-bg-state: var(--blanco10) !important;

@@ -1,0 +1,15 @@
+.scrollbarStyling {
+    /* scrollbar en el eje x no aplica */
+    scrollbar-width: thin;
+    scrollbar-color: var(--cafeMain2) var(--gris75);
+
+}
+
+.cartaVenta {
+    background-color: var(--blanco10);
+}
+
+.contHistVentas {
+    max-height: 400px;
+    overflow-y: auto;
+}

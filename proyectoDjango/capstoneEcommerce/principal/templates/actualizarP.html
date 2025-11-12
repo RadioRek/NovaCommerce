@@ -39,10 +39,9 @@
 
             <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                 <label for="editStockInput" class="form-label">Stock</label>
-                <input type="text" id="editStockInput" class="form-control" placeholder="Stock" min="0" step="1"
+                <input type="number" id="editStockInput" class="form-control" placeholder="Stock" min="0" step="1"
                     inputmode="numeric" pattern="\d*" value="{{producto.stock}}">
             </div>
-
 
             <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                 <label for="categoriaPrincipalInput" class="form-label">Categoria principal</label>
@@ -68,14 +67,21 @@
                 </div>
             </div>
 
+            {% if producto.img.url != null %}
+
             <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                 <img id="imgPreview" src="{{ producto.img.url }}" class="img-fluid rounded">
-                {{producto.img}}
             </div>
 
 
+            {% endif %}
+
+
+
+
+
             <div class="col-12 m-0 p-0 px-2 d-flex justify-content-between mt-2">
-                <a href="{% url 'panelControl' %}" class="botonGenerico">Cancelar</a>
+                <a href="{% url 'panelControl' %}" class="botonGenerico">Volver</a>
                 <button type="submit" class="botonGenerico">Guardar cambios</button>
             </div>
 

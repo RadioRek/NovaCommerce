@@ -10,9 +10,47 @@
 
 
 <div class="panelControlContainer d-flex m-0 flex-column p-2 p-sm-4">
+
+    <!-- Lista de ventas por confirmar -->
+
+    <div class="card mx-2 mx-sm-4 p-2 p-sm-4" id="contVentasPendientes">
+        <h5 class="head5 m-0 p-0 mx-auto text-center">Ventas por confirmar</h5>
+
+
+        <form action="" class="row p-0 m-0 mt-4" id="buscarVentaForm">
+
+            <div class="col-12 m-0 p-0 d-flex flex-column align-items-center">
+                <label for="buscarIdVentaInput" class="form-label">Id</label>
+                <input type="number" class="form-control w-95" id="buscarIdVentaInput" placeholder="Id de la venta">
+                <button type="submit" class="botonGenerico mt-2 w-75">Buscar</button>
+            </div>
+        </form>
+
+
+        <div class="mx-2 mx-sm-4 table-responsive tablaVentConfirmar mt-4">
+
+            <table class="table table-striped-columns">
+                <thead>
+                    <tr>
+                        <th scope="col" class="parrafoPequeño">Codigo</th>
+                        <th scope="col" class="parrafoPequeño">Fecha</th>
+                        <th scope="col" class="parrafoPequeño">Usuario</th>
+                        <th scope="col" class="parrafoPequeño">Estado</th>
+                        <th scope="col" class="parrafoPequeño">Confirmar</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaVentasPendientesBody">
+                    <!-- filas de usuarios se agregan aqui -->
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
     <!-- formulario agregar Categoria -->
 
-    <div class="card mx-2 mx-sm-4 p-2 p-sm-4">
+    <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
         <h5 class="head5 m-0 p-0 mx-auto text-center">Rellena el formulario para agregar una categoria</h5>
         <form action="" id="formularioCategoria">
 
@@ -85,7 +123,8 @@
 
                 <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
                     <label for="categoriaPrincipalSelect" class="form-label">Categoria principal</label>
-                    <select class="form-select w-95" id="categoriaPrincipalSelect" aria-label="Selecciona una categoria">
+                    <select class="form-select w-95" id="categoriaPrincipalSelect"
+                        aria-label="Selecciona una categoria">
                         <option value="" selected disabled>Selecciona una categoria</option>
                     </select>
                 </div>
@@ -203,6 +242,8 @@
                         <th scope="col" class="parrafoPequeño">Telefono</th>
                         <th scope="col" class="parrafoPequeño">Email</th>
                         <th scope="col" class="parrafoPequeño">Tipo</th>
+                        <th scope="col" class="parrafoPequeño">Actualizar</th>
+                        <th scope="col" class="parrafoPequeño">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody id="tablaUsuariosBody">
@@ -213,28 +254,5 @@
     </div>
 
 </div>
-
-
-<!-- toast alerta -->
-
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="alertaToast">
-
-        <div class="toast-header">
-
-            <div class="spinner-border spinner-border-sm me-2" role="status" id="alertaSpinner">
-                <span class="visually-hidden">Cargando...</span>
-            </div>
-            <strong class="me-auto" id="alertaHeader"></strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-
-        <div class="toast-body" id="alertaBody">
-        </div>
-    </div>
-</div>
-
-
 <script src="{% static 'js/panelControl.js' %}"></script>
 {% endblock body %}

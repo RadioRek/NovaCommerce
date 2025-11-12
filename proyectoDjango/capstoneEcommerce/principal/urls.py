@@ -13,6 +13,8 @@ router.register(r'carritos', views.CarritoViewSet, basename="carrito")
 router.register(r'detalle-carritos', views.DetalleCarritoViewSet, basename="detalle-carrito")
 router.register(r'detalle-ventas', views.DetalleVentaViewSet, basename="detalle-venta")
 router.register(r'ventas', views.VentaViewSet, basename="venta")
+router.register(r'metodos-pago', views.MetodoPagoViewSet, basename="metodo-pago")
+
 
 urlpatterns = [
     # aqui se agregan las urls de la app principal (las rutas que se ingresan en el navegador)
@@ -29,7 +31,12 @@ urlpatterns = [
     path("carrito/", views.carrito, name="carrito"),
     path("checkout/", views.checkout, name="checkout"),
     path("metricas/", views.metricas, name="metricas"),
+    path("nosotros/", views.nosotros, name="nosotros"),
     path("actualizarProducto/<int:producto_id>/", views.actualizarProducto, name="actualizarProducto"),
+    path("actualizarUsuario/<int:usuario_id>/", views.actualizarUsuario, name="actualizarUsuario"),
+    path("confirmacionOrden/<int:venta_id>/", views.confirmacionOrden, name="confirmacionOrden"),
+
+    path("testEquisde/", views.testEquisde, name="testEquisde"),
 
 
     # rutas de la API

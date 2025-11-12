@@ -61,121 +61,20 @@
 <hr class="my-4">
 <h3 class="head3 text-center mb-2">Categorias principales</h3>
 
-<div class="row m-0 p-0 mx-auto cats">
+<div class="d-flex flex-wrap m-0 p-4 mx-auto gap-4 catContainer justify-content-between align-content-start align-items-start"
+    id="catContainer">
 
-    <div class="col-12 col-sm-3">
-
-        <div class="card p-4 text-center">
-            <h5 class="p-0 m-0 head5">Granos</h5>
-
-        </div>
-    </div>
-
-    <div class="col-12 col-sm-3">
-
-        <div class="card p-4 text-center">
-            <h5 class="p-0 m-0 head5">Instantaneo</h5>
-
-        </div>
-    </div>
-
-    <div class="col-12 col-sm-3">
-
-        <div class="card p-4 text-center">
-            <h5 class="p-0 m-0 head5">Herramientas</h5>
-
-        </div>
-    </div>
-
-    <div class="col-12 col-sm-3">
-
-        <div class="card p-4 text-center">
-            <h5 class="p-0 m-0 head5">Seleccion</h5>
-
-        </div>
-    </div>
 </div>
 
 <hr class="my-4">
 <h3 class="head3 text-center mb-2">Productos destacados</h3>
 
-<div class="row m-0 p-0 prodes mx-auto">
+<div class="d-flex flex-wrap justify-content-between gap-4 p-4 align-content-start align-items-start" id="contenedorProductosDestacados">
 
-    <div class="col-6 col-sm-2 p-0 d-flex justify-content-center mb-2 mb-sm-4">
-
-        <div class="card w-75">
-            <img src="{% static 'img/cafe.png' %}" class="card-img-top" alt="..." />
-
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a href="#">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-6 col-sm-2 p-0 d-flex justify-content-center mb-2 mb-sm-4">
-
-        <div class="card w-75">
-            <img src="{% static 'img/cafe.png' %}" class="card-img-top" alt="..." />
-
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a href="#">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-6 col-sm-2 p-0 d-flex justify-content-center mb-2 mb-sm-4">
-
-        <div class="card w-75">
-            <img src="{% static 'img/cafe.png' %}" class="card-img-top" alt="..." />
-
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a href="#">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-6 col-sm-2 p-0 d-flex justify-content-center mb-2 mb-sm-4">
-
-        <div class="card w-75">
-            <img src="{% static 'img/cafe.png' %}" class="card-img-top" alt="..." />
-
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a href="#">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-6 col-sm-2 p-0 d-flex justify-content-center mb-2 mb-sm-4">
-
-        <div class="card w-75">
-            <img src="{% static 'img/cafe.png' %}" class="card-img-top" alt="..." />
-
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a href="#">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-6 col-sm-2 p-0 d-flex justify-content-center mb-2 mb-sm-4">
-
-        <div class="card w-75">
-            <img src="{% static 'img/cafe.png' %}" class="card-img-top" alt="..." />
-
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a href="#">Go somewhere</a>
-            </div>
-        </div>
-    </div>
 </div>
 
 <hr class="mt-3 mb-4 mt-sm-0">
 
 
-
+<script src="{% static 'js/home.js' %}"></script>
 {% endblock body %}

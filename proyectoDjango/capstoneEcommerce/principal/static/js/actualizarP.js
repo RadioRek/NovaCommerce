@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     // Función para obtener la cookie
     function getCookie(name) {
         let cookieValue = null;
@@ -14,12 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         return cookieValue;
     }
+
     const csrftoken = getCookie("csrftoken");
 
     let productoId = document.getElementById("productoId").value;
+
     let categoriaPrincipalId = document.getElementById("categoriaPrincipalId").value;
 
     let imgPreview = document.getElementById("imgPreview");
+
     let editImgInput = document.getElementById("editImgInput");
 
     // si se sube una nueva imagen cambiar el preview
@@ -34,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-
     let contenedorPills = document.getElementById("editPill");
 
     let categorias = [];
@@ -45,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }).then(async (response) => {
         if (response.ok) {
             let data = await response.json();
+
             data.forEach((catProd) => {
                 categorias.push(String(catProd.categoria.id));
 
@@ -113,7 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error en la solicitud de categorías:", error);
     });
 
-
     // Manejar selección de categoría
     categoriasInput.addEventListener("change", (event) => {
         let valorSeleccionado = event.target.value;
@@ -150,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-
     // manejar el submit del formulario
     let formularioEditar = document.getElementById("editarproducto");
 
@@ -185,17 +187,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }).then(async (response) => {
             if (response.ok) {
                 let data = await response.json();
-                console.log("Producto actualizado:", data);
-
+                crearElementoToast("Exito", "Producto actualizado correctamente.", "success");
             } else {
                 let errorData = await response.json();
-                console.error("Error al actualizar el producto:", errorData);
+                crearElementoToast("Error", "No se pudo actualizar el producto.", "error");
             }
         }).catch((error) => {
+            createElementoToast("Error", "No se pudo actualizar el producto.", "error");
             console.error("Error en la solicitud de actualización:", error);
         });
     });
-
 });
 
 

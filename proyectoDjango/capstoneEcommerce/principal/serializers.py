@@ -1,6 +1,6 @@
 import re
 from rest_framework import serializers
-from .models import Producto, Categoria, CategoriaProducto, TipoUsuario, User, Carrito, DetalleCarrito, DetalleVenta, Venta, MetodoPago
+from .models import Producto, CategoriaProducto, TipoUsuario, User, Carrito, DetalleCarrito, DetalleVenta, Venta, MetodoPago, Categoria
 
 class ProductoSerializer(serializers.ModelSerializer):
     categorias = serializers.ListField(
@@ -77,13 +77,18 @@ class UserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("La contraseña debe tener al menos un caracter especial.")
         return value
 
+
     def create(self, validated_data):
         password = validated_data.pop("password")
+
         tipo_usuario = TipoUsuario.objects.get(nombre="Cliente")
+
         validated_data["tipoUsuario"] = tipo_usuario
 
         user = User(**validated_data)
+
         user.set_password(password)
+
         user.save()
         return user
 
@@ -105,11 +110,14 @@ class CarritoSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class DetalleCarritoSerializer(serializers.ModelSerializer):
+    producto = ProductoSerializer(read_only=True)
+
     class Meta:
         model = DetalleCarrito
         fields = "__all__"
 
 class VentaSerializer(serializers.ModelSerializer):
+    usuario = UserSerializer(read_only=True)
     class Meta:
         model = Venta
         fields = "__all__"
@@ -117,4 +125,10 @@ class VentaSerializer(serializers.ModelSerializer):
 class DetalleVentaSerializer(serializers.ModelSerializer):
     class Meta:
         model = DetalleVenta
+        fields = "__all__"
+
+
+class MetodoPagoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MetodoPago
         fields = "__all__"

@@ -30,11 +30,16 @@
 
 }
 
+* {
+    scroll-behavior: smooth;
+}
+
 /*
     fuente para titulos: quintessential
     fuente para parrafos: luxurious roman
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Quintessential&display=swap');
 
 
 /* headers */
@@ -261,18 +266,23 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
 @media (min-width: 576px) {
     .navbar {
-        height: 8rem;
+        height: 6rem;
     }
 
     .imgNav {
-        width: 6rem;
-        height: 6rem;
+        width: 4rem;
+        height: 4rem;
     }
 }
-
-
 
 .navItem {
     font-family: "Quintessential", serif;
@@ -359,4 +369,47 @@ input:-webkit-autofill:focus {
 
 .noDecor {
     text-decoration: none !important;
+}
+
+/* -- estilos para el modal de alerta -- */
+.alertaModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.superModal {
+    width: 94%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 576px) {
+    .superModal {
+        width: 30%;
+    }
+}
+
+.modalHeader,
+.modalBody,
+.modalFooter {
+    padding: 0.5rem;
+}
+
+.modalHeader {
+    border-bottom: 1px solid var(--gris25);
+}
+
+.modalFooter {
+    border-top: 1px solid var(--gris25);
 }

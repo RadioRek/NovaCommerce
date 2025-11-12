@@ -9,6 +9,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Quintessential&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+        </script>
+    <script src="{% static 'js/alertas.js' %}"></script>
+
     {% block head %}
     {% endblock head %}
 </head>
@@ -37,7 +46,7 @@
                     </li>
 
                     <li class="">
-                        <a class="nav-link navItem" href="{% url 'home' %}">Nosotros</a>
+                        <a class="nav-link navItem" href="{% url 'nosotros' %}">Nosotros</a>
                     </li>
 
                     {% if user.is_authenticated and user.tipoUsuario.nombre == 'Administrador' %}
@@ -48,16 +57,17 @@
                         <a class="nav-link navItem" href="{% url 'metricas' %}">Metricas</a>
                     </li>
                     {% endif %}
-
-
                 </ul>
 
-                <form class="d-flex mb-3 mb-sm-0">
-                    <input class="form-control me-2" placeholder="Buscar" />
-                    <button class="botonGenerico" type="submit">Buscar</button>
-                </form>
 
-                <div class="d-flex">
+
+                <div class="d-flex gap-4">
+
+                    <form class="d-flex mb-3 mb-sm-0">
+                        <input class="form-control me-2" placeholder="Buscar" />
+                        <button class="botonGenerico" type="submit">Buscar</button>
+                    </form>
+
                     <a class="nav-link navItem" href="{% url 'sitioLogin' %}">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="userIcon"
                             fill="currentColor"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
@@ -65,7 +75,7 @@
                                 d="M320 312C386.3 312 440 258.3 440 192C440 125.7 386.3 72 320 72C253.7 72 200 125.7 200 192C200 258.3 253.7 312 320 312zM290.3 368C191.8 368 112 447.8 112 546.3C112 562.7 125.3 576 141.7 576L498.3 576C514.7 576 528 562.7 528 546.3C528 447.8 448.2 368 349.7 368L290.3 368z" />
                         </svg>
                     </a>
-                    <a class="nav-link navItem" href="{% url 'carrito' %}">
+                    <a class="nav-link navItem position-relative" href="{% url 'carrito' %}" id="carritoIcon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="userIcon"
                             fill="currentColor"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                             <path
@@ -127,8 +137,12 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-        </script>
+
+
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+    </div>
+    <script src="{% static 'js/base.js' %}"></script>
 </body>
 </html>

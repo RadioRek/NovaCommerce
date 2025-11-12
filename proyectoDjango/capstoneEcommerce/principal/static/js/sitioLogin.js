@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 		return cookieValue;
 	}
+
 	const csrftoken = getCookie("csrftoken");
 
-	let loginForm = document.getElementById("loginForm");
+	let login = document.getElementById("loginForm");
 
 	loginForm.addEventListener("submit", function (event) {
 		event.preventDefault();
@@ -36,13 +37,13 @@ document.addEventListener('DOMContentLoaded', function () {
 			credentials: "include",
 		}).then(async (response) => {
 			if (response.ok) {
-				// Login exitoso, redirigir a la página principal
 				window.location.href = "/";
 			} else {
 				let errorData = await response.json();
-				console.error("Error en el login:", errorData);
+				crearElementoToast("Error", String(errorData.error), "error");
 			}
 		}).catch((error) => {
+			crearElementoToast("Error", "Error desconocido, intente mas tarde o contacte a soporte", "error");
 			console.error("Error en la solicitud:", error);
 		});
 	});

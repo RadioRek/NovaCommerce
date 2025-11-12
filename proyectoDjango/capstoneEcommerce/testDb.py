@@ -1,9 +1,18 @@
+import os
+import django
 import random
 
+# Configura Django antes de importar cualquier modelo
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'capstoneEcommerce.settings')
+django.setup()
+
+# Ahora puedes importar desde tu app
+from principal.models import (
+    DetalleVenta, Venta, CategoriaProducto, Producto, Categoria, User, MetodoPago
+)
+
+
 def poblar_datos():
-    from principal.views import (
-        DetalleVenta, Venta, CategoriaProducto, Producto, Categoria, User, MetodoPago
-    )
 
     # Limpiar solo tablas indicadas
     DetalleVenta.objects.all().delete()
@@ -32,6 +41,10 @@ def poblar_datos():
         "Libro", "Collar para perro", "Taladro", "Pintura acrílica", "Sartén"
     ]
 
+    # Lista de nombres de archivo relativos a MEDIA_ROOT
+    imagenes = ["productos/cafe.png", "productos/prod2.jpeg", "productos/prod3.jpeg"]
+
+
     productos = []
     for nombre in productos_genericos:
         categoria_principal = random.choice(categorias)
@@ -40,9 +53,12 @@ def poblar_datos():
             descripcion=f"Descripcion para {nombre}",
             precio=random.randint(1000, 50000),
             stock=random.randint(5, 50),
-            categoriaPrincipal=categoria_principal
+            categoriaPrincipal=categoria_principal,
+            img=random.choice(imagenes)
         )
         productos.append(producto)
+
+    print("Productos creados")
 
     # Asociar productos con categorías aleatorias (al menos 1 por producto)
     for producto in productos:
@@ -50,25 +66,37 @@ def poblar_datos():
         for cat in cats_usadas:
             CategoriaProducto.objects.create(producto=producto, categoria=cat)
 
+    print("Categorías de productos asociadas")
+
     # Agrega 10 ventas, usuario y método de pago aleatorio
     ventas = []
-    for _ in range(10):
+    estadoVentas = ['Confirmada', 'Confirmada', 'Confirmada', 'Confirmada', 'Pendiente']
+    for _ in range(300):
         usuario = random.choice(usuarios)
         metodo_pago = random.choice(metodos_pago)
+        estadoVenta = random.choice(estadoVentas)
         venta = Venta.objects.create(
             totalVenta=0,
             usuario=usuario,
-            metodoPago=metodo_pago
+            metodoPago=metodo_pago,
+            estadoVenta=estadoVenta
         )
         ventas.append(venta)
 
-    # Para cada venta, asigna al menos 3 productos y cantidad aleatoria (1 a 10)
+    print("Ventas creadas")
+
+    # Para cada venta, asigna al menos un producto con cantidad aleatoria
+    contador = 0
     for venta in ventas:
-        productos_en_venta = random.sample(productos, k=random.randint(3, len(productos)))
+        productos_en_venta = random.sample(productos, k=random.randint(1, 3))
+        print(f"Asignando productos a la venta {contador}")
+        contador += 1
+
         for producto in productos_en_venta:
             cantidad = random.randint(1, 10)
             DetalleVenta.objects.create(cantidad=cantidad, producto=producto, venta=venta)
 
     print("Datos poblados correctamente.")
+
 
 poblar_datos()

@@ -4,12 +4,13 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/tienda.css' %}">
-<title>Tienda</title>
+<title>Tienda | Novacommerce</title>
 {% endblock head %}
 
 
 {% block body %}
- {% csrf_token %}
+{% csrf_token %}
+
 <div id="carouselExampleCaptions" class="carousel slide">
 
     <div class="carousel-indicators">
@@ -74,7 +75,7 @@
             <!-- Pills de categorias seleccionadas se agregan aqui -->
         </div>
         <form action="" id="buscarProductosCategorias">
-            <button type="submit" class="botonGenerico mt-2 w-100">Buscar</button>
+            <button type="submit" class="botonGenerico mt-2 w-100 mb-4 mb-sm-0">Buscar</button>
         </form>
 
     </div>
@@ -85,7 +86,7 @@
         <h4 class="head4">Productos</h4>
         <hr>
 
-        <div id="productosGrid" class="row">
+        <div id="productosGrid" class="row row-cols-2 row-cols-sm-4 g-2">
 
         </div>
 
@@ -94,9 +95,9 @@
 
             </ul>
         </nav>
-
-
     </div>
+
+
 </div>
 <script src="{% static 'js/tienda.js' %}"></script>
 {% endblock body %}

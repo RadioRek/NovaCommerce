@@ -85,6 +85,7 @@ class Venta(models.Model):
     telefonoContacto = models.BigIntegerField(default=0)
     usuario = models.ForeignKey('User', on_delete=models.CASCADE)
     metodoPago = models.ForeignKey('MetodoPago', on_delete=models.CASCADE)
+    estadoVenta = models.CharField(max_length=50, default="Pendiente")
 
     class Meta:
         verbose_name = "Venta"

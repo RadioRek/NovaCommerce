@@ -1,3 +1,16 @@
+function crearCartaProductoBajoStock(productoNombre, stock) {
+    let template = document.createElement("template");
+    template.innerHTML = `
+    <div class="card cartaProductoBajoStock flex-grow-1 text-center">
+        <p class="parrafo m-0">${productoNombre}</p>
+        <p class="parrafoPequeño m-0">El producto tiene ${stock} en stock</p>
+    </div>
+    `.trim();
+
+    return template.content.firstElementChild;
+};
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const rootStyles = getComputedStyle(document.documentElement);
     const cafeMain = rootStyles.getPropertyValue("--cafeMain").trim();
@@ -27,8 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
     document.fonts.ready.then(() => {
         fetch("/api/ventas/metricas/").then(r => r.json()).then(data => {
 
-            let graficoProductos = document.getElementById("productosChart").getContext("2d");
-            const productosChartInstance = new Chart(graficoProductos, {
+            let contenedorProdBajoStock = document.querySelector(".contenedorProdBajoStock");
+
+            data.productos_bajo_stock.forEach(prod => {
+                const cartaProducto = crearCartaProductoBajoStock(prod.nombre, prod.stock);
+                contenedorProdBajoStock.appendChild(cartaProducto);
+            });
+
+            // Grafico de productos mas vendidos
+            let graficoProductosMasVendidos = document.getElementById("prodMasVendidos").getContext("2d");
+            const productosChartInstance = new Chart(graficoProductosMasVendidos, {
                 type: "bar",
                 data: {
                     labels: data.top_productos.map(p => p.producto__nombre),
@@ -87,13 +108,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             });
 
-            let graficoUsuarios = document.getElementById("usuariosChart").getContext("2d");
-            const usuariosChartInstance = new Chart(graficoUsuarios, {
+            //grafico productos menos vendidos
+            let graficoProductosMenosVendidos = document.getElementById("prodMenosVendidos").getContext("2d");
+            const productosMenosChartInstance = new Chart(graficoProductosMenosVendidos, {
                 type: "bar",
                 data: {
-                    labels: data.top_usuarios.map(p => p.usuario__username),
+                    labels: data.flop_productos.map(p => p.producto__nombre),
                     datasets: [{
-                        data: data.top_usuarios.map(p => p.total_compras),
+                        data: data.flop_productos.map(p => p.total_vendido),
                         backgroundColor: [cafeMain, cafeCrema],
                         borderColor: negro75,
                         borderWidth: 1
@@ -105,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     plugins: {
                         title: {
                             display: true,
-                            text: "Top 10 usuarios con mas compras",
+                            text: "Top 10 productos menos vendidos",
                             font: {
                                 size: 22,
                                 family: `serif`
@@ -134,7 +156,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         y: {
                             beginAtZero: true,
                             ticks: {
-                                stepSize: 1,
                                 font: {
                                     size: 13,
                                     family: `serif`
@@ -145,9 +166,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 },
                 plugins: [chartAreaBorder]
+
             });
 
-            let graficoCategorias = document.getElementById("categoriasChart").getContext("2d");
+            // Grafico de categorias mas vendidas
+            let graficoCategorias = document.getElementById("catMasVendidas").getContext("2d");
             const categoriasChartInstance = new Chart(graficoCategorias, {
                 type: "pie",
                 data: {
@@ -184,37 +207,80 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
             });
 
+            // grafico categorias menos vendidas
+            let graficoCategoriasMenosVendidas = document.getElementById("catMenosVendidas").getContext("2d");
+            const categoriasMenosChartInstance = new Chart(graficoCategoriasMenosVendidas, {
+                type: "pie",
+                data: {
+                    labels: data.flop_categorias.map(c => c.producto__categoriaPrincipal__nombre),
+                    datasets: [{
+                        data: data.flop_categorias.map(c => c.total_vendido),
+                        backgroundColor: [cafeMain, cafeCrema],
+                        borderColor: negro75,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: "Categorias menos vendidas",
+                            font: {
+                                size: 22,
+                                family: `serif`
+                            },
+                            color: negro75
+                        },
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: 13,
+                                    family: `serif`
+                                },
+                                color: negro75
+                            }
+                        },
+
+                    }
+                },
+            });
+
+            // Ajustar el tamaño de los gráficos al cambiar el tamaño de la ventana
+
             window.addEventListener('resize', () => {
                 productosChartInstance.resize();
-                usuariosChartInstance.resize();
                 categoriasChartInstance.resize();
+                productosMenosChartInstance.resize();
+                categoriasMenosChartInstance.resize();
             });
 
             window.addEventListener('orientationchange', () => {
                 productosChartInstance.resize();
-                usuariosChartInstance.resize();
                 categoriasChartInstance.resize();
+                productosMenosChartInstance.resize();
+                categoriasMenosChartInstance.resize();
             });
 
             window.addEventListener('fullscreenchange', () => {
                 productosChartInstance.resize();
-                usuariosChartInstance.resize();
                 categoriasChartInstance.resize();
+                productosMenosChartInstance.resize();
+                categoriasMenosChartInstance.resize();
             });
 
             window.addEventListener('visibilitychange', () => {
                 productosChartInstance.resize();
-                usuariosChartInstance.resize();
                 categoriasChartInstance.resize();
+                productosMenosChartInstance.resize();
+                categoriasMenosChartInstance.resize();
             });
 
             window.addEventListener('pageshow', () => {
                 productosChartInstance.resize();
-                usuariosChartInstance.resize();
                 categoriasChartInstance.resize();
+                productosMenosChartInstance.resize();
+                categoriasMenosChartInstance.resize();
             });
-
-
 
             totalVentasMes = data.total_ventas_mes;
             totalVentasDia = data.total_ventas_dia;
@@ -231,18 +297,8 @@ document.addEventListener("DOMContentLoaded", function () {
             cantidadMesP.textContent = `${cantidadVentasMes}`;
             cantidadDiaP.textContent = `${cantidadVentasDia}`;
 
-
-
         });
     }).catch(err => {
         console.error("Error loading fonts:", err);
     });
-
-
-
-
-
-
-
-
 });

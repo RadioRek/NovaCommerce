@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<title>Seguimiento | Novacommerce</title>
+<link rel="stylesheet" href="{% static 'css/seguimiento.css' %}" />
+{% endblock head %}
+
+{% block body %}
+<div class="contenedorSeguimiento d-flex flex-column align-items-center justify-content-center my-5">
+
+    <h1 class="head1 text-center">FELICIDADES POR TU COMPRA!</h1>
+    <p class="parrafo text-center w-75">
+        Tu orden ha sido recibida, recuerda enviar el comprobante de pago a nuestro correo correoempresa@empresa.cl para confirmar tu compra. Puedes revisar los detalles de tu compra y su estado desde tu perfil. Gracias por confiar en Novacommerce.
+    </p>
+    <h3 class="head3 text-center">Detalles de la compra</h3>
+    <div class="contenedorDetalles d-flex flex-column justify-content-center align-items-center align-content-center w-100">
+
+        <div class="d-flex justify-content-between w-50 flex-wrap">
+            <p class="parrafo"><strong>Codigo de compra:</strong></p>
+            <p class="parrafo">{{ venta.id }}</p>
+        </div>
+
+
+        <div class="d-flex justify-content-between w-50 flex-wrap">
+            <p class="parrafo"><strong>Destinatario:</strong></p>
+            <p class="parrafo">{{ venta.nombreDestinatario }} {{ venta.apellidoDestinatario }}</p>
+        </div>
+
+        <div class="d-flex justify-content-between w-50 flex-wrap">
+            <p class="parrafo"><strong>Region:</strong></p>
+            <p class="parrafo">{{ venta.region }}</p>
+        </div>
+
+        <div class="d-flex justify-content-between w-50 flex-wrap">
+            <p class="parrafo"><strong>Comuna:</strong></p>
+            <p class="parrafo">{{ venta.comuna }}</p>
+        </div>
+
+        <div class="d-flex justify-content-between w-50 flex-wrap">
+            <p class="parrafo"><strong>Direccion de envio:</strong></p>
+            <p class="parrafo">{{ venta.direccionEnvio }}</p>
+        </div>
+
+        <div class="d-flex justify-content-between w-50 flex-wrap">
+            <p class="parrafo"><strong>Telefono de contacto:</strong></p>
+            <p class="parrafo">{{ venta.telefonoContacto }}</p>
+        </div>
+
+        <div class="d-flex justify-content-between w-50 flex-wrap">
+            <p class="parrafo"><strong>Metodo de pago:</strong></p>
+            <p class="parrafo">{{ venta.metodoPago.nombre }}</p>
+        </div>
+
+        <div class="d-flex justify-content-between w-50 flex-wrap">
+            <p class="parrafo"><strong>Fecha de compra:</strong></p>
+            <p class="parrafo">{{ venta.fechaHora }}</p>
+        </div>
+
+        <div class="d-flex justify-content-between w-50 flex-wrap">
+            <p class="parrafo"><strong>Total venta:</strong></p>
+            <p class="parrafo">${{ venta.totalVenta }}</p>
+        </div>
+
+        <div class="d-flex justify-content-between w-50 flex-wrap">
+            <p class="parrafo"><strong>Estado de la orden:</strong></p>
+            <p class="parrafo"><strong>{{ venta.estadoVenta }}</strong></p>
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'js/seguimiento.js' %}"></script>
+{% endblock body %}
+

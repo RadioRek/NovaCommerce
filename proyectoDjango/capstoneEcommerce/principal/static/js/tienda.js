@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (query) {
 			url += "&" + query;
 		}
+
 		fetch(url, {
 			method: "GET",
 			credentials: "same-origin",
@@ -42,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		setLoading(false);
 		paginaActual = page;
-
 	}
 
 	function renderPagination(totalCount, page, pageSize) {
@@ -152,18 +152,19 @@ document.addEventListener("DOMContentLoaded", function () {
 			const detalleUrl = `/producto/${p.id}/`;
 
 			items += `
-				<a href="${detalleUrl}" class="col-6 col-sm-3 mb-2 mb-sm-4 text-decoration-none">
+				<div class="col">
 					<div class="cartita card">
 						<img src="${img}" class="cartitaImg" alt="${escapeHtml(nombre)}">
-						<div class="card-body d-flex flex-column">
+						<div class="card-body d-flex flex-column p-2">
 							<h6 class="head6 m-0">${escapeHtml(nombre)}</h6>
 							<parrafo class="parrafoPequeño">${precio}</parrafo>
-							<div class="mt-auto">
-								<button class="botonGenerico" onclick="agregarAlCarrito(${p.id})">Agregar al carrito</button>
+							<div class="mt-auto d-flex m-0 p-0 flex-wrap gap-2">
+								<button class="botonGenerico flex-shrink-0" onclick="agregarAlCarrito(${p.id})">Agregar al carrito</button>
+								<a href="${detalleUrl}" class="text-decoration-none flex-shrink-0 botonGenerico">Ver detalle</a>
 							</div>
 						</div>
 					</div>
-				</a>
+				</div>
 			`;
 		});
 
@@ -296,58 +297,22 @@ async function agregarAlCarrito(productId) {
 		let data = await response.json();
 
 		if (response.ok) {
-			mostrarMensaje("Producto agregado al carrito exitosamente", "success");
-
+			crearElementoToast("Éxito", "Producto agregado al carrito", "success");
+			actualizarBadgeCarrito();
 		} else {
 			if (response.status === 401) {
-				mostrarMensaje("Debes iniciar sesión para agregar productos al carrito", "error");
+				crearElementoToast("Error", "Debe iniciar sesión para agregar productos al carrito. Redirigiendo...", "error");
 				setTimeout(() => {
 					window.location.href = "/sitioLogin/";
 				}, 2000);
 			} else {
-				mostrarMensaje(data.error || "Error al agregar al carrito", "error");
+				crearElementoToast("Error", data.error || "No se pudo agregar el producto al carrito", "error");
 			}
-
 		}
 	}).catch((error) => {
 		console.error("Error en la solicitud:", error);
 	});
 }
-
-// para mostrar mensajes al usuario
-function mostrarMensaje(mensaje, tipo) {
-	// para eliminar mensaje anterior si existe
-	const mensajeAnterior = document.querySelector('.mensaje-alerta');
-
-	if (mensajeAnterior) {
-		mensajeAnterior.remove();
-	}
-
-	// crea el elemento del mensaje
-	const div = document.createElement('div');
-
-	if (tipo === 'success') {
-		div.className = 'mensaje-alerta alert alert-success alert-dismissible fade show';
-	} else {
-		div.className = 'mensaje-alerta alert alert-danger alert-dismissible fade show';
-	}
-
-
-	div.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
-
-	div.innerHTML = `
-        ${mensaje}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    `;
-
-	document.body.appendChild(div);
-
-	// auto-elimina después de 5 segundos
-	setTimeout(() => {
-		div.remove();
-	}, 5000);
-}
-
 
 
 

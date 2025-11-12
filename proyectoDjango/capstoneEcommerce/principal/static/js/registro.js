@@ -1,6 +1,8 @@
-document.addEventListener("DOMContentLoaded", function() {
 
-    // Función para obtener la cookie
+
+document.addEventListener("DOMContentLoaded", function () {
+
+	// Función para obtener la cookie
 	function getCookie(name) {
 		let cookieValue = null;
 		if (document.cookie && document.cookie !== "") {
@@ -18,28 +20,30 @@ document.addEventListener("DOMContentLoaded", function() {
 	const csrftoken = getCookie("csrftoken");
 
 
-    let formularioRegistro = document.getElementById("formularioRegistro");
+	let formularioRegistro = document.getElementById("formularioRegistro");
 
-    // prevenir el default del formulario
-    formularioRegistro.addEventListener("submit", function(event) {
-        event.preventDefault();
-        let username = document.getElementById("usernameInput").value;
-        let nombreUsurio = document.getElementById("nombreInput").value;
-        let apellidoUsuario = document.getElementById("apellidoInput").value;
-        let direccionUsuario = document.getElementById("direccionInput").value;
-        let telefonoUsuario = document.getElementById("telefonoInput").value;
-        let emailUsuario = document.getElementById("emailInput").value;
-        let password = document.getElementById("passwordInput").value;
-        let confPassword = document.getElementById("confPasswordInput").value;
+
+
+	// prevenir el default del formulario
+	formularioRegistro.addEventListener("submit", function (event) {
+		event.preventDefault();
+		let username = document.getElementById("usernameInput").value;
+		let nombreUsurio = document.getElementById("nombreInput").value;
+		let apellidoUsuario = document.getElementById("apellidoInput").value;
+		let direccionUsuario = document.getElementById("direccionInput").value;
+		let telefonoUsuario = document.getElementById("telefonoInput").value;
+		let emailUsuario = document.getElementById("emailInput").value;
+		let password = document.getElementById("passwordInput").value;
+		let confPassword = document.getElementById("confPasswordInput").value;
 
 		let elementoAlerta = document.getElementById("textoAlerta");
 
-        // validar que las contraseñas coincidan
-        if (password !== confPassword) {
+		// validar que las contraseñas coincidan
+		if (password !== confPassword) {
 			elementoAlerta.style.display = "block";
 			elementoAlerta.innerText = "Las contraseñas no coinciden.";
-            return;
-        }
+			return;
+		}
 		// si la contraseña no tiene 1 simbolo
 		if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
 			elementoAlerta.style.display = "block";
@@ -47,8 +51,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			return;
 		}
 
-        let formData = new FormData();
-        formData.append("username", username);
+		let formData = new FormData();
+		formData.append("username", username);
 		formData.append("nombre", nombreUsurio);
 		formData.append("apellido", apellidoUsuario);
 		formData.append("direccion", direccionUsuario);
@@ -57,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		formData.append("password", password);
 
 
-        fetch("/api/users/", {
+		fetch("/api/users/", {
 			method: "POST",
 			body: formData,
 			headers: {
@@ -102,8 +106,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			console.error("Error en la solicitud:", error);
 		});
 
-    });
-
-
-
+	});
+	
 });

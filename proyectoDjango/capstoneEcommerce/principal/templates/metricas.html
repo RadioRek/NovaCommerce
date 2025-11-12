@@ -8,36 +8,43 @@
 
 {% block body %}
 
-<div class="row m-0 primeraRow">
+<div class="contenidoMetricas">
 
-    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center text-center align-content-center m-0 p-4">
-        <h6 class="head6">Total ventas del mes: <p class="parrafo" id="totalMes"></p>
-        </h6>
-        <h6 class="head6">Cantidad ventas del mes: <p class="parrafo" id="cantidadMes"></p>
-        </h6>
-        <h6 class="head6">Total ventas del dia: <p class="parrafo" id="totalDia"></p>
-        </h6>
-        <h6 class="head6">Cantidad ventas del dia: <p class="parrafo" id="cantidadDia"></p>
-        </h6>
+    <div class="superGrilla">
+
+        <div class="contenedorMesDia contGrilla">
+            <h6 class="head6">Total ventas del mes: <p class="parrafo" id="totalMes"></p>
+            </h6>
+            <h6 class="head6">Cantidad ventas del mes: <p class="parrafo" id="cantidadMes"></p>
+            </h6>
+            <h6 class="head6">Total ventas del dia: <p class="parrafo" id="totalDia"></p>
+            </h6>
+            <h6 class="head6">Cantidad ventas del dia: <p class="parrafo" id="cantidadDia"></p>
+            </h6>
+        </div>
+
+        <div class="contenedorProdBajoStock contGrilla">
+
+        </div>
+
+
+        <div class="contenedorProdMasVendidos contGrilla">
+            <canvas id="prodMasVendidos"></canvas>
+        </div>
+
+        <div class="contenedorProdMenosVendidos contGrilla">
+            <canvas id="prodMenosVendidos"></canvas>
+        </div>
+
+        <div class="contenedorCatMasVendidas contGrilla">
+            <canvas id="catMasVendidas" class="graficoTorta"></canvas>
+        </div>
+
+        <div class="contenedorCatMenosVendidas contGrilla">
+            <canvas id="catMenosVendidas" class="graficoTorta"></canvas>
+        </div>
     </div>
 
-
-    <div class="col-12 col-sm-6 d-flex flex-column  justify-content-center align-items-center m-0 p-0 p-sm-4 text-center">
-        <canvas id="categoriasChart"></canvas>
-    </div>
-</div>
-
-<div class="row m-0 segundaRow">
-
-    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center m-0 p-0 p-sm-4">
-        <canvas id="usuariosChart"></canvas>
-    </div>
-
-
-
-    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center align-items-center m-0 p-0 p-sm-4">
-        <canvas id="productosChart"></canvas>
-    </div>
 
 </div>
 

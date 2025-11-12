@@ -1,48 +1,71 @@
-.carousel-item img {
-  max-height: 40vh;
-  object-fit: cover;
-  object-position: bottom;
+.carousel-item {
+	position: relative;
 }
 
+.carousel-item img {
+	max-height: 40vh;
+	object-fit: cover;
+	object-position: center;
+	width: 100%;
+	display: block;
+	z-index: 1;
+	position: relative;
+}
+
+.carousel-item::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 70%;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+	z-index: 2;
+	pointer-events: none;
+}
+
+.carousel-caption {
+	position: absolute;
+	z-index: 3;
+}
+
+
 .pagination .page-item .page-link {
-  color: var(--cafeMain3);
+	color: var(--cafeMain3);
 }
 
 .pagination .page-item.active .page-link {
-  background-color: var(--cafeCrema);
-  border-color: var(--cafeCrema);
+	background-color: var(--cafeCrema);
+	border-color: var(--cafeCrema);
 }
 
 .pill {
-  background-color: var(--cafeCrema);
-  color: var(--blanco5);
-  text-align: center;
-  margin: 0;
-  padding: 4px 8px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: 0.3s ease;
-  border: none;
+	background-color: var(--cafeCrema);
+	color: var(--blanco5);
+	text-align: center;
+	margin: 0;
+	padding: 4px 8px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: 0.3s ease;
+	border: none;
 }
 
 .pill:hover {
-  background-color: var(--cafeCrema2);
-  color: var(--blanco5);
+	background-color: var(--cafeCrema2);
+	color: var(--blanco5);
 }
 
 .cartita {
-  display: flex;
-  flex-direction: column;
-  height: 450px;
+	display: flex;
+	flex-direction: column;
+	height: 450px;
 }
 
 .cartitaImg {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  flex-shrink: 0;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+	display: block;
+	border-radius: 4px;
 }
-
-
