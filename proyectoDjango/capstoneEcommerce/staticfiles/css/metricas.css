@@ -1,0 +1,106 @@
+.superGrilla {
+    display: grid;
+    background-color: var(--gris25);
+    grid-template-columns: 1fr; /* una sola columna */
+    grid-template-rows: auto auto auto auto auto auto;
+    grid-template-areas:
+        "datosMesDia"
+        "prodBajoStock"
+        "proMasVendidos"
+        "proMenosVendidos"
+        "catMasVendidas"
+        "catMenosVendidas";
+    gap: 16px;
+    padding: 16px;
+    justify-content: center;
+}
+
+
+@media (min-width: 576px) {
+    .superGrilla {
+        display: grid;
+        background-color: var(--gris25);
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto auto auto auto;
+        grid-template-areas:
+            "datosMesDia prodBajoStock"
+            "datosMesDia prodBajoStock"
+            "proMasVendidos catMenosVendidas"
+            "proMenosVendidos catMasVendidas";
+        gap: 16px;
+        padding: 16px;
+        justify-content: center;
+    }
+
+    .contenedorProdBajoStock {
+        grid-area: prodBajoStock;
+    }
+
+    .contenedorProdMasVendidos {
+        grid-area: proMasVendidos;
+    }
+
+    .contenedorProdMenosVendidos {
+        grid-area: proMenosVendidos;
+    }
+
+    .contenedorCatMasVendidas {
+        grid-area: catMasVendidas;
+    }
+
+    .contenedorCatMenosVendidas {
+        grid-area: catMenosVendidas;
+    }
+}
+
+
+
+.contGrilla {
+    background-color: var(--blanco5);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.contenedorMesDia {
+    grid-area: datosMesDia;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.graficoTorta {
+    max-width: 70%;
+}
+
+.contenedorProdBajoStock {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cartaProductoBajoStock {
+    flex-grow: 1;
+    flex-basis: 150px;
+    max-width: fit-content;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+}

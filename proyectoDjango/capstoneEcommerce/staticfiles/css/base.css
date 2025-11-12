@@ -1,0 +1,415 @@
+:root {
+    --cafeMain: #6F4E37;
+    --cafeMain2: #5C4033;
+    --cafeMain3: #3E2723;
+
+    --cafeCrema: #C0A080;
+    --cafeCrema2: #A67B5B;
+    --cafeCrema3: #8B5E3C;
+
+    --cafeMainSecundario: #7B6A58;
+    --cafeMainSecundario2: #5E4B3C;
+    --cafeMainSecundario3: #3C2F2F;
+
+    --rojoMain: #D2691E;
+    --rojoMain2: #8B4513;
+    --rojoMain3: #5C3317;
+
+    --amarilloMain: #E6C79C;
+    --amarilloMain2: #D2B48C;
+    --amarilloMain3: #A68A6D;
+
+    --blanco5: #F5F5DC;
+    --blanco10: #EDE0D4;
+    --gris25: #C4A484;
+    --gris50: #8B7D6B;
+    --negro75: #3E2C23;
+    --negro85: #1C1A17;
+
+    --fondo: #FAF3E0;
+
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+/*
+    fuente para titulos: quintessential
+    fuente para parrafos: luxurious roman
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Quintessential&display=swap');
+
+
+/* headers */
+.head1 {
+    font-family: "Quintessential", serif;
+    font-size: 42px;
+    color: var(--negro75);
+    font-weight: normal;
+}
+
+.head2 {
+    font-family: "Quintessential", serif;
+    font-size: 37px;
+    color: var(--negro75);
+    font-weight: normal;
+}
+
+.head3 {
+    font-family: "Quintessential", serif;
+    font-size: 33px;
+    color: var(--negro75);
+    font-weight: normal;
+}
+
+.head4 {
+    font-family: "Quintessential", serif;
+    font-size: 29px;
+    color: var(--negro75);
+    font-weight: normal;
+}
+
+.head5 {
+    font-family: "Quintessential", serif;
+    font-size: 26px;
+    color: var(--negro75);
+    font-weight: normal;
+}
+
+.head6 {
+    font-family: "Quintessential", serif;
+    font-size: 23px;
+    color: var(--negro75);
+    font-weight: normal;
+}
+
+.headBlanco1 {
+    font-family: "Quintessential", serif;
+    font-size: 42px;
+    color: var(--negro75);
+    font-weight: normal;
+}
+
+.headBlanco2 {
+    font-family: "Quintessential", serif;
+    font-size: 37px;
+    color: var(--negro75);
+    font-weight: normal;
+}
+
+
+.headBlanco3 {
+    font-family: "Quintessential", serif;
+    font-size: 33px;
+    color: var(--negro75);
+    font-weight: normal;
+}
+
+.headBlanco4 {
+    font-family: "Quintessential", serif;
+    font-size: 29px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.headBlanco5 {
+    font-family: "Quintessential", serif;
+    font-size: 26px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.headBlanco6 {
+    font-family: "Quintessential", serif;
+    font-size: 23px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.parrafo {
+    font-family: "Luxurious Roman", serif;
+    font-size: 21px;
+    color: var(--gris50);
+    font-weight: normal;
+}
+
+.parrafoBlanco {
+    font-family: "Luxurious Roman", serif;
+    font-size: 21px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.parrafoPequeño {
+    font-family: "Luxurious Roman", serif;
+    font-size: 18px;
+    color: var(--gris50);
+    font-weight: normal;
+}
+
+.parrafoPequeñoSuave {
+    font-family: "Luxurious Roman", serif;
+    font-size: 18px;
+    color: var(--gris50);
+    font-weight: normal;
+}
+
+.parrafoPequeñoBlanco {
+    font-family: "Luxurious Roman", serif;
+    font-size: 18px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.textoMinimo {
+    font-family: "Luxurious Roman", serif;
+    font-size: 14px;
+    color: var(--gris50);
+    font-weight: normal;
+}
+
+.textoMinimoBlanco {
+    font-family: "Luxurious Roman", serif;
+    font-size: 14px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+/* botones */
+.botonGenerico {
+    font-family: "Luxurious Roman", serif;
+    background-color: var(--cafeCrema);
+    color: var(--blanco5);
+    border-radius: 8px;
+    text-align: center;
+    margin: 0;
+    padding: 8px 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+}
+
+.botonGenerico:hover {
+    background-color: var(--cafeCrema2);
+    color: var(--blanco5);
+
+}
+
+.botonGenerico2 {
+    font-family: "Luxurious Roman", serif;
+    background-color: var(--cafeMainSecundario);
+    color: var(--blanco5);
+    border-radius: 8px;
+    text-align: center;
+    margin: 0;
+    padding: 8px 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+}
+
+.botonGenerico2:hover {
+    background-color: var(--cafeMainSecundario2);
+    color: var(--blanco5);
+
+}
+
+.w-90 {
+    width: 90%;
+}
+
+.w-95 {
+    width: 95%;
+}
+
+.w-85 {
+    width: 85%;
+}
+
+.w-80 {
+    width: 80%;
+}
+
+.bgColorAzulMain {
+    background-color: var(--cafeCrema);
+}
+
+.bgColorAzulMain2 {
+    background-color: var(--cafeCrema2);
+}
+
+.bgColorVerdeMain {
+    background-color: var(--cafeMain);
+}
+
+.bgColorVerdeMain2 {
+    background-color: var(--cafeMain2);
+}
+
+.bgColorVerdeOscuroMain {
+    background-color: var(--cafeMainSecundario);
+}
+
+.bgColorVerdeOscuroMain2 {
+    background-color: var(--cafeMainSecundario2);
+}
+
+.bgColorGris25 {
+    background-color: var(--gris25);
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 576px) {
+    .navbar {
+        height: 6rem;
+    }
+
+    .imgNav {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+.navItem {
+    font-family: "Quintessential", serif;
+    font-size: 23px;
+    color: var(--blanco5);
+    font-weight: normal;
+}
+
+.navItem:hover {
+    color: var(--amarilloMain2);
+}
+
+.colorVerde {
+    color: var(--cafeMain);
+}
+
+.userIcon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--blanco5);
+}
+
+.colorRojo {
+    color: var(--rojoMain);
+}
+
+.colorRojo2 {
+    color: var(--rojoMain2);
+}
+
+.colorRojo3 {
+    color: var(--rojoMain3);
+}
+
+/* Chrome, Edge, Safari */
+input:-webkit-autofill {
+    -webkit-text-fill-color: var(--cafeMain2);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+/* Firefox */
+input:-moz-autofill {
+    -moz-text-fill-color: var(--cafeMain2);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+/* Optional focus override */
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--cafeMain2);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.estiloInput:focus {
+    font-family: "Luxurious Roman", serif;
+    color: var(--negro75) !important;
+    border-color: var(--cafeMain);
+    box-shadow: 0 0 0 0.2rem rgba(111, 78, 55, 0.25);
+}
+
+.form-control:focus {
+    font-family: "Luxurious Roman", serif;
+    color: var(--negro75) !important;
+    border-color: var(--cafeMain);
+    box-shadow: 0 0 0 0.2rem rgba(111, 78, 55, 0.25);
+}
+
+.form-control {
+    font-family: "Luxurious Roman", serif;
+    color: var(--negro75);
+}
+
+.form-label {
+    font-family: "Luxurious Roman", serif;
+    color: var(--negro75);
+}
+
+.form-select {
+    font-family: "Luxurious Roman", serif;
+    color: var(--negro75);
+}
+
+.noDecor {
+    text-decoration: none !important;
+}
+
+/* -- estilos para el modal de alerta -- */
+.alertaModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.superModal {
+    width: 94%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 576px) {
+    .superModal {
+        width: 30%;
+    }
+}
+
+.modalHeader,
+.modalBody,
+.modalFooter {
+    padding: 0.5rem;
+}
+
+.modalHeader {
+    border-bottom: 1px solid var(--gris25);
+}
+
+.modalFooter {
+    border-top: 1px solid var(--gris25);
+}

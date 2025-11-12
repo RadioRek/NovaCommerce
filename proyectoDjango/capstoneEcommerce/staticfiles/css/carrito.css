@@ -1,0 +1,26 @@
+hr {
+	height: 5px;
+	background-color: var(--negro85);
+}
+
+.contentAncho {
+	width: 90%;
+}
+
+@media (min-width: 576px) {
+
+	.contentAncho {
+		width: 80%;
+	}
+}
+
+
+.img-max {
+	max-width: 160px;
+	max-height: 160px;
+}
+
+
+.imgCheck {
+    max-width: 100%;
+}

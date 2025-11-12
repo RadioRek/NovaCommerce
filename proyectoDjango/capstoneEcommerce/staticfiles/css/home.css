@@ -1,0 +1,56 @@
+.carousel-item {
+	position: relative;
+}
+
+.carousel-item img {
+	max-height: 70vh;
+	object-fit: cover;
+	object-position: bottom;
+	width: 100%;
+	display: block;
+	z-index: 1;
+	position: relative;
+}
+
+.carousel-item::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 70%;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+	z-index: 2;
+	pointer-events: none;
+}
+
+.carousel-caption {
+	position: absolute;
+	z-index: 3;
+}
+
+
+.cat-card {
+	transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cat-card:hover {
+	transform: translateY(-5x);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.flex-prod {
+	flex-basis: 200px;
+	max-width: 250px;
+}
+
+
+.cartitaImg {
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+	display: block;
+	border-radius: 4px;
+}
+
+

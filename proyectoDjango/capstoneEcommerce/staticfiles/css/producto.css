@@ -1,0 +1,16 @@
+.pill {
+    background-color: var(--cafeCrema);
+    color: var(--blanco5);
+    text-align: center;
+    margin: 0;
+    padding: 4px 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+}
+
+.pill:hover {
+    background-color: var(--cafeCrema2);
+    color: var(--blanco5);
+}
