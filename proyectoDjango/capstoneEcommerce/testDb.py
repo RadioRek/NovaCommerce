@@ -11,7 +11,6 @@ from principal.models import (
     DetalleVenta, Venta, CategoriaProducto, Producto, Categoria, User, MetodoPago
 )
 
-
 def poblar_datos():
 
     # Limpiar solo tablas indicadas
@@ -44,7 +43,6 @@ def poblar_datos():
     # Lista de nombres de archivo relativos a MEDIA_ROOT
     imagenes = ["productos/cafe.png", "productos/prod2.jpeg", "productos/prod3.jpeg"]
 
-
     productos = []
     for nombre in productos_genericos:
         categoria_principal = random.choice(categorias)
@@ -68,7 +66,7 @@ def poblar_datos():
 
     print("Categorías de productos asociadas")
 
-    # Agrega 10 ventas, usuario y método de pago aleatorio
+    # Agrega 300 ventas, usuario y método de pago aleatorio
     ventas = []
     estadoVentas = ['Confirmada', 'Confirmada', 'Confirmada', 'Confirmada', 'Pendiente']
     for _ in range(300):

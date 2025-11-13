@@ -10,6 +10,66 @@ function crearCartaProductoBajoStock(productoNombre, stock) {
     return template.content.firstElementChild;
 };
 
+// ===========================================================================
+// Función para poblar la tabla historial de ventas
+function poblarTablaVentas() {
+    let tablaHistorialVentasBody = document.getElementById("tablaHistorialVentasBody");
+    let url = "/api/ventas/";
+
+    fetch(url, {
+        method: "GET",
+    }).then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.error("Error en la respuesta del servidor:", response.status);
+            // lanzar un error para que se capture en el catch
+            throw new Error("Error en la respuesta del servidor");
+        }
+    }).then((data) => {
+        // vaciar tabla antes de llenar
+        tablaHistorialVentasBody.innerHTML = "";
+
+        if (data.length === 0) {
+            crearElementoToast("Sin resultados", "No se encontraron ventas pendientes", "info");
+        } else {
+            crearElementoToast("Exito", `Se encontraron ${data.length} ventas pendientes`, "success");
+        }
+
+        data.forEach((venta) => {
+            let row = document.createElement("tr");
+            let tdCodigo = document.createElement("td");
+            let tdFechaHora = document.createElement("td");
+            let tdUsuario = document.createElement("td");
+            let tdEstado = document.createElement("td");
+            let tdTotal = document.createElement("td");
+
+            tdCodigo.className = "textoMinimo";
+            tdFechaHora.className = "textoMinimo";
+            tdUsuario.className = "textoMinimo";
+            tdEstado.className = "textoMinimo";
+            tdTotal.className = "textoMinimo";
+
+            tdCodigo.textContent = venta.id;
+            tdFechaHora.textContent = new Date(venta.fechaHora).toLocaleString();
+            tdUsuario.textContent = venta.usuario.nombre + " " + venta.usuario.apellido;
+            tdEstado.textContent = venta.estadoVenta;
+            tdTotal.textContent = `$${venta.totalVenta.toFixed(2)}`;
+
+            row.appendChild(tdCodigo);
+            row.appendChild(tdFechaHora);
+            row.appendChild(tdUsuario);
+            row.appendChild(tdEstado);
+            row.appendChild(tdTotal);
+
+            tablaHistorialVentasBody.appendChild(row);
+        });
+
+    }).catch((error) => {
+        crearElementoToast("Error", "Error al buscar ventas pendientes", "error");
+        console.error("Error en la solicitud:", error);
+    });
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     const rootStyles = getComputedStyle(document.documentElement);
@@ -21,6 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let totalVentasDia = 0;
     let cantidadVentasMes = 0;
     let cantidadVentasDia = 0;
+
+    poblarTablaVentas();
 
     const chartAreaBorder = {
         id: 'chartAreaBorder',

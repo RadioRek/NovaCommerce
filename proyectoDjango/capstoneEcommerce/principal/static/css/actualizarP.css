@@ -24,6 +24,13 @@
     width: 95%;
 }
 
+#imgPreview {
+    max-width: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    
+}
+
 @media (min-width: 576px) {
     .card {
         width: 70%;

@@ -56,16 +56,20 @@
 	color: var(--blanco5);
 }
 
-.cartita {
-	display: flex;
-	flex-direction: column;
-	height: 450px;
-}
-
 .cartitaImg {
-	max-width: 100%;
+	width: 100%;
+	height: 250px;
+	max-height: 250px;
 	object-fit: contain;
 	object-position: center;
 	display: block;
 	border-radius: 4px;
 }
+
+.cartita {
+	display: flex;
+	flex-direction: column;
+	height: fit-content;
+}
+
+

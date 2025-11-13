@@ -70,7 +70,8 @@ async function crearElementoToast(textoHeader, textoBody, tipoToast) {
     const elementoToast = template.content.firstElementChild;
 
     const toastBootstrap = new bootstrap.Toast(elementoToast, {
-        autohide: false
+        autohide: true,
+        delay: 5000,
     });
 
     document.querySelector(".toast-container").appendChild(elementoToast);
@@ -89,3 +90,4 @@ async function eliminarUltimoToast() {
 
     toastContainer.removeChild(ultimoToast);
 }
+

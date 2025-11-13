@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// prevenir el default del formulario
 	formularioRegistro.addEventListener("submit", function (event) {
 		event.preventDefault();
+		
 		let username = document.getElementById("usernameInput").value;
 		let nombreUsurio = document.getElementById("nombreInput").value;
 		let apellidoUsuario = document.getElementById("apellidoInput").value;
@@ -107,5 +108,5 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 
 	});
-	
+
 });

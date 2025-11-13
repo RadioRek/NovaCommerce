@@ -1,31 +1,144 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-    // Función para obtener la cookie
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== "") {
-            const cookies = document.cookie.split(";");
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === name + "=") {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
+// Función para obtener la cookie
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+        const cookies = document.cookie.split(";");
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
             }
         }
-        return cookieValue;
     }
+    return cookieValue;
+}
 
-    const csrftoken = getCookie("csrftoken");
-
+// Función para actualizar el producto
+function actualizarProducto(formData) {
+    let csrftoken = getCookie("csrftoken");
     let productoId = document.getElementById("productoId").value;
 
-    let categoriaPrincipalId = document.getElementById("categoriaPrincipalId").value;
+
+    fetch(`/api/productos/${encodeURIComponent(productoId)}/`, {
+        method: "PATCH",
+        body: formData,
+        headers: { "X-CSRFToken": csrftoken, },
+    }).then(async (response) => {
+        if (response.ok) {
+            let data = response.json();
+            return data;
+        } else {
+            crearElementoToast("Error", "No se pudo actualizar el producto.", "error");
+            throw new Error("No se pudo actualizar el producto. Status:" + response.status);
+        }
+    }).then((data) => {
+        crearElementoToast("Éxito", "Producto actualizado correctamente.", "success");
+    }).catch((error) => {
+        console.error("Error en la solicitud de actualización:", error);
+    });
+
+}
+
+// Función para cargar las categorías del producto y mostrarlas como pills
+function cargarCategorias(categorias) {
+    let contenedorPills = document.getElementById("editPill");
+    let productoId = document.getElementById("productoId").value;
+
+    // cargar categorias del producto
+    fetch(`/api/categoria-productos/?producto_id=${encodeURIComponent(productoId)}`, {
+        method: "GET",
+    }).then((response) => {
+        if (response.ok) {
+            let data = response.json();
+            return data;
+        } else {
+            throw new Error("No se pudieron cargar las categorías del producto. Status:" + response.status);
+        }
+    }).then((data) => {
+        data.forEach((catProd) => {
+            categorias.push(String(catProd.categoria.id));
+
+            let colDiv = document.createElement("div");
+            colDiv.className = "col-auto p-0 m-0";
+
+            let pill = document.createElement("p");
+            pill.className = "pill rounded-pill textoMinimoBlanco";
+            pill.textContent = catProd.categoria.nombre;
+
+
+            // Crear botón de eliminar
+            let closeBtn = document.createElement("span");
+            closeBtn.textContent = "×"; // símbolo de X
+            closeBtn.style.cursor = "pointer";
+            closeBtn.style.marginLeft = "8px";
+            closeBtn.addEventListener("click", () => {
+                // Eliminar del array
+                const index = categorias.indexOf(String(catProd.categoria.id));
+                if (index > -1) categorias.splice(index, 1);
+
+                // Eliminar del DOM
+                colDiv.remove();
+
+                console.log(categorias);
+            });
+
+            pill.appendChild(closeBtn);
+            colDiv.appendChild(pill);
+            contenedorPills.appendChild(colDiv);
+        });
+
+    }).catch((error) => {
+        console.error("Error en la solicitud de categorias del producto:", error);
+    });
+}
+
+// Función para cargar todas las categorías en el select
+function cargarCategoriasSelect() {
+    let categoriaPrincipalInput = document.getElementById("categoriaPrincipalInput");
+    let categoriasInput = document.getElementById("editCategoriaInput");
+
+    // Cargar categorias en el select
+    fetch("/api/categorias/", {
+        method: "GET",
+    }).then((response) => {
+        if (response.ok) {
+            let data = response.json();
+            return data;
+
+        } else {
+            console.error("No se pudieron cargar las categorías. Status:", response.status);
+            throw new Error("No se pudieron cargar las categorías. Status:" + response.status);
+        }
+    }).then((data) => {
+        let categoriaPrincipalId = document.getElementById("categoriaPrincipalId").value;
+
+
+        data.forEach((categoria) => {
+            let option = document.createElement("option");
+            option.value = categoria.id;
+            option.textContent = categoria.nombre;
+            if (String(categoria.id) === String(categoriaPrincipalId)) {
+                option.selected = true;
+            }
+            categoriaPrincipalInput.appendChild(option);
+
+            let opcion2 = document.createElement("option");
+            opcion2.value = categoria.id;
+            opcion2.textContent = categoria.nombre;
+            categoriasInput.appendChild(opcion2);
+        });
+    }).catch((error) => {
+        console.error("Error en la solicitud de categorías:", error);
+    });
+
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
 
     let imgPreview = document.getElementById("imgPreview");
-
     let editImgInput = document.getElementById("editImgInput");
-
     // si se sube una nueva imagen cambiar el preview
     editImgInput.addEventListener("change", (event) => {
         const file = event.target.files[0];
@@ -38,89 +151,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    let contenedorPills = document.getElementById("editPill");
-
     let categorias = [];
+    cargarCategorias(categorias);
+    cargarCategoriasSelect();
 
-    // cargar categorias del producto
-    fetch(`/api/categoria-productos/?producto_id=${encodeURIComponent(productoId)}`, {
-        method: "GET",
-    }).then(async (response) => {
-        if (response.ok) {
-            let data = await response.json();
-
-            data.forEach((catProd) => {
-                categorias.push(String(catProd.categoria.id));
-
-                let colDiv = document.createElement("div");
-                colDiv.className = "col-auto p-0 m-0";
-
-                let pill = document.createElement("p");
-                pill.className = "pill rounded-pill textoMinimoBlanco";
-                pill.textContent = catProd.categoria.nombre;
-
-
-                // Crear botón de eliminar
-                let closeBtn = document.createElement("span");
-                closeBtn.textContent = "×"; // símbolo de X
-                closeBtn.style.cursor = "pointer";
-                closeBtn.style.marginLeft = "8px";
-                closeBtn.addEventListener("click", () => {
-                    // Eliminar del array
-                    const index = categorias.indexOf(String(catProd.categoria.id));
-                    if (index > -1) categorias.splice(index, 1);
-
-                    // Eliminar del DOM
-                    colDiv.remove();
-                });
-
-                pill.appendChild(closeBtn);
-                colDiv.appendChild(pill);
-                contenedorPills.appendChild(colDiv);
-
-            });
-        } else {
-            console.error("No se pudieron cargar las categorías del producto. Status:", response.status);
-        }
-    }).catch((error) => {
-        console.error("Error en la solicitud de categorias del producto:", error);
-    });
-
-    let categoriaPrincipalInput = document.getElementById("categoriaPrincipalInput");
     let categoriasInput = document.getElementById("editCategoriaInput");
-
-    // Cargar categorias en el select
-    fetch("/api/categorias/", {
-        method: "GET",
-    }).then(async (response) => {
-        if (response.ok) {
-            const data = await response.json();
-            data.forEach((categoria) => {
-                let option = document.createElement("option");
-                option.value = categoria.id;
-                option.textContent = categoria.nombre;
-                if (String(categoria.id) === String(categoriaPrincipalId)) {
-                    option.selected = true;
-                }
-                categoriaPrincipalInput.appendChild(option);
-
-                let opcion2 = document.createElement("option");
-                opcion2.value = categoria.id;
-                opcion2.textContent = categoria.nombre;
-                categoriasInput.appendChild(opcion2);
-            });
-
-        } else {
-            console.error("No se pudieron cargar las categorías. Status:", response.status);
-        }
-    }).catch((error) => {
-        console.error("Error en la solicitud de categorías:", error);
-    });
-
     // Manejar selección de categoría
     categoriasInput.addEventListener("change", (event) => {
         let valorSeleccionado = event.target.value;
         let nombreCategoria = categoriasInput.options[categoriasInput.selectedIndex].text;
+
+        let contenedorPills = document.getElementById("editPill");
 
         if (valorSeleccionado && !categorias.includes(valorSeleccionado)) {
             categorias.push(valorSeleccionado);
@@ -151,6 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
             colDiv.appendChild(pill);
             contenedorPills.appendChild(colDiv);
         }
+        console.log(categorias);
     });
 
     // manejar el submit del formulario
@@ -163,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let precio = document.getElementById("editPrecioInput").value;
         let descripcion = document.getElementById("editDescripcion").value;
         let stock = document.getElementById("editStockInput").value;
-        let categoriaPrincipal = categoriaPrincipalInput.value;
+        let categoriaPrincipal = document.getElementById("categoriaPrincipalInput").value;
 
         let formData = new FormData();
         formData.append("nombre", nombre);
@@ -175,27 +217,25 @@ document.addEventListener("DOMContentLoaded", () => {
             formData.append("categorias", catId);
         });
 
-        // si se selecciono una nueva imagen, agregarla al formdata
         if (editImgInput.files.length > 0) {
-            formData.append("img", editImgInput.files[0]);
-        }
+            const file = editImgInput.files[0];
 
-        fetch(`/api/productos/${encodeURIComponent(productoId)}/`, {
-            method: "PATCH",
-            body: formData,
-            headers: { "X-CSRFToken": csrftoken, },
-        }).then(async (response) => {
-            if (response.ok) {
-                let data = await response.json();
-                crearElementoToast("Exito", "Producto actualizado correctamente.", "success");
-            } else {
-                let errorData = await response.json();
-                crearElementoToast("Error", "No se pudo actualizar el producto.", "error");
+            // validar tipo de archivo imagen
+            if (!file.type.startsWith("image/")) {
+                crearElementoToast("Error", "El archivo seleccionado no es una imagen válida.", "error");
+                return;
             }
-        }).catch((error) => {
-            crearElementoToast("Error", "No se pudo actualizar el producto.", "error");
-            console.error("Error en la solicitud de actualización:", error);
-        });
+
+            // validar tamaño máximo 10MB
+            const maxSize = 10 * 1024 * 1024;
+            if (file.size > maxSize) {
+                crearElementoToast("Error", "El tamaño de la imagen excede el límite de 10MB.", "error");
+                return;
+            }
+
+            formData.append("img", file);
+        }
+        actualizarProducto(formData);
     });
 });
 

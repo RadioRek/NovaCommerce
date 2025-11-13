@@ -271,7 +271,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
 
         if idProducto:
             queryset = queryset.filter(id=idProducto)
-            
+
         if categorias:
             queryset = queryset.filter(categoriaproducto__categoria__id__in=categorias).distinct()
 
@@ -292,6 +292,19 @@ class ProductoViewSet(viewsets.ModelViewSet):
         productos = Producto.objects.filter(id__in=productos_ids)
         serializer = self.get_serializer(productos, many=True)
         return Response(serializer.data, status=200)
+
+    @action(detail=False, methods=['get'], url_path='productos-relacionados')
+    def productos_relacionados(self, request):
+        producto_id = self.request.query_params.get('producto_id', None)
+        if not producto_id:
+            return Response({'error': 'Se requiere el parámetro producto_id'}, status=400)
+        producto = Producto.objects.get(id=producto_id)
+        categorias = CategoriaProducto.objects.filter(producto=producto).values_list('categoria', flat=True)
+        productos_relacionados = Producto.objects.filter(categoriaproducto__categoria__in=categorias).exclude(id=producto.id).distinct()[:5]
+        serializer = self.get_serializer(productos_relacionados, many=True)
+        return Response(serializer.data, status=200)
+
+
 
 
 class CategoriaViewSet(viewsets.ModelViewSet):

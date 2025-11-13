@@ -2,10 +2,11 @@ import re
 from rest_framework import serializers
 from .models import Producto, CategoriaProducto, TipoUsuario, User, Carrito, DetalleCarrito, DetalleVenta, Venta, MetodoPago, Categoria
 
+from django.core.exceptions import ValidationError
+
+
 class ProductoSerializer(serializers.ModelSerializer):
-    categorias = serializers.ListField(
-        child=serializers.IntegerField(), write_only=True, required=False
-    )
+    categorias = serializers.ListField(child=serializers.IntegerField(), write_only=True, required=False)
     categorias_actuales = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
@@ -16,16 +17,34 @@ class ProductoSerializer(serializers.ModelSerializer):
         ]
 
     def get_categorias_actuales(self, obj):
-        return [
-            cp.categoria.id
-            for cp in obj.categoriaproducto_set.all()
-        ]
+        categorias_ids = []
+        for cp in obj.categoriaproducto_set.all():
+            categorias_ids.append(cp.categoria.id)
+        return categorias_ids
 
+    def validate_img(self, value):
+        # Validar tipo MIME
+        if not value.content_type.startswith("image/"):
+            raise ValidationError("El archivo subido no es una imagen válida.")
+
+        # Validar tamaño máximo (10 MB)
+        max_size = 10 * 1024 * 1024
+        if value.size > max_size:
+            raise ValidationError("El tamaño máximo permitido es de 10 MB.")
+
+        return value
+
+    # Actualizar categorías al actualizar el producto
+    # 1- creamos una variable categorias que obtiene las categorias del validated_data
+    # 2- actualizamos los demás campos del producto
+    # 3- si categorias no es None, eliminamos las categorías actuales y agregamos las nuevas
+    # 4- recorremos la lista de IDs de categorías y creamos una nueva instancia de CategoriaProducto para cada una
     def update(self, instance, validated_data):
         categorias = validated_data.pop('categorias', None)
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
+
         if categorias is not None:
             instance.categoriaproducto_set.all().delete()
             for cat_id in categorias:
@@ -56,16 +75,8 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            "id",
-            "username",
-            "nombre",
-            "apellido",
-            "direccion",
-            "telefono",
-            "email",
-            "password",
-            "tipoUsuario",
-            "is_active",
+            "id", "username", "nombre", "apellido", "direccion",
+            "telefono", "email", "password", "tipoUsuario", "is_active"
         ]
         read_only_fields = ["id", "is_active"]
 
@@ -76,7 +87,6 @@ class UserSerializer(serializers.ModelSerializer):
         if not re.search(r'[!@#$%^&*(),.?":{}|<>]', value):
             raise serializers.ValidationError("La contraseña debe tener al menos un caracter especial.")
         return value
-
 
     def create(self, validated_data):
         password = validated_data.pop("password")
@@ -104,10 +114,12 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+
 class CarritoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Carrito
         fields = "__all__"
+
 
 class DetalleCarritoSerializer(serializers.ModelSerializer):
     producto = ProductoSerializer(read_only=True)
@@ -116,11 +128,14 @@ class DetalleCarritoSerializer(serializers.ModelSerializer):
         model = DetalleCarrito
         fields = "__all__"
 
+
 class VentaSerializer(serializers.ModelSerializer):
     usuario = UserSerializer(read_only=True)
+
     class Meta:
         model = Venta
         fields = "__all__"
+
 
 class DetalleVentaSerializer(serializers.ModelSerializer):
     class Meta:

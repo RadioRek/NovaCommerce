@@ -13,7 +13,7 @@
 <div class="row m-0 p-0">
 
     <div class="col-12 col-sm-4 align-content-center">
-        <img src="{% static 'img/cafe.png' %}" alt="" class="img-fluid" />
+        <img src="{{ producto.img.url }}" alt="" class="img-fluid imgProd" />
     </div>
 
     <div class="col-12 col-sm-8 align-content-center">
@@ -23,7 +23,9 @@
         </p>
         <h5 class="head5 colorVerde mb-2 mb-sm-4">${{ producto.precio }}</h5>
         <h6 class="head6 mb-2 mb-sm-4">Stock disponible: {{ producto.stock }}</h6>
-        <button class="btn botonGenerico2 mb-2 mb-sm-4">Agregar al carrito</button>
+        <button class="btn botonGenerico2 mb-2 mb-sm-4" onclick="agregarAlCarrito('{{ producto.id }}')">
+        Agregar al carrito
+        </button>
 
         <div class="row mt-2 w-100 gap-1">
             {% for categoria in categorias %}
@@ -35,60 +37,18 @@
     </div>
 </div>
 
+
 <hr class="my-4">
 <h3 class="head3 text-center mb-2">Productos relacionados</h3>
 
-<div class="row m-0 p-0">
+<input type="hidden" id="productoId" value="{{ producto.id }}">
+<div class="d-flex flex-wrap justify-content-between gap-4 p-4 align-content-start align-items-start" id="contProdRelacionados">
 
-    <div class="col-6 col-sm-3 p-0 d-flex justify-content-center mb-2 mb-sm-4">
 
-        <div class="card w-75">
-            <img src="{% static 'img/cafe.png' %}" class="card-img-top" alt="..." />
-
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a href="#">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-6 col-sm-3 p-0 d-flex justify-content-center mb-2 mb-sm-4">
-
-        <div class="card w-75">
-            <img src="{% static 'img/cafe.png' %}" class="card-img-top" alt="..." />
-
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a href="#">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-6 col-sm-3 p-0 d-flex justify-content-center mb-2 mb-sm-4">
-
-        <div class="card w-75">
-            <img src="{% static 'img/cafe.png' %}" class="card-img-top" alt="..." />
-
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a href="#">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-6 col-sm-3 p-0 d-flex justify-content-center mb-2 mb-sm-4">
-
-        <div class="card w-75">
-            <img src="{% static 'img/cafe.png' %}" class="card-img-top" alt="..." />
-
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <a href="#">Go somewhere</a>
-            </div>
-        </div>
-    </div>
 </div>
 
 <hr class="mt-3 mb-4 mt-sm-0">
 
+
+<script src="{% static 'js/producto.js' %}"></script>
 {% endblock body %}

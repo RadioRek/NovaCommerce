@@ -1,7 +1,7 @@
 .superGrilla {
     display: grid;
     background-color: var(--gris25);
-    grid-template-columns: 1fr; /* una sola columna */
+    grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto auto auto;
     grid-template-areas:
         "datosMesDia"
@@ -9,7 +9,8 @@
         "proMasVendidos"
         "proMenosVendidos"
         "catMasVendidas"
-        "catMenosVendidas";
+        "catMenosVendidas"
+        "historialVentas";
     gap: 16px;
     padding: 16px;
     justify-content: center;
@@ -26,7 +27,8 @@
             "datosMesDia prodBajoStock"
             "datosMesDia prodBajoStock"
             "proMasVendidos catMenosVendidas"
-            "proMenosVendidos catMasVendidas";
+            "proMenosVendidos catMasVendidas"
+            "historialVentas historialVentas";
         gap: 16px;
         padding: 16px;
         justify-content: center;
@@ -50,6 +52,10 @@
 
     .contenedorCatMenosVendidas {
         grid-area: catMenosVendidas;
+    }
+
+    .contHistorialVentas {
+        grid-area: historialVentas;
     }
 }
 
@@ -102,5 +108,39 @@ canvas {
     padding-right: 16px;
     padding-top: 8px;
     padding-bottom: 8px;
+}
 
+.cartaProductoBajoStock:hover {
+    background-color: var(--gris10);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.tablaHistorialVentas {
+    width: 100%;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* sobrescribe el box-shadow de bootstrap en hover */
+.table.table-striped-columns tbody tr:hover td {
+	--bs-table-bg-state: var(--blanco10) !important;
+}
+
+/* cambia el cursor al pasar por la fila */
+.table.table-striped-columns tbody tr:hover {
+	cursor: pointer;
+}
+
+/* transiciones suaves */
+.table tbody td {
+	transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.table thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--amarilloMain);
+    z-index: 1;
 }
