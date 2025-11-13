@@ -220,7 +220,7 @@ function poblarTablaProductos(idProductoBuscar = null, nombreProductoBuscar = nu
 		// vaciar tabla antes de llenar
 		tablaProductosBody.innerHTML = "";
 
-		if (data.length === 0) {
+		if (data.results.length === 0) {
 			crearElementoToast("Sin resultados", "No se encontraron productos", "info");
 		} else {
 			crearElementoToast("Exito", `Se encontraron ${data.results.length} productos`, "success");

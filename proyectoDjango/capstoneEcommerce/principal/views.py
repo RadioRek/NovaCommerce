@@ -261,15 +261,17 @@ class ProductoViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = Producto.objects.all()
+
         nombre = self.request.query_params.get('nombre', None)
         idProducto = self.request.query_params.get('id', None)
         categorias = self.request.query_params.getlist('categorias')
-        print("Categorias recibidas en query params:", categorias)
 
         if nombre:
             queryset = queryset.filter(nombre__icontains=nombre)
+
         if idProducto:
             queryset = queryset.filter(id=idProducto)
+            
         if categorias:
             queryset = queryset.filter(categoriaproducto__categoria__id__in=categorias).distinct()
 
@@ -619,16 +621,11 @@ class VentaViewSet(viewsets.ModelViewSet):
         ventas_mes = Venta.objects.filter(fechaHora__gte=start_month, fechaHora__lte=end_month)
         ventas_dia = Venta.objects.filter(fechaHora__gte=start_today, fechaHora__lte=end_today)
 
-
         total_ventas_mes = ventas_mes.aggregate(total=Coalesce(Sum('totalVenta'), 0))['total']
         cantidad_ventas_mes = ventas_mes.count()
 
         total_ventas_dia = ventas_dia.aggregate(total=Coalesce(Sum('totalVenta'), 0))['total']
         cantidad_ventas_dia = ventas_dia.count()
-
-        # revisar ventas dia
-        print("Total ventas dia:", total_ventas_dia)
-        print("Cantidad ventas dia:", cantidad_ventas_dia)
 
         top_productos = (
             DetalleVenta.objects
