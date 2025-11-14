@@ -1,5 +1,7 @@
 const PORCENTAJE_IVA = 0.19;
 
+// ===========================================================================
+// Función para crear la carta de un producto en el carrito
 function crearCartaProducto(producto, cantidad) {
     const template = document.createElement("template");
     template.innerHTML = `
@@ -41,6 +43,8 @@ function crearCartaProducto(producto, cantidad) {
     return template.content.firstElementChild;
 }
 
+// ===========================================================================
+// Función para actualizar el carrito
 function actualizarCarrito(csrftoken) {
     fetch("/api/detalle-carritos/", {
         method: "GET",
@@ -56,6 +60,20 @@ function actualizarCarrito(csrftoken) {
     }).then((data) => {
         let contenedorCartas = document.getElementById("contenedorCartasCarrito");
         contenedorCartas.innerHTML = "";
+
+        if (data.length === 0) {
+            // en caso de no tener productos en el carrito generamos una texto indicándolo y con un boton para ir a la tienda
+            const templateVacio = document.createElement("template");
+            templateVacio.innerHTML = `
+                <div class="d-flex flex-column justify-content-center align-items-center my-5">
+                    <h5 class="head5 mb-3">Tu carrito está vacío</h5>
+                    <a href="/tienda/" class="btn botonGenerico">Ir a la tienda</a>
+                </div>
+            `.trim();
+            contenedorCartas.appendChild(templateVacio.content.firstElementChild);
+            return;
+        }
+
 
         data.forEach(detalleCarrito => {
             let cartaProducto = crearCartaProducto(detalleCarrito.producto, detalleCarrito.cantidad);
@@ -84,6 +102,8 @@ function actualizarCarrito(csrftoken) {
     });
 }
 
+// ===========================================================================
+// Función para actualizar la cantidad de un producto en el carrito
 function actualizarCantidadProducto(idDetalleCarrito, nuevaCantidad, csrftoken) {
     fetch(`/api/detalle-carritos/${idDetalleCarrito}/`, {
         method: "PATCH",
@@ -106,6 +126,8 @@ function actualizarCantidadProducto(idDetalleCarrito, nuevaCantidad, csrftoken) 
     });
 }
 
+// ===========================================================================
+// Función para actualizar los totales del carrito
 function actualizarTotalesCarrito() {
     fetch("/api/detalle-carritos/", {
         method: "GET",
@@ -144,6 +166,9 @@ function actualizarTotalesCarrito() {
 
 }
 
+
+// ===========================================================================
+// Función para quitar un producto del carrito
 function quitarProductoCarrito(idDetalleCarrito, csrftoken) {
     fetch(`/api/detalle-carritos/${idDetalleCarrito}/`, {
         method: "DELETE",
@@ -164,22 +189,26 @@ function quitarProductoCarrito(idDetalleCarrito, csrftoken) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Función para obtener la cookie
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== "") {
-            const cookies = document.cookie.split(";");
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === name + "=") {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
+// ===========================================================================
+// Función para obtener el valor de una cookie por su nombre
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+        const cookies = document.cookie.split(";");
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
             }
         }
-        return cookieValue;
     }
+    return cookieValue;
+}
+
+// ===========================================================================
+// Cuando el DOM esté cargado se ejecutan cositas
+document.addEventListener("DOMContentLoaded", function () {
 
     const csrftoken = getCookie("csrftoken");
 

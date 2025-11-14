@@ -38,6 +38,14 @@ from django.db.models.functions import Coalesce
 def home(request):
     return render(request, 'home.html')
 
+def personalizarTienda(request):
+    user = request.user
+    if user.is_authenticated:
+        if user.tipoUsuario.nombre.lower() == "administrador":
+            return render(request, 'personalizarTienda.html')
+
+    return redirect('home')
+
 
 def testEquisde(request):
     return render(request, 'testEquisde.html')
