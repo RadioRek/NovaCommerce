@@ -5,7 +5,7 @@ __pycache__/
 migrations/
 
 # ignorar imagenes de productos
-media/
+media/productos/
 
 # ignorar archivos de entorno virtual
 .venv/
