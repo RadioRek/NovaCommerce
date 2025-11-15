@@ -1,8 +1,23 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.conf import settings
 
-# cositas de la API
+from .models import (
+    Producto,
+    Categoria,
+    CategoriaProducto,
+    User,
+    Categoria,
+    CategoriaProducto,
+    User,
+    Carrito,
+    DetalleCarrito,
+    DetalleVenta,
+    Venta,
+    MetodoPago,
+    PersonalizacionTienda
+)
 
-from .models import Producto, Categoria, CategoriaProducto, User, Categoria, CategoriaProducto, User, Carrito, DetalleCarrito, DetalleVenta, Venta, MetodoPago
 from .serializers import (
     ProductoSerializer,
     LoginSerializer,
@@ -15,6 +30,7 @@ from .serializers import (
     DetalleVentaSerializer,
     VentaSerializer,
     MetodoPagoSerializer,
+    PersonalizacionTiendaSerializer,
 )
 
 from rest_framework import viewsets, permissions, status, permissions, status
@@ -26,8 +42,6 @@ from rest_framework.pagination import PageNumberPagination
 
 from rest_framework.decorators import action
 
-
-# para las metricas
 from datetime import datetime, time
 from django.utils import timezone
 from django.db.models import Sum
@@ -37,6 +51,7 @@ from django.db.models.functions import Coalesce
 # testing
 def home(request):
     return render(request, 'home.html')
+
 
 def personalizarTienda(request):
     user = request.user
@@ -49,6 +64,53 @@ def personalizarTienda(request):
 
 def testEquisde(request):
     return render(request, 'testEquisde.html')
+
+
+def estilos_css(request):
+    estilos = PersonalizacionTienda.objects.filter(id=1).first()
+
+    if not estilos:
+        return HttpResponse("", content_type="text/css")
+
+    font_principal = ""
+    font_secundaria = ""
+
+    # Fuente principal dinámica
+    if estilos.fuentePrincipalArchivo:
+        font_principal = f"""
+        @font-face {{
+            font-family: 'tipoPrincipal';
+            src: url('{settings.MEDIA_URL}{estilos.fuentePrincipalArchivo}') format('truetype');
+        }}
+        """
+
+    # Fuente secundaria dinámica
+    if estilos.fuenteSecundariaArchivo:
+        font_secundaria = f"""
+        @font-face {{
+            font-family: 'tipoSecundaria';
+            src: url('{settings.MEDIA_URL}{estilos.fuenteSecundariaArchivo}') format('truetype');
+        }}
+        """
+
+    css = f"""
+    {font_principal}
+    {font_secundaria}
+
+    :root {{
+        --colorMarca1: {estilos.colorMarca1};
+        --colorMarca2: {estilos.colorMarca2};
+        --colorDanger: {estilos.colorDanger};
+        --colorSuccess: {estilos.colorSuccess};
+        --negro: {estilos.negro};
+        --negroSuave: {estilos.negroSuave};
+        --gris: {estilos.gris};
+        --blanco: {estilos.blanco};
+        --masBlanco: {estilos.masBlanco};
+    }}
+    """
+
+    return HttpResponse(css, content_type="text/css")
 
 
 def nosotros(request):
@@ -75,7 +137,6 @@ def confirmacionOrden(request, venta_id):
             return redirect('home')
     else:
         return redirect('sitioLogin')
-
 
 
 def sitioLogin(request):
@@ -291,7 +352,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
             DetalleVenta.objects
             .values('producto__id')
             .annotate(total_vendido=Sum('cantidad'))
-            .order_by('-total_vendido')[:5]
+            .order_by('-total_vendido')[:4]
         )
         productos_ids = []
         for producto in productos_ventas:
@@ -308,11 +369,12 @@ class ProductoViewSet(viewsets.ModelViewSet):
             return Response({'error': 'Se requiere el parámetro producto_id'}, status=400)
         producto = Producto.objects.get(id=producto_id)
         categorias = CategoriaProducto.objects.filter(producto=producto).values_list('categoria', flat=True)
-        productos_relacionados = Producto.objects.filter(categoriaproducto__categoria__in=categorias).exclude(id=producto.id).distinct()[:5]
+        productos_relacionados = Producto.objects.filter(
+            categoriaproducto__categoria__in=categorias).exclude(
+            id=producto.id).distinct()[
+            :5]
         serializer = self.get_serializer(productos_relacionados, many=True)
         return Response(serializer.data, status=200)
-
-
 
 
 class CategoriaViewSet(viewsets.ModelViewSet):
@@ -613,8 +675,8 @@ class VentaViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_401_UNAUTHORIZED
             )
 
-
-    @action(detail=False, methods=['get'], url_path='ventas-pendientes', permission_classes=[controlPermisosAccesoAdmin])
+    @action(detail=False, methods=['get'], url_path='ventas-pendientes',
+            permission_classes=[controlPermisosAccesoAdmin])
     def ventas_pendientes(self, request):
         idBuscar = request.query_params.get('idBuscar', None)
 
@@ -626,7 +688,6 @@ class VentaViewSet(viewsets.ModelViewSet):
         ventas_pendientes = Venta.objects.filter(estadoVenta='Pendiente').order_by('-fechaHora')
         serializer = self.get_serializer(ventas_pendientes, many=True)
         return Response(serializer.data, status=200)
-
 
     @action(detail=False, methods=['get'], url_path='metricas')
     def metricas(self, request):
@@ -707,3 +768,34 @@ class MetodoPagoViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(nombre__icontains=nombre)
 
         return queryset
+
+
+class PersonalizacionTiendaViewSet(viewsets.ModelViewSet):
+    queryset = PersonalizacionTienda.objects.all()
+    serializer_class = PersonalizacionTiendaSerializer
+    permission_classes = [controlPermisosAccesoAdmin]
+
+    def get_queryset(self):
+        queryset = PersonalizacionTienda.objects.all()
+        return queryset
+
+    @action(detail=False, methods=['get'], url_path='reset', permission_classes=[controlPermisosAccesoAdmin])
+    def reset(self, request):
+        obj = estilos = PersonalizacionTienda.objects.filter(id=1).first()
+
+        obj.colorMarca1 = obj._meta.get_field('colorMarca1').default
+        obj.colorMarca2 = obj._meta.get_field('colorMarca2').default
+        obj.colorDanger = obj._meta.get_field('colorDanger').default
+        obj.colorSuccess = obj._meta.get_field('colorSuccess').default
+        obj.negro = obj._meta.get_field('negro').default
+        obj.negroSuave = obj._meta.get_field('negroSuave').default
+        obj.gris = obj._meta.get_field('gris').default
+        obj.blanco = obj._meta.get_field('blanco').default
+        obj.masBlanco = obj._meta.get_field('masBlanco').default
+
+        obj.fuentePrincipalArchivo = obj._meta.get_field('fuentePrincipalArchivo').default
+        obj.fuenteSecundariaArchivo = obj._meta.get_field('fuenteSecundariaArchivo').default
+
+        obj.save()
+
+        return Response({"status": "ok"}, status=status.HTTP_200_OK)

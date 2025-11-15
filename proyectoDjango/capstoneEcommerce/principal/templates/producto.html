@@ -10,8 +10,7 @@
 {% block body %}
 <hr class="my-4">
 
-<div class="row m-0 p-0">
-
+<div class="row m-0 p-0 backgroundColorBlanco">
     <div class="col-12 col-sm-4 align-content-center">
         <img src="{{ producto.img.url }}" alt="" class="img-fluid imgProd" />
     </div>
@@ -21,9 +20,9 @@
         <p class="parrafo mb-2 mb-sm-4">
             {{ producto.descripcion }}
         </p>
-        <h5 class="head5 colorVerde mb-2 mb-sm-4">${{ producto.precio }}</h5>
+        <h5 class="head5 mb-2 mb-sm-4">${{ producto.precio }}</h5>
         <h6 class="head6 mb-2 mb-sm-4">Stock disponible: {{ producto.stock }}</h6>
-        <button class="btn botonGenerico2 mb-2 mb-sm-4" onclick="agregarAlCarrito('{{ producto.id }}')">
+        <button class="btn botonSuccess mb-2 mb-sm-4" onclick="agregarAlCarrito('{{ producto.id }}')">
         Agregar al carrito
         </button>
 
@@ -39,6 +38,7 @@
 
 
 <hr class="my-4">
+
 <h3 class="head3 text-center mb-2">Productos relacionados</h3>
 
 <input type="hidden" id="productoId" value="{{ producto.id }}">

@@ -16,56 +16,109 @@
     <input type="number" id="categoriaPrincipalId" value="{{producto.categoriaPrincipal.id}}" hidden>
 
     <div class="ContenedorSecundario card p-4">
-        <form action="" id="editarproducto" class="row">
-            <h3 class="text-center mb-3 head3">Actualizar Producto {{producto.nombre}}</h3>
+        <h3 class="text-center mb-3 head3">Actualizar Producto {{producto.nombre}}</h3>
 
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-2 d-flex flex-column align-items-center">
-                <label for="editNombreInput" class="form-label">Nombre</label>
-                <input type="text" id="editNombreInput" class="form-control" placeholder="Nombre del producto"
-                    value="{{producto.nombre}}">
-            </div>
+        <form action="" id="editarproducto" class="row mt-4">
 
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                <label for="editPrecioInput" class="form-label">Precio</label>
-                <input type="text" id="editPrecioInput" class="form-control" placeholder="Precio"
-                    value="{{producto.precio}}">
-            </div>
+            <!-- Nombre -->
 
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                <label for="editDescripcion" class="form-label">Descripcion</label>
-                <input type="text" id="editDescripcion" class="form-control" placeholder="Precio"
-                    value="{{producto.descripcion}}">
-            </div>
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
 
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                <label for="editStockInput" class="form-label">Stock</label>
-                <input type="number" id="editStockInput" class="form-control" placeholder="Stock" min="0" step="1"
-                    inputmode="numeric" pattern="\d*" value="{{producto.stock}}">
-            </div>
-
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                <label for="categoriaPrincipalInput" class="form-label">Categoria principal</label>
-                <select name="" id="categoriaPrincipalInput" class="form-select mb-2">
-                </select>
-            </div>
-
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                <label for="editarImg" class="form-label">Imagen</label>
-                <input type="file" id="editImgInput" class="form-control" accept="image/*">
-            </div>
-
-
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-
-                <label for="editCategoriaInput" class="form-label">Categorias</label>
-                <select name="" id="editCategoriaInput" class="form-select mb-2" aria-label="Selecciona una categoria">
-                    <option value="" selected disabled>Selecciona una categoria</option>
-                </select>
-
-                <div id="editPill" class="row w-100 gap-1">
-
+                <div class="input-container w-95">
+                    <input type="text" id="editNombreInput" class="input-field" placeholder="Nombre del producto"
+                        value="{{producto.nombre}}">
+                    <label class="input-label" for="editNombreInput">Nombre</label>
+                    <span class="input-highlight"></span>
                 </div>
             </div>
+
+            <!-- Precio -->
+
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="text" id="editPrecioInput" class="input-field" placeholder="Precio"
+                        value="{{producto.precio}}">
+                    <label class="input-label" for="editPrecioInput">Precio</label>
+                    <span class="input-highlight"></span>
+                </div>
+            </div>
+
+            <!-- Descripción -->
+
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="text" id="editDescripcion" class="input-field" placeholder="Descripción"
+                        value="{{producto.descripcion}}">
+                    <label class="input-label" for="editDescripcion">Descripción</label>
+                    <span class="input-highlight"></span>
+                </div>
+            </div>
+
+            <!-- Stock -->
+
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="number" id="editStockInput" class="input-field" placeholder="Stock" min="0" step="1"
+                        inputmode="numeric" pattern="\d*" value="{{producto.stock}}">
+                    <label class="input-label" for="editStockInput">Stock</label>
+                    <span class="input-highlight"></span>
+                </div>
+            </div>
+
+            <!-- Categoría principal -->
+
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <select id="categoriaPrincipalInput" class="select-field">
+                    </select>
+                    <label class="input-label" for="categoriaPrincipalInput">Categoría principal</label>
+                    <span class="input-highlight"></span>
+                </div>
+            </div>
+
+            <!-- Imagen -->
+
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+
+                    <input type="file" id="editImgInput" class="file-hidden" accept="image/*">
+
+                    <label class="input-label" for="editImgInput">Imagen</label>
+
+                    <div class="file-wrapper">
+                        <button type="button" class="file-button"
+                            onclick="document.getElementById('editImgInput').click()">
+                            Seleccionar archivo
+                        </button>
+                        <span class="file-name" id="editImgFileName">Ningún archivo</span>
+                    </div>
+
+                    <span class="input-highlight"></span>
+                </div>
+            </div>
+
+            <!-- Categorías -->
+
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <select id="editCategoriaInput" class="select-field" aria-label="Selecciona una categoria">
+                        <option value="" selected disabled>Selecciona una categoria</option>
+                    </select>
+                    <label class="input-label" for="editCategoriaInput">Categorias</label>
+                    <span class="input-highlight"></span>
+                </div>
+
+                <div id="editPill" class="row w-100 gap-1 mt-2">
+                    <!-- pills -->
+                </div>
+            </div>
+
 
             {% if producto.img.url != null %}
 
@@ -73,16 +126,11 @@
                 <img id="imgPreview" src="{{ producto.img.url }}" class="img-fluid rounded">
             </div>
 
-
             {% endif %}
-
-
-
-
 
             <div class="col-12 m-0 p-0 px-2 d-flex justify-content-between mt-2">
                 <a href="{% url 'panelControl' %}" class="botonGenerico">Volver</a>
-                <button type="submit" class="botonGenerico">Guardar cambios</button>
+                <button type="submit" class="botonSuccess">Guardar cambios</button>
             </div>
 
         </form>

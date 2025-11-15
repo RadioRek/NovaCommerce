@@ -14,7 +14,7 @@ router.register(r'detalle-carritos', views.DetalleCarritoViewSet, basename="deta
 router.register(r'detalle-ventas', views.DetalleVentaViewSet, basename="detalle-venta")
 router.register(r'ventas', views.VentaViewSet, basename="venta")
 router.register(r'metodos-pago', views.MetodoPagoViewSet, basename="metodo-pago")
-
+router.register(r'personalizacion-tienda', views.PersonalizacionTiendaViewSet, basename="personalizacion-tienda")
 
 urlpatterns = [
     # aqui se agregan las urls de la app principal (las rutas que se ingresan en el navegador)
@@ -39,6 +39,8 @@ urlpatterns = [
 
     path("testEquisde/", views.testEquisde, name="testEquisde"),
 
+    # ruta estilos dinamicos Css
+    path("estilos.css", views.estilos_css, name="estilos_css"),
 
     # rutas de la API
     path("api/", include(router.urls)),

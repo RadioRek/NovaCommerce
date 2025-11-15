@@ -31,20 +31,23 @@
 
 
 .pagination .page-item .page-link {
-	color: var(--cafeMain3);
+	color: var(--negro);
+}
+.active a {
+	color: var(--masBlanco) !important;
 }
 
 .pagination .page-item.active .page-link {
-	background-color: var(--cafeCrema);
-	border-color: var(--cafeCrema);
+	background-color: var(--colorMarca1);
+	border-color: var(--colorMarca1);
 }
 
 .pill {
-	background-color: var(--cafeCrema);
-	color: var(--blanco5);
+	background-color: var(--colorMarca1);
+	color: var(--masBlanco);
 	text-align: center;
 	margin: 0;
-	padding: 4px 8px;
+	padding: 6px 10px;
 	text-decoration: none;
 	cursor: pointer;
 	transition: 0.3s ease;
@@ -52,8 +55,8 @@
 }
 
 .pill:hover {
-	background-color: var(--cafeCrema2);
-	color: var(--blanco5);
+    background-color: color-mix(in srgb, var(--colorMarca1) 80%, black);
+	color: var(--masBlanco);
 }
 
 .cartitaImg {

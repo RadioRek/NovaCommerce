@@ -3,6 +3,7 @@
     padding-right: 1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    background-color: var(--masBlanco);
 }
 
 @media (min-width: 576px) {
@@ -11,10 +12,11 @@
         padding-right: 10rem;
         margin-top: 5rem;
         margin-bottom: 5rem;
+        background-color: var(--masBlanco);
     }
 
     .contenedorIzquierda {
-        border-color: var(--blanco10);
+        border-color: var(--blanco);
         border-width: 1px;
         border-right-style: solid;
     }
@@ -22,4 +24,8 @@
 
 .imgCheck {
     max-width: 100%;
+}
+
+body {
+    background-color: var(--masBlanco) !important;
 }

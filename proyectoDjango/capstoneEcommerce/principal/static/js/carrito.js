@@ -33,7 +33,7 @@ function crearCartaProducto(producto, cantidad) {
                         <button class="col-2 botonGenerico m-0">+</button>
                     </div>
                 </form>
-                <button class="botonGenerico w-25 align-self-center botonQuitarProd">Eliminar</button>
+                <button class="botonDanger w-25 align-self-center botonQuitarProd">Eliminar</button>
             </div>
 
             <hr class="mt-4" />

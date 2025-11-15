@@ -1,6 +1,6 @@
 import re
 from rest_framework import serializers
-from .models import Producto, CategoriaProducto, TipoUsuario, User, Carrito, DetalleCarrito, DetalleVenta, Venta, MetodoPago, Categoria
+from .models import Producto, CategoriaProducto, TipoUsuario, User, Carrito, DetalleCarrito, DetalleVenta, Venta, MetodoPago, Categoria, PersonalizacionTienda
 
 from django.core.exceptions import ValidationError
 
@@ -59,11 +59,17 @@ class CategoriaSerializer(serializers.ModelSerializer):
 
 
 class CategoriaProductoSerializer(serializers.ModelSerializer):
-    categoria = CategoriaSerializer(read_only=True)
+    categoria = serializers.PrimaryKeyRelatedField(queryset=Categoria.objects.all())
 
     class Meta:
         model = CategoriaProducto
         fields = "__all__"
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep['categoria'] = CategoriaSerializer(instance.categoria).data
+        return rep
+
 
 
 class LoginSerializer(serializers.Serializer):
@@ -146,4 +152,10 @@ class DetalleVentaSerializer(serializers.ModelSerializer):
 class MetodoPagoSerializer(serializers.ModelSerializer):
     class Meta:
         model = MetodoPago
+        fields = "__all__"
+
+
+class PersonalizacionTiendaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PersonalizacionTienda
         fields = "__all__"

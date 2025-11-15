@@ -73,9 +73,25 @@ function poblarTablaVentas() {
 
 document.addEventListener("DOMContentLoaded", function () {
     const rootStyles = getComputedStyle(document.documentElement);
-    const cafeMain = rootStyles.getPropertyValue("--cafeMain").trim();
-    const cafeCrema = rootStyles.getPropertyValue("--cafeCrema").trim();
-    const negro75 = rootStyles.getPropertyValue("--negro75").trim();
+
+    // escalas para charts.js
+    const colorMarca1_1 = rootStyles.getPropertyValue("--colorMarca1-1").trim();
+    const colorMarca1_2 = rootStyles.getPropertyValue("--colorMarca1-2").trim();
+    const colorMarca1_3 = rootStyles.getPropertyValue("--colorMarca1-3").trim();
+    const colorMarca1_4 = rootStyles.getPropertyValue("--colorMarca1-4").trim();
+    const colorMarca1_5 = rootStyles.getPropertyValue("--colorMarca1-5").trim();
+
+    const colorMarca2_1 = rootStyles.getPropertyValue("--colorMarca2-1").trim();
+    const colorMarca2_2 = rootStyles.getPropertyValue("--colorMarca2-2").trim();
+    const colorMarca2_3 = rootStyles.getPropertyValue("--colorMarca2-3").trim();
+    const colorMarca2_4 = rootStyles.getPropertyValue("--colorMarca2-4").trim();
+    const colorMarca2_5 = rootStyles.getPropertyValue("--colorMarca2-5").trim();
+
+
+    const negro = rootStyles.getPropertyValue("--negro").trim();
+
+    let setColor1 = [colorMarca1_1, colorMarca1_2, colorMarca1_3, colorMarca1_4, colorMarca1_5];
+    let setColor2 = [colorMarca2_1, colorMarca2_2, colorMarca2_3, colorMarca2_4, colorMarca2_5];
 
     let totalVentasMes = 0;
     let totalVentasDia = 0;
@@ -117,8 +133,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     labels: data.top_productos.map(p => p.producto__nombre),
                     datasets: [{
                         data: data.top_productos.map(p => p.total_vendido),
-                        backgroundColor: [cafeMain, cafeCrema],
-                        borderColor: negro75,
+                        backgroundColor: setColor1,
+                        borderColor: negro,
                         borderWidth: 1
                     }]
                 },
@@ -133,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 size: 22,
                                 family: `serif`
                             },
-                            color: negro75
+                            color: negro
                         },
                         legend: {
                             display: false,
@@ -151,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     size: 13,
                                     family: `serif`
                                 },
-                                color: negro75
+                                color: negro
                             }
                         },
                         y: {
@@ -161,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     size: 13,
                                     family: `serif`
                                 },
-                                color: negro75
+                                color: negro
                             }
                         }
                     }
@@ -178,8 +194,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     labels: data.flop_productos.map(p => p.producto__nombre),
                     datasets: [{
                         data: data.flop_productos.map(p => p.total_vendido),
-                        backgroundColor: [cafeMain, cafeCrema],
-                        borderColor: negro75,
+                        backgroundColor: setColor2,
+                        borderColor: negro,
                         borderWidth: 1
                     }]
                 },
@@ -194,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 size: 22,
                                 family: `serif`
                             },
-                            color: negro75
+                            color: negro
                         },
                         legend: {
                             display: false,
@@ -212,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     size: 13,
                                     family: `serif`
                                 },
-                                color: negro75
+                                color: negro
                             }
                         },
                         y: {
@@ -222,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     size: 13,
                                     family: `serif`
                                 },
-                                color: negro75
+                                color: negro
                             }
                         }
                     }
@@ -239,8 +255,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     labels: data.top_categorias.map(c => c.producto__categoriaPrincipal__nombre),
                     datasets: [{
                         data: data.top_categorias.map(c => c.total_vendido),
-                        backgroundColor: [cafeMain, cafeCrema],
-                        borderColor: negro75,
+                        backgroundColor: setColor1,
+                        borderColor: negro,
                     }]
                 },
                 options: {
@@ -253,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 size: 22,
                                 family: `serif`
                             },
-                            color: negro75
+                            color: negro
                         },
                         legend: {
                             labels: {
@@ -261,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     size: 13,
                                     family: `serif`
                                 },
-                                color: negro75
+                                color: negro
                             }
                         },
 
@@ -277,8 +293,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     labels: data.flop_categorias.map(c => c.producto__categoriaPrincipal__nombre),
                     datasets: [{
                         data: data.flop_categorias.map(c => c.total_vendido),
-                        backgroundColor: [cafeMain, cafeCrema],
-                        borderColor: negro75,
+                        backgroundColor: setColor2,
+                        borderColor: negro,
                     }]
                 },
                 options: {
@@ -291,7 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 size: 22,
                                 family: `serif`
                             },
-                            color: negro75
+                            color: negro
                         },
                         legend: {
                             labels: {
@@ -299,7 +315,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     size: 13,
                                     family: `serif`
                                 },
-                                color: negro75
+                                color: negro
                             }
                         },
 

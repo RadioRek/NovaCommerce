@@ -1,6 +1,12 @@
 /* transiciones suaves */
 .table tbody td {
 	transition: background-color 0.25s ease, box-shadow 0.25s ease;
+    background-color: var(--blanco);
+}
+
+.table thead th {
+    background-color: var(--grisClaro);
+    color: var(--negro);
 }
 
 .tablaProductos {
@@ -20,35 +26,26 @@
 
 /* sobrescribe el box-shadow de bootstrap en hover */
 .table.table-striped-columns tbody tr:hover td {
-	--bs-table-bg-state: var(--blanco10) !important;
-}
-
-/* cambia el cursor al pasar por la fila */
-.table.table-striped-columns tbody tr:hover {
-	cursor: pointer;
+	--bs-table-bg-state: var(--gris);
 }
 
 .pill {
-    background-color: var(--cafeCrema);
-    color: var(--blanco5);
-    text-align: center;
-    margin: 0;
-    padding: 4px 8px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: 0.3s ease;
-    border: none;
+	background-color: var(--colorMarca1);
+	color: var(--masBlanco);
+	text-align: center;
+	margin: 0;
+	padding: 6px 10px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: 0.3s ease;
+	border: none;
 }
 
 .pill:hover {
-    background-color: var(--cafeCrema2);
-    color: var(--blanco5);
-}
-
-.card {
-	background-color: white;
+    background-color: color-mix(in srgb, var(--colorMarca1) 80%, black);
+	color: var(--masBlanco);
 }
 
 .panelControlContainer {
-    background-color: var(--blanco5);
+    background-color: var(--blanco);
 }

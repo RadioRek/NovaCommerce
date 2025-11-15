@@ -15,54 +15,83 @@
     <input type="number" id="usuarioId" value="{{usuario.id}}" hidden>
 
     <div class="ContenedorSecundario card p-4">
-        <form action="" id="editarUsuario" class="row">
-            <h3 class="text-center mb-3 head3">Actualizar usuario {{usuario.username}}</h3>
+        <h3 class="text-center mb-3 head3">Actualizar usuario {{usuario.username}}</h3>
 
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-2 d-flex flex-column align-items-center">
-                <label for="nombreInput" class="form-label">Nombre</label>
-                <input type="text" id="nombreInput" class="form-control" placeholder="Nombre del usuario"
-                    value="{{usuario.nombre}}">
+        <form action="" id="editarUsuario" class="row mt-4">
+
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="text" id="nombreInput" class="input-field" placeholder="Nombre del usuario"
+                        value="{{usuario.nombre}}" required>
+                    <label class="input-label" for="nombreInput">Nombre</label>
+                    <span class="input-highlight"></span>
+                </div>
             </div>
 
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-2 d-flex flex-column align-items-center">
-                <label for="apellidoInput" class="form-label">Apellido</label>
-                <input type="text" id="apellidoInput" class="form-control" placeholder="Apellido del usuario"
-                    value="{{usuario.apellido}}">
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="text" id="apellidoInput" class="input-field" placeholder="Apellido del usuario"
+                        value="{{usuario.apellido}}" required>
+                    <label class="input-label" for="apellidoInput">Apellido</label>
+                    <span class="input-highlight"></span>
+                </div>
             </div>
 
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-2 d-flex flex-column align-items-center">
-                <label for="usernameInput" class="form-label">Username</label>
-                <input type="text" id="usernameInput" class="form-control" placeholder="Username del usuario"
-                    value="{{usuario.username}}">
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="text" id="usernameInput" class="input-field" placeholder="Username del usuario"
+                        value="{{usuario.username}}" required>
+                    <label class="input-label" for="usernameInput">Username</label>
+                    <span class="input-highlight"></span>
+                </div>
             </div>
 
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-2 d-flex flex-column align-items-center">
-                <label for="emailInput" class="form-label">Email</label>
-                <input type="email" id="emailInput" class="form-control" placeholder="Email del usuario"
-                    value="{{usuario.email}}">
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="email" id="emailInput" class="input-field" placeholder="Email del usuario"
+                        value="{{usuario.email}}" required>
+                    <label class="input-label" for="emailInput">Email</label>
+                    <span class="input-highlight"></span>
+                </div>
             </div>
 
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-2 d-flex flex-column align-items-center">
-                <label for="direccionInput" class="form-label">Direccion</label>
-                <input type="text" id="direccionInput" class="form-control" placeholder="Direccion del usuario"
-                    value="{{usuario.direccion}}">
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="text" id="direccionInput" class="input-field" placeholder="Direccion del usuario"
+                        value="{{usuario.direccion}}" required>
+                    <label class="input-label" for="direccionInput">Direccion</label>
+                    <span class="input-highlight"></span>
+                </div>
             </div>
 
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                <label for="telefonoInput" class="form-label">Telefono</label>
-                <input type="number" id="telefonoInput" class="form-control" placeholder="Telefono del usuario"
-                    value="{{usuario.telefono}}">
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="number" id="telefonoInput" class="input-field" placeholder="Telefono del usuario"
+                        value="{{usuario.telefono}}" required>
+                    <label class="input-label" for="telefonoInput">Telefono</label>
+                    <span class="input-highlight"></span>
+                </div>
             </div>
 
-            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-2 d-flex flex-column align-items-center">
-                <label for="passwordInput" class="form-label">Password</label>
-                <input type="password" id="passwordInput" class="form-control" placeholder="Password del usuario">
-            </div>
+            <div class="col-12 col-sm-6 m-0 p-0 px-2 mb-5 d-flex flex-column align-items-center">
 
+                <div class="input-container w-95">
+                    <input type="password" id="passwordInput" class="input-field" placeholder="Password del usuario"
+                        required>
+                    <label class="input-label" for="passwordInput">Password</label>
+                    <span class="input-highlight"></span>
+                </div>
+            </div>
 
             <div class="col-12 m-0 p-0 px-2 d-flex justify-content-between mt-2">
                 <a href="{% url 'panelControl' %}" class="botonGenerico">Volver</a>
-                <button type="submit" class="botonGenerico">Guardar cambios</button>
+                <button type="submit" class="botonSuccess">Guardar cambios</button>
             </div>
 
         </form>

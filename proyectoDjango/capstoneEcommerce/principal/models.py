@@ -101,7 +101,11 @@ class Producto(models.Model):
     precio = models.IntegerField()
     img = models.ImageField(upload_to="productos/", blank=True, null=True)
     stock = models.IntegerField()
-    categoriaPrincipal = models.ForeignKey('Categoria', on_delete=models.CASCADE, related_name='categoria_principal', null=True)
+    categoriaPrincipal = models.ForeignKey(
+        'Categoria',
+        on_delete=models.CASCADE,
+        related_name='categoria_principal',
+        null=True)
 
     class Meta:
         verbose_name = "Producto"
@@ -170,3 +174,32 @@ class DetalleCarrito(models.Model):
 
     def __str__(self):
         return str(self.id) + " - " + self.producto.nombre + " - " + str(self.cantidad)
+
+
+class PersonalizacionTienda(models.Model):
+    colorMarca1 = models.CharField(max_length=7, default="#715A5A")
+    colorMarca2 = models.CharField(max_length=7, default="#5C5A8C")
+    colorDanger = models.CharField(max_length=7, default="#F0616E")
+    colorSuccess = models.CharField(max_length=7, default="#2F6B4D")
+    negro = models.CharField(max_length=7, default="#37353E")
+    negroSuave = models.CharField(max_length=7, default="#5F5F6D")
+    gris = models.CharField(max_length=7, default="#9292A0")
+    blanco = models.CharField(max_length=7, default="#E4E4E7")
+    masBlanco = models.CharField(max_length=7, default="#F1F1F3")
+
+    fuentePrincipalArchivo = models.FileField(
+        upload_to="fuentes/",
+        default="fuentes/Quintessential-Regular.ttf"
+    )
+
+    fuenteSecundariaArchivo = models.FileField(
+        upload_to="fuentes/",
+        default="fuentes/LuxuriousRoman-Regular.ttf"
+    )
+
+    class Meta:
+        verbose_name = "Personalización de Tienda"
+        verbose_name_plural = "Personalizaciones de Tienda"
+
+    def __str__(self):
+        return "Personalización de Tienda " + str(self.id)

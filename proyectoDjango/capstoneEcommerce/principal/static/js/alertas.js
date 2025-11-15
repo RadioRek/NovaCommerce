@@ -12,11 +12,11 @@ async function crearElementoModal(textoHeader, textoBody, funcionParaContinuar, 
                 <h6 class="head6 m-0 p-0">${textoHeader}</h6>
             </div>
             <div class="modalBody d-flex justify-content-center">
-                <p class="parrafoPequeño m-0 p-0">${textoBody}</p>
+                <p class="parrafoPequeño m-0 p-0 text-center">${textoBody}</p>
             </div>
             <div class="modalFooter d-flex justify-content-between">
                 <button class="btnCerrarModal botonGenerico">Cerrar</button>
-                <button class="btnContinuar botonGenerico">Continuar</button>
+                <button class="btnContinuar botonDanger">Continuar</button>
             </div>
         </div>
     </div>

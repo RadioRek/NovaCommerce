@@ -11,13 +11,20 @@
 
 <div class="contenedorLogin d-flex flex-column justify-content-center align-items-center">
     <form action="" id="loginForm" class="card p-4 d-flex flex-column">
-        <h2 class="parrafo text-center">Iniciar sesión</h2>
+        <h4 class="head4 text-center mb-5">Iniciar sesión</h4>
 
-        <label for="usernameInput" class="form-label textoMinimo">Username</label>
-        <input type="text" class="form-control mb-2 textoMinimo estiloInput" id="usernameInput" placeholder="username de usuario" required />
+        <div class="input-container mb-5">
+            <input type="text" id="usernameInput" class="input-field" required placeholder="username de usuario">
+            <label class="input-label" for="usernameInput">Username</label>
+            <span class="input-highlight"></span>
+        </div>
 
-        <label for="passwordInput" class="form-label textoMinimo">Password</label>
-        <input type="password" class="form-control mb-4 textoMinimo estiloInput" id="passwordInput" placeholder="*********" required />
+        <div class="input-container mb-4">
+            <input type="password" id="passwordInput" class="input-field" required placeholder="*********">
+            <label class="input-label" for="passwordInput">Password</label>
+            <span class="input-highlight"></span>
+        </div>
+
 
         <button class="botonGenerico my-2 px-4" type="submit">Iniciar sesión</button>
         <p class="parrafoPequeño m-0 text-center">

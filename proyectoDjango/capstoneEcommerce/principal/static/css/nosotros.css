@@ -6,7 +6,7 @@
 @media (min-width: 576px) {
     .superGrilla {
         display: grid;
-        background-color: var(--blanco5);
+        background-color: var(--masBlanco);
         row-gap: 16px;
         grid-template-rows: 1fr 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr;

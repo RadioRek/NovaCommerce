@@ -408,6 +408,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	const csrftoken = getCookie("csrftoken");
 
 
+	document.getElementById("imgInput").addEventListener("change", function () {
+		const fileNameSpan = document.getElementById("imgFileName");
+		fileNameSpan.textContent = this.files.length > 0 ? this.files[0].name : "Ningún archivo";
+	});
+
 	// ===========================================================================
 	// ejecutar funciones
 	poblarTablaVentasPendientes(null, csrftoken);
@@ -464,7 +469,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	//===========================================================================
-	// Manejar envío del formulario de producto				tablaProductosBody.innerHTML = "";
+	// Manejar envío del formulario de producto
 
 	formularioProducto.addEventListener("submit", async function (event) {
 		event.preventDefault();
@@ -502,40 +507,69 @@ document.addEventListener("DOMContentLoaded", function () {
 			headers: { "X-CSRFToken": csrftoken, },
 		}).then(async (response) => {
 			if (response.ok) {
-				formularioProducto.reset();
 				eliminarUltimoToast();
 				crearElementoToast("Exito", "Producto creado con exito", "success");
-
-				let data = await response.json();
-
-				for (let categoriaId of categorias) {
-					let formDataCategoriaProducto = new FormData();
-					formDataCategoriaProducto.append("producto", data.id);
-					formDataCategoriaProducto.append("categoria", categoriaId);
-
-					fetch("/api/categoria-productos/", {
-						method: "POST",
-						body: formDataCategoriaProducto,
-						headers: { "X-CSRFToken": csrftoken, },
-					}).then(async (response) => {
-						if (response.ok) {
-							let dataCategoriaProducto = await response.json();
-						} else {
-							let errorData = await response.json().catch(() => ({}));
-						}
-					}).catch((error) => {
-						console.error("Error en la solicitud:", error); "/api/productos/";
-					});
-				}
-				categorias = [];
+				let data = response.json();
+				return data;
 			}
 			if (!response.ok) {
-				let data = await response.json();
+				categorias = [];
+				// vaciar contenedor de pills
+				contenedorPills.innerHTML = "";
+				// resetear el input file name
+				document.getElementById("imgFileName").textContent = "Ningún archivo";
+				// resetear formulario
 				formularioProducto.reset();
+				// eliminar alerta de procesamiento
 				eliminarUltimoToast();
 				crearElementoToast("Error", "Error al crear el producto", "error");
+				throw new Error("Error en la respuesta del servidor");
 			}
+		}).then((data) => {
+
+			for (let categoriaId of categorias) {
+				let formDataCategoriaProducto = new FormData();
+				categoriaId = parseInt(categoriaId);
+				formDataCategoriaProducto.append("producto", data.id);
+				formDataCategoriaProducto.append("categoria", categoriaId);
+
+				fetch("/api/categoria-productos/", {
+					method: "POST",
+					body: formDataCategoriaProducto,
+					headers: { "X-CSRFToken": csrftoken },
+				}).then(async (response) => {
+					if (response.ok) {
+						// categoría-producto creada con éxito
+					} else {
+						// error al crear categoría-producto
+					}
+				}).then((dataCategoriaProducto) => {
+					// categoría-producto creada con éxito, data de la respuesta
+
+				}).catch((error) => {
+					console.error("Error en la solicitud:", error);
+				});
+			}
+			// resetear formulario
+			formularioProducto.reset();
+			// limpiar array de categorias
+			categorias = [];
+			// vaciar contenedor de pills
+			contenedorPills.innerHTML = "";
+			// resetear el input file name
+			document.getElementById("imgFileName").textContent = "Ningún archivo";
+
+
 		}).catch((error) => {
+			// resetear formulario
+			formularioProducto.reset();
+			// limpiar array de categorias
+			categorias = [];
+			// vaciar contenedor de pills
+			contenedorPills.innerHTML = "";
+			// resetear el input file name
+			document.getElementById("imgFileName").textContent = "Ningún archivo";
+
 			console.error("Error en la solicitud:", error);
 			eliminarUltimoToast();
 			crearElementoToast("Error", "Error al crear el producto", "error");

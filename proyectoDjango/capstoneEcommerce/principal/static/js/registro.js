@@ -23,11 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	let formularioRegistro = document.getElementById("formularioRegistro");
 
 
-
 	// prevenir el default del formulario
 	formularioRegistro.addEventListener("submit", function (event) {
 		event.preventDefault();
-		
+
 		let username = document.getElementById("usernameInput").value;
 		let nombreUsurio = document.getElementById("nombreInput").value;
 		let apellidoUsuario = document.getElementById("apellidoInput").value;
@@ -41,14 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// validar que las contraseñas coincidan
 		if (password !== confPassword) {
-			elementoAlerta.style.display = "block";
-			elementoAlerta.innerText = "Las contraseñas no coinciden.";
+			crearElementoToast("Error", "Las contraseñas no coinciden.", "error");
 			return;
 		}
 		// si la contraseña no tiene 1 simbolo
 		if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-			elementoAlerta.style.display = "block";
-			elementoAlerta.innerText = "La contraseña debe contener al menos un símbolo.";
+			crearElementoToast("Error", "La contraseña debe contener al menos un símbolo.", "error");
 			return;
 		}
 
@@ -70,13 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			},
 		}).then(async (response) => {
 			if (response.ok) {
-				// le quitamos la clase alert-danger al elemento de alerta
-				elementoAlerta.style.display = "block";
-				elementoAlerta.classList.remove("alert-danger");
-				// le agregamos la clase alert-success al elemento de alerta}
-				elementoAlerta.classList.add("alert-success");
-				elementoAlerta.innerText = "Usuario creado exitosamente. Redirigiendo al inicio de sesión...";
-				// redirigir al usuario al login despues de 2 segundos
+				crearElementoToast("Éxito", "Registro exitoso. Redirigiendo al inicio de sesión...", "success");
 				setTimeout(() => {
 					// aqui despues hay que cambiar al dominio real
 					window.location.href = "/sitioLogin/";
@@ -85,22 +76,17 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 			if (!response.ok) {
 				const errorData = await response.json();
-				console.error(errorData);
 				if (errorData.username) {
-					elementoAlerta.style.display = "block";
-					elementoAlerta.innerText = "El nombre de usuario ya existe.";
+					crearElementoToast("Error", "El nombre de usuario ya está en uso.", "error");
 				}
 				else if (errorData.email) {
-					elementoAlerta.style.display = "block";
-					elementoAlerta.innerText = "El correo electrónico ya está en uso.";
+					crearElementoToast("Error", "El correo electrónico ya está en uso.", "error");
 				}
 				else if (errorData.password) {
-					elementoAlerta.style.display = "block";
-					elementoAlerta.innerText = "La contraseña es demasiado débil.";
+					crearElementoToast("Error", "La contraseña no cumple con los requisitos.", "error");
 				}
 				else {
-					elementoAlerta.style.display = "block";
-					elementoAlerta.innerText = "Error desconocido. Inténtalo de nuevo mas tarde.";
+					crearElementoToast("Error", "Error en el registro. Por favor, inténtelo de nuevo.", "error");
 				}
 			}
 		}).catch((error) => {

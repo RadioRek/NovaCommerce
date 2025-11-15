@@ -9,6 +9,286 @@
 
 {% block body %}
 
+<div class="contenedorPersonalizacion p-5 d-flex justify-content-center">
+
+    <div class="card p-4">
+        <h1 class="head1 text-center">Bienvenido a la personalizacion</h1>
+
+        <form action="" class="row" id="formPersonalizacion">
+
+            <h3 class="head3 text-center mt-4 mb-5">Colores de marca y personalización</h3>
+
+            <div class="contenedorFlex mb-5 mt-4">
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container-color">
+                        <label for="colorMarca1" class="input-label-color">Color de marca 1</label>
+
+                        <div class="color-wrapper">
+                            <input type="color" class="input-color-real" id="colorMarca1" name="colorMarca1"
+                                value="#ff0000">
+
+                            <div class="color-display"></div>
+                        </div>
+
+                        <div class="input-container mt-2">
+                            <input type="text" id="colorMarca1Text" name="colorMarca1Text" class="input-field"
+                                placeholder="#000000" required>
+                            <label class="input-label" for="colorMarca1Text"></label>
+                            <span class="input-highlight"></span>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container-color">
+                        <label for="colorMarca2" class="input-label-color">Color de marca 2</label>
+
+                        <div class="color-wrapper">
+                            <input type="color" class="input-color-real" id="colorMarca2" name="colorMarca2"
+                                value="#ff0000">
+
+                            <div class="color-display"></div>
+                        </div>
+
+
+
+                        <div class="input-container mt-2">
+                            <input type="text" id="colorMarca2Text" name="colorMarca2Text" class="input-field"
+                                placeholder="#000000" required>
+                            <label class="input-label" for="colorMarca2Text"></label>
+                            <span class="input-highlight"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container-color">
+                        <label for="colorDanger" class="input-label-color">Color de peligro</label>
+
+                        <div class="color-wrapper">
+                            <input type="color" class="input-color-real" id="colorDanger" name="colorDanger"
+                                value="#ff0000">
+
+                            <div class="color-display"></div>
+                        </div>
+
+
+                        <div class="input-container mt-2">
+                            <input type="text" id="colorDangerText" name="colorDangerText" class="input-field"
+                                placeholder="#000000" required>
+                            <label class="input-label" for="colorDangerText"></label>
+                            <span class="input-highlight"></span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container-color">
+                        <label for="colorSuccess" class="input-label-color">Color de éxito</label>
+
+                        <div class="color-wrapper">
+                            <input type="color" class="input-color-real" id="colorSuccess" name="colorSuccess"
+                                value="#ff0000">
+
+                            <div class="color-display"></div>
+                        </div>
+
+                        <div class="input-container mt-2">
+                            <input type="text" id="colorSuccessText" name="colorSuccessText" class="input-field"
+                                placeholder="#000000" required>
+                            <label class="input-label" for="colorSuccessText"></label>
+                            <span class="input-highlight"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <h3 class="head3 text-center mt-4 mb-5">Escala de grises</h3>
+
+            <div class="contenedorFlex mb-5 mt-4">
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container-color">
+                        <label for="colorNegro" class="input-label-color">Color negro</label>
+
+                        <div class="color-wrapper">
+                            <input type="color" class="input-color-real" id="colorNegro" name="colorNegro"
+                                value="#000000">
+
+                            <div class="color-display"></div>
+                        </div>
+
+                        <div class="input-container mt-2">
+                            <input type="text" id="colorNegroText" name="colorNegroText" class="input-field"
+                                placeholder="#000000" required>
+                            <label class="input-label" for="colorNegroText"></label>
+                            <span class="input-highlight"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container-color">
+                        <label for="colorNegroSuave" class="input-label-color">Color negro suave</label>
+
+                        <div class="color-wrapper">
+                            <input type="color" class="input-color-real" id="colorNegroSuave" name="colorNegroSuave"
+                                value="#000000">
+
+                            <div class="color-display"></div>
+                        </div>
+
+                        <div class="input-container mt-2">
+                            <input type="text" id="colorNegroSuaveText" name="colorNegroSuaveText" class="input-field"
+                                placeholder="#000000" required>
+                            <label class="input-label" for="colorNegroSuaveText"></label>
+                            <span class="input-highlight"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container-color">
+                        <label for="colorGris" class="input-label-color">Color gris</label>
+
+                        <div class="color-wrapper">
+                            <input type="color" class="input-color-real" id="colorGris" name="colorGris"
+                                value="#000000">
+
+                            <div class="color-display"></div>
+                        </div>
+
+                        <div class="input-container mt-2">
+                            <input type="text" id="colorGrisText" name="colorGrisText" class="input-field"
+                                placeholder="#000000" required>
+                            <label class="input-label" for="colorGrisText"></label>
+                            <span class="input-highlight"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container-color">
+                        <label for="colorBlanco" class="input-label-color">Color blanco</label>
+
+                        <div class="color-wrapper">
+                            <input type="color" class="input-color-real" id="colorBlanco" name="colorBlanco"
+                                value="#000000">
+
+                            <div class="color-display"></div>
+                        </div>
+
+                        <div class="input-container mt-2">
+                            <input type="text" id="colorBlancoText" name="colorBlancoText" class="input-field"
+                                placeholder="#000000" required>
+                            <label class="input-label" for="colorBlancoText"></label>
+                            <span class="input-highlight"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container-color">
+                        <label for="colorMasBlanco" class="input-label-color">Color más blanco</label>
+
+                        <div class="color-wrapper">
+                            <input type="color" class="input-color-real" id="colorMasBlanco" name="colorMasBlanco"
+                                value="#000000">
+
+                            <div class="color-display"></div>
+                        </div>
+
+                        <div class="input-container mt-2">
+                            <input type="text" id="colorMasBlancoText" name="colorMasBlancoText" class="input-field"
+                                placeholder="#000000" required>
+                            <label class="input-label" for="colorMasBlancoText"></label>
+                            <span class="input-highlight"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="contenedorFlex">
+
+
+                </div>
+
+
+            </div>
+
+            <h3 class="head3 text-center mt-4 mb-5">Fuentes</h3>
+
+
+            <div class="contenedorFlex mb-5">
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container">
+
+                        <input class="file-hidden" type="file" id="fuentePrincipalArchivo" name="fuentePrincipalArchivo"
+                            accept=".ttf,.otf">
+                        <label class="input-label" for="fuentePrincipalArchivo">Fuente principal</label>
+
+                        <div class="file-wrapper">
+                            <button type="button" class="file-button"
+                                onclick="document.getElementById('fuentePrincipalArchivo').click()">
+                                Seleccionar archivo
+                            </button>
+                            <span class="file-name" id="fuentePrincipalArchivoName">Ningún archivo</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container">
+
+                        <input class="file-hidden" type="file" id="fuenteSecundariaArchivo"
+                            name="fuenteSecundariaArchivo" accept=".ttf,.otf">
+                        <label class="input-label" for="fuenteSecundariaArchivo">Fuente secundaria</label>
+
+                        <div class="file-wrapper">
+                            <button type="button" class="file-button"
+                                onclick="document.getElementById('fuenteSecundariaArchivo').click()">
+                                Seleccionar archivo
+                            </button>
+                            <span class="file-name" id="fuenteSecundariaArchivoName">Ningún archivo</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="d-flex justify-content-between mt-4 mb-2">
+                <button type="button" id="botonResetEstilos" class="botonReset me-3">Restablecer estilos</button>
+                <button type="submit" class="botonGenerico">Guardar cambios</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
 
 <script src="{% static 'js/personalizar.js' %}"></script>
 {% endblock body %}

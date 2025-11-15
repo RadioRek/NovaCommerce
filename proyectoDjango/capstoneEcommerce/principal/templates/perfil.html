@@ -11,7 +11,7 @@
 
 <div class="row m-0 p-2 p-sm-4 justify-content-center">
 
-    <div class="col-12">
+    <div class="col-12 mb-4">
         <h1 class="head1 text-center">Mi Perfil</h1>
     </div>
 
@@ -57,14 +57,15 @@
 
                 {% for venta in ventas %}
 
-                    <div class="card cartaVenta m-0 p-0">
-                        <div class="card-body p-2">
-                            <h5 class="head5 p-0 m-0">Compra {{ venta.id }}</h5>
-                            <p class="parrafoPequeño p-0 m-0"><strong>Total:</strong> ${{ venta.totalVenta }}</p>
-                            <a href="{% url 'confirmacionOrden' venta.id %}" class="textoMinimo">Ver detalles</a>
-                        </div>
+                <div class="card cartaVenta m-0 p-0">
 
+                    <div class="card-body p-2">
+                        <h5 class="head5 p-0 m-0">Compra {{ venta.id }}</h5>
+                        <p class="parrafoPequeño p-0 m-0"><strong>Total:</strong> ${{ venta.totalVenta }}</p>
+                        <a href="{% url 'confirmacionOrden' venta.id %}" class="textoMinimo">Ver detalles</a>
                     </div>
+
+                </div>
                 {% endfor %}
 
             </div>
@@ -76,63 +77,97 @@
     <div class="container col-12 col-sm-8 d-flex m-0 flex-column">
 
         <div class="card p-2 p-sm-4">
-
+            
             <div class="card-body text-center p-0">
-                <h4 class="head4">Editar Perfil</h4>
+                <h4 class="head4 mb-3">Editar Perfil</h4>
                 <input type="hidden" id="usuarioId" value="{{ user.id }}" />
-                <form id="formPerfil">
+                <form id="formPerfil" class="mt-4">
                     {% csrf_token %}
 
-                    <div class="mb-3">
-                        <label for="usernameInput" class="form-label textoMinimo">Username</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="usernameInput"
-                            name="username" placeholder="username de usuario" value="{{ user.username }}" required />
+                    <div class="mb-5 d-flex flex-column align-items-center">
+
+                        <div class="input-container w-95">
+                            <input type="text" id="usernameInput" name="username" class="input-field"
+                                placeholder="username de usuario" value="{{ user.username }}" required>
+                            <label class="input-label" for="usernameInput">Username</label>
+                            <span class="input-highlight"></span>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="nombreInput" class="form-label textoMinimo">Nombre</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="nombreInput"
-                            name="nombre" placeholder="....." value="{{ user.nombre }}" required />
+                    <div class="mb-5 d-flex flex-column align-items-center">
+
+                        <div class="input-container w-95">
+                            <input type="text" id="nombreInput" name="nombre" class="input-field" placeholder="....."
+                                value="{{ user.nombre }}" required>
+                            <label class="input-label" for="nombreInput">Nombre</label>
+                            <span class="input-highlight"></span>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="ApellidoInput" class="form-label textoMinimo">Apellido</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="ApellidoInput"
-                            name="apellido" placeholder="....." value="{{ user.apellido }}" required />
+                    <div class="mb-5 d-flex flex-column align-items-center">
+
+                        <div class="input-container w-95">
+                            <input type="text" id="ApellidoInput" name="apellido" class="input-field"
+                                placeholder="....." value="{{ user.apellido }}" required>
+                            <label class="input-label" for="ApellidoInput">Apellido</label>
+                            <span class="input-highlight"></span>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="DireccionInput" class="form-label textoMinimo">Direccion</label>
-                        <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="DireccionInput"
-                            name="direccion" placeholder="Calle Falsa 123" value="{{ user.direccion }}" required />
+                    <div class="mb-5 d-flex flex-column align-items-center">
+
+                        <div class="input-container w-95">
+                            <input type="text" id="DireccionInput" name="direccion" class="input-field"
+                                placeholder="Calle Falsa 123" value="{{ user.direccion }}" required>
+                            <label class="input-label" for="DireccionInput">Direccion</label>
+                            <span class="input-highlight"></span>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="TelefonoInput" class="form-label textoMinimo">Telefono</label>
-                        <input type="number" class="form-control mb-2 estiloInput parrafoPequeño" id="TelefonoInput"
-                            name="telefono" placeholder="953846738" value="{{ user.telefono|default:'' }}" required />
+                    <div class="mb-5 d-flex flex-column align-items-center">
+
+                        <div class="input-container w-95">
+                            <input type="number" id="TelefonoInput" name="telefono" class="input-field"
+                                placeholder="953846738" value="{{ user.telefono|default:'' }}" required>
+                            <label class="input-label" for="TelefonoInput">Telefono</label>
+                            <span class="input-highlight"></span>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="EmailInput" class="form-label textoMinimo">Email</label>
-                        <input type="email" class="form-control mb-2 estiloInput parrafoPequeño" id="EmailInput"
-                            name="email" placeholder="Tu@email.example" value="{{ user.email }}" required />
+                    <div class="mb-5 d-flex flex-column align-items-center">
+
+                        <div class="input-container w-95">
+                            <input type="email" id="EmailInput" name="email" class="input-field"
+                                placeholder="Tu@email.example" value="{{ user.email }}" required>
+                            <label class="input-label" for="EmailInput">Email</label>
+                            <span class="input-highlight"></span>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="passwordInput" class="form-label textoMinimo">Nueva contraseña</label>
-                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño"
-                            id="passwordInput" />
+                    <div class="mb-5 d-flex flex-column align-items-center">
+
+                        <div class="input-container w-95">
+                            <input type="password" id="passwordInput" class="input-field"
+                                placeholder="Nueva contraseña">
+                            <label class="input-label" for="passwordInput">Nueva contraseña</label>
+                            <span class="input-highlight"></span>
+                        </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="passwordConfInput" class="form-label textoMinimo">Confirmar nueva contraseña</label>
-                        <input type="password" class="form-control mb-2 estiloInput parrafoPequeño"
-                            id="passwordConfInput" />
+                    <div class="mb-5 d-flex flex-column align-items-center">
+
+                        <div class="input-container w-95">
+                            <input type="password" id="passwordConfInput" class="input-field"
+                                placeholder="Confirmar nueva contraseña">
+                            <label class="input-label" for="passwordConfInput">Confirmar nueva contraseña</label>
+                            <span class="input-highlight"></span>
+                        </div>
                     </div>
 
                     <button type="submit" class="botonGenerico">Guardar cambios</button>
+
                 </form>
+
             </div>
         </div>
     </div>

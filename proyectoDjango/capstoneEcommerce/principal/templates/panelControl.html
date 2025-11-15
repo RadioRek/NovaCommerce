@@ -14,18 +14,22 @@
     <!-- Lista de ventas por confirmar -->
 
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4" id="contVentasPendientes">
-        <h5 class="head5 m-0 p-0 mx-auto text-center">Ventas por confirmar</h5>
-
+        <h5 class="head5 m-0 p-0 mx-auto text-center mb-3">Ventas por confirmar</h5>
 
         <form action="" class="row p-0 m-0 mt-4" id="buscarVentaForm">
 
             <div class="col-12 m-0 p-0 d-flex flex-column align-items-center">
-                <label for="buscarIdVentaInput" class="form-label">Id</label>
-                <input type="number" class="form-control w-95" id="buscarIdVentaInput" placeholder="Id de la venta">
-                <button type="submit" class="botonGenerico mt-2 w-75">Buscar</button>
+
+                <div class="input-container w-100 mb-4">
+                    <input type="number" id="buscarIdVentaInput" class="input-field" placeholder="Id de la venta">
+                    <label class="input-label" for="buscarIdVentaInput">Id</label>
+                    <span class="input-highlight"></span>
+                </div>
+
+                <button type="submit" class="botonGenerico w-50">Buscar</button>
+
             </div>
         </form>
-
 
         <div class="mx-2 mx-sm-4 table-responsive tablaVentConfirmar mt-4">
 
@@ -51,20 +55,26 @@
     <!-- formulario agregar Categoria -->
 
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
-        <h5 class="head5 m-0 p-0 mx-auto text-center">Rellena el formulario para agregar una categoria</h5>
-        <form action="" id="formularioCategoria">
+        <h5 class="head5 m-0 p-0 mx-auto text-center mb-3">Rellena el formulario para agregar una categoria</h5>
+        <form action="" id="formularioCategoria" class="mt-4">
 
-            <div class="row m-0 p-0 mt-2 mt-sm-4">
-                <!-- input nombre -->
+            <div class="row m-0 p-0">
 
-                <div class="col-12 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                    <label for="nombreCategoriaInput" class="form-label">Nombre</label>
-                    <input type="text" class="form-control estiloInput" id="nombreCategoriaInput"
-                        placeholder="Nombre de la categoria">
+                <div class="col-12 m-0 p-0 d-flex flex-column align-items-center">
+
+                    <div class="input-container w-100 mb-4">
+                        <input type="text" id="nombreCategoriaInput" class="input-field"
+                            placeholder="Nombre de la categoria" required>
+                        <label class="input-label" for="nombreCategoriaInput">Nombre</label>
+                        <span class="input-highlight"></span>
+                    </div>
+
                 </div>
+
             </div>
 
-            <div class="row m-0 p-0 mt-4">
+
+            <div class="row m-0 p-0">
                 <!-- boton enviar -->
 
                 <div class="col-12 justify-content-center d-flex m-0 p-0 mb-sm-0 mb-2">
@@ -80,71 +90,116 @@
     <!-- formulario agregar Producto -->
 
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
-        <h5 class="head5 m-0 p-0 mx-auto text-center" id="tituloxd">Rellena el formulario para agregar un producto</h5>
-        <form action="" id="formularioProducto">
+        <h5 class="head5 m-0 p-0 mx-auto text-center mb-3" id="tituloxd">Rellena el formulario para agregar un producto
+        </h5>
+        <form action="" id="formularioProducto" class="mt-4">
 
-            <div class="row m-0 p-0 mt-2 mt-sm-4">
+            <div class="row m-0 p-0">
+
                 <!-- input nombre -->
 
-                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                    <label for="nombreInput" class="form-label">Nombre</label>
-                    <input type="text" class="form-control w-95" id="nombreInput" placeholder="Nombre del producto">
+                <div class="col-12 col-sm-4 m-0 p-0 mb-5 d-flex flex-column align-items-center">
+
+                    <div class="input-container w-95">
+                        <input type="text" id="nombreInput" class="input-field" placeholder="Nombre del producto"
+                            required>
+                        <label class="input-label" for="nombreInput">Nombre</label>
+                        <span class="input-highlight"></span>
+                    </div>
                 </div>
 
                 <!-- input precio -->
 
-                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                    <label for="precioInput" class="form-label">Precio</label>
-                    <input type="number" class="form-control w-95" id="precioInput" placeholder="Precio del producto">
+                <div class="col-12 col-sm-4 m-0 p-0 mb-5 d-flex flex-column align-items-center">
+
+                    <div class="input-container w-95">
+                        <input type="number" id="precioInput" class="input-field" placeholder="Precio del producto"
+                            required>
+                        <label class="input-label" for="precioInput">Precio</label>
+                        <span class="input-highlight"></span>
+                    </div>
                 </div>
 
-                <!-- input imagen -->
+                <!-- input imagen (file) -->
 
-                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                    <label for="imgInput" class="form-label">Imagen</label>
-                    <input class="form-control w-95" type="file" id="imgInput">
+                <div class="col-12 col-sm-4 m-0 p-0 mb-5 d-flex flex-column align-items-center">
+
+                    <div class="input-container w-95">
+
+                        <input class="file-hidden" type="file" id="imgInput">
+                        <label class="input-label" for="imgInput">Imagen</label>
+
+                        <div class="file-wrapper">
+                            <button type="button" class="file-button"
+                                onclick="document.getElementById('imgInput').click()">
+                                Seleccionar archivo
+                            </button>
+                            <span class="file-name" id="imgFileName">Ningún archivo</span>
+                        </div>
+
+                        <span class="input-highlight"></span>
+                    </div>
                 </div>
 
-                <!-- input descripcion -->
+                <!-- textarea descripcion -->
 
-                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                    <label for="descripcionInput" class="form-label">Descripcion</label>
-                    <textarea class="form-control w-95" id="descripcionInput" rows="3"></textarea>
+                <div class="col-12 col-sm-4 m-0 p-0 mb-5 d-flex flex-column align-items-center">
+
+                    <div class="input-container w-95">
+                        <textarea class="textarea-field" id="descripcionInput" rows="3"
+                            placeholder="Descripción del producto"></textarea>
+                        <label class="input-label" for="descripcionInput">Descripcion</label>
+                        <span class="input-highlight"></span>
+                    </div>
                 </div>
 
                 <!-- input stock -->
 
-                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                    <label for="stockInput" class="form-label">Stock</label>
-                    <input type="number" class="form-control w-95" id="stockInput" placeholder="Stock del producto">
+                <div class="col-12 col-sm-4 m-0 p-0 mb-5 d-flex flex-column align-items-center">
+
+                    <div class="input-container w-95">
+                        <input type="number" id="stockInput" class="input-field" placeholder="Stock del producto"
+                            required>
+                        <label class="input-label" for="stockInput">Stock</label>
+                        <span class="input-highlight"></span>
+                    </div>
                 </div>
 
                 <!-- select categoria principal -->
 
-                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                    <label for="categoriaPrincipalSelect" class="form-label">Categoria principal</label>
-                    <select class="form-select w-95" id="categoriaPrincipalSelect"
-                        aria-label="Selecciona una categoria">
-                        <option value="" selected disabled>Selecciona una categoria</option>
-                    </select>
+                <div class="col-12 col-sm-4 m-0 p-0 mb-5 d-flex flex-column align-items-center">
+
+                    <div class="input-container w-95">
+                        <select class="select-field" id="categoriaPrincipalSelect"
+                            aria-label="Selecciona una categoria">
+                            <option value="" selected disabled>Selecciona una categoria</option>
+                        </select>
+                        <label class="input-label" for="categoriaPrincipalSelect">Categoria principal</label>
+                        <span class="input-highlight"></span>
+                    </div>
                 </div>
 
                 <!-- select categoria -->
 
-                <div class="col-12 col-sm-4 m-0 p-0 mb-sm-4 mb-2 d-flex flex-column align-items-center">
-                    <label for="categoriaSelect" class="form-label">Categoria</label>
-                    <select class="form-select w-95" id="categoriaSelect" aria-label="Selecciona una categoria">
-                        <option value="" selected disabled>Selecciona una categoria</option>
-                    </select>
+                <div class="col-12 col-sm-4 m-0 p-0 mb-5 d-flex flex-column align-items-center">
+
+                    <div class="input-container w-95">
+                        <select class="select-field" id="categoriaSelect" aria-label="Selecciona una categoria">
+                            <option value="" selected disabled>Selecciona una categoria</option>
+                        </select>
+                        <label class="input-label" for="categoriaSelect">Categoria</label>
+                        <span class="input-highlight"></span>
+                    </div>
 
                     <div class="row mt-2 w-100 gap-1" id="pillContainer">
-                        <!-- Pills de categorias seleccionadas se agregan aqui -->
+                        <!-- Pills dinámicas aquí -->
                     </div>
                 </div>
 
             </div>
 
-            <div class="row m-0 p-0 mt-4">
+
+            <div class="row m-0 p-0">
                 <!-- boton limpiar formulario -->
 
                 <div class="col-12 col-sm-6 justify-content-center d-flex m-0 p-0 mb-sm-0 mb-2">
@@ -165,23 +220,35 @@
     <!-- controles productos -->
 
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
-        <h5 class="head5 m-0 p-0 mx-auto text-center">Controles de productos</h5>
+        <h5 class="head5 m-0 p-0 mx-auto text-center mb-3">Controles de productos</h5>
 
-        <form class="row p-0 m-0 mt-4" id="buscarProductoForm">
+        <form class="row p-0 m-0 mt-4" id="buscarProductoForm" class="mt-4">
 
-            <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
-                <label for="buscarIdProductoInput" class="form-label">Id</label>
-                <input type="number" class="form-control w-95" id="buscarIdProductoInput" placeholder="Id del producto">
+            <!-- input ID -->
+
+            <div class="col-12 col-sm-6 m-0 p-0 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="number" id="buscarIdProductoInput" class="input-field" placeholder="Id del producto">
+                    <label class="input-label" for="buscarIdProductoInput">Id</label>
+                    <span class="input-highlight"></span>
+                </div>
             </div>
 
-            <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
-                <label for="buscarNombreProductoInput" class="form-label">Nombre</label>
-                <input type="text" class="form-control w-95" id="buscarNombreProductoInput"
-                    placeholder="Nombre del producto">
+            <!-- input Nombre -->
+
+            <div class="col-12 col-sm-6 m-0 p-0 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="text" id="buscarNombreProductoInput" class="input-field"
+                        placeholder="Nombre del producto">
+                    <label class="input-label" for="buscarNombreProductoInput">Nombre</label>
+                    <span class="input-highlight"></span>
+                </div>
             </div>
 
-            <div class="col-12 text-center mb-sm-4 mb-2 mt-2">
-                <button type="submit" class="botonGenerico mt-2 w-75">Buscar</button>
+            <div class="col-12 text-center mb-sm-4 mb-2">
+                <button type="submit" class="botonGenerico w-50">Buscar</button>
                 <p class="parrafoPequeñoSuave">(deja los campos vacios antes de buscar para traer todo)</p>
             </div>
         </form>
@@ -207,25 +274,35 @@
     <!-- controles usuarios -->
 
     <div class="card mx-2 mx-sm-4 p-2 p-sm-4 mt-4">
-        <h5 class="head5 m-0 p-0 mx-auto text-center">Controles de usuarios</h5>
+        <h5 class="head5 m-0 p-0 mx-auto text-center mb-3">Controles de usuarios</h5>
 
         <form action="" class="row p-0 m-0 mt-4" id="buscarUsuarioForm">
 
-            <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
-                <label for="buscarIdUsuarioInput" class="form-label">Id</label>
-                <input type="number" class="form-control w-95" id="buscarIdUsuarioInput" placeholder="Id del usuario">
+            <!-- input ID -->
 
+            <div class="col-12 col-sm-6 m-0 p-0 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="number" id="buscarIdUsuarioInput" class="input-field" placeholder="Id del usuario">
+                    <label class="input-label" for="buscarIdUsuarioInput">Id</label>
+                    <span class="input-highlight"></span>
+                </div>
             </div>
 
-            <div class="col-12 col-sm-6 m-0 p-0 d-flex flex-column align-items-center">
-                <label for="buscarUsernameUsuarioInput" class="form-label">Nombre</label>
-                <input type="text" class="form-control w-95" id="buscarUsernameUsuarioInput"
-                    placeholder="Nombre del usuario">
+            <!-- input Nombre -->
 
+            <div class="col-12 col-sm-6 m-0 p-0 mb-5 d-flex flex-column align-items-center">
+
+                <div class="input-container w-95">
+                    <input type="text" id="buscarUsernameUsuarioInput" class="input-field"
+                        placeholder="Nombre del usuario">
+                    <label class="input-label" for="buscarUsernameUsuarioInput">Nombre</label>
+                    <span class="input-highlight"></span>
+                </div>
             </div>
 
-            <div class="col-12 text-center mb-sm-4 mb-2 mt-2">
-                <button type="submit" class="botonGenerico mt-2 w-75">Buscar</button>
+            <div class="col-12 text-center mb-sm-4 mb-2">
+                <button type="submit" class="botonGenerico w-50">Buscar</button>
                 <p class="parrafoPequeñoSuave">(deja los campos vacios antes de buscar para traer todo)</p>
             </div>
 

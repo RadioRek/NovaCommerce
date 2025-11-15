@@ -10,41 +10,66 @@
 
 <div class="contenedorRegistro py-4 d-flex flex-column align-items-center">
 
-    <div class="card p-4 d-flex flex-column">
-        <h2 class="parrafo text-center mb-4">Crear cuenta</h2>
-        <form action="" id="formularioRegistro">
-            <label for="usernameInput" class="form-label textoMinimo">Username</label>
-            <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="usernameInput" placeholder="username de usuario" required />
+    <div class="card p-5 d-flex flex-column">
+        <h4 class="head4 text-center mb-4">Ingresa tus datos para crear tu cuenta</h4>
 
-            <label for="nombreInput" class="form-label textoMinimo">Nombre</label>
-            <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="nombreInput" placeholder="....." required />
+        <form action="" id="formularioRegistro" class="mt-5">
 
-            <label for="apellidoInput" class="form-label textoMinimo">Apellido</label>
-            <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="apellidoInput" placeholder="....." required />
+            <div class="input-container mb-5">
+                <input type="text" id="usernameInput" class="input-field" required placeholder="Escribe tu usuario">
+                <label class="input-label" for="usernameInput">Username</label>
+                <span class="input-highlight"></span>
+            </div>
 
-            <label for="direccionInput" class="form-label textoMinimo">Direccion</label>
-            <input type="text" class="form-control mb-2 estiloInput parrafoPequeño" id="direccionInput" placeholder="Calle Falsa 123" required />
+            <div class="input-container mb-5">
+                <input type="text" id="nombreInput" class="input-field" required placeholder="Escribe tu nombre">
+                <label class="input-label" for="nombreInput">Nombre</label>
+                <span class="input-highlight"></span>
+            </div>
 
-            <label for="telefonoInput" class="form-label textoMinimo">Telefono</label>
-            <input type="number" class="form-control mb-2 estiloInput parrafoPequeño" id="telefonoInput" placeholder="953846738" required />
+            <div class="input-container mb-5">
+                <input type="text" id="apellidoInput" class="input-field" required placeholder="Escribe tu apellido">
+                <label class="input-label" for="apellidoInput">Apellido</label>
+                <span class="input-highlight"></span>
+            </div>
 
-            <label for="emailInput" class="form-label textoMinimo">Email</label>
-            <input type="email" class="form-control mb-2 estiloInput parrafoPequeño" id="emailInput" placeholder="Tu@email.example" />
+            <div class="input-container mb-5">
+                <input type="text" id="direccionInput" class="input-field" required placeholder="Ej: Calle Falsa 123">
+                <label class="input-label" for="direccionInput">Direccion</label>
+                <span class="input-highlight"></span>
+            </div>
 
-            <label for="passwordInput" class="form-label textoMinimo">Password</label>
-            <input type="password" class="form-control mb-2 estiloInput parrafoPequeño" id="passwordInput" required />
+            <div class="input-container mb-5">
+                <input type="number" id="telefonoInput" class="input-field" required placeholder="Ej: 987654321">
+                <label class="input-label" for="telefonoInput">Telefono</label>
+                <span class="input-highlight"></span>
+            </div>
 
-            <label for="confPasswordInput" class="form-label textoMinimo">Confirmar password</label>
-            <input type="password" class="form-control mb-4 estiloInput parrafoPequeño" id="confPasswordInput" required />
+            <div class="input-container mb-5">
+                <input type="email" id="emailInput" class="input-field" placeholder="tu@correo.com">
+                <label class="input-label" for="emailInput">Email</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-container mb-5">
+                <input type="password" id="passwordInput" class="input-field" required
+                    placeholder="Mínimo 8 caracteres">
+                <label class="input-label" for="passwordInput">Password</label>
+                <span class="input-highlight"></span>
+            </div>
+
+            <div class="input-container mb-5">
+                <input type="password" id="confPasswordInput" class="input-field" required
+                    placeholder="Repite tu contraseña">
+                <label class="input-label" for="confPasswordInput">Confirmar password</label>
+                <span class="input-highlight"></span>
+            </div>
 
             <div class="d-flex justify-content-center">
                 <button type="submit" class="botonGenerico my-2 px-4 w-50" id="crearCuentaBtn">Crear cuenta</button>
             </div>
         </form>
 
-        <div class="alert alert-danger text-center" role="alert" id="textoAlerta">
-            SuperEQuisde
-        </div>
         <p class="parrafoPequeño m-0 text-center">
             ¿Ya tienes una cuenta?
             <a href="{% url 'sitioLogin' %}" class="parrafoPequeño">Inicia sesión</a>

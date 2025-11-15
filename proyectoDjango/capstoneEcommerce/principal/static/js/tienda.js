@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
 							<h6 class="head6 m-0">${escapeHtml(nombre)}</h6>
 							<parrafo class="parrafoPequeño">${precio}</parrafo>
 							<div class="mt-auto d-flex m-0 p-0 flex-wrap gap-2">
-								<button class="botonGenerico flex-shrink-0" onclick="agregarAlCarrito(${p.id})">Agregar al carrito</button>
+								<button class="botonSuccess flex-shrink-0" onclick="agregarAlCarrito(${p.id})">Agregar al carrito</button>
 								<a href="${detalleUrl}" class="text-decoration-none flex-shrink-0 botonGenerico">Ver detalle</a>
 							</div>
 						</div>

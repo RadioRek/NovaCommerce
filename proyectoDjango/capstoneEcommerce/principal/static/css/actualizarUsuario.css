@@ -1,5 +1,5 @@
 .contenedorActualizarUsuario {
-	background-color: var(--cafeMainSecundario2);
+	background-color: var(--blanco);
     padding-top: 40px;
     padding-bottom: 40px;
 }
@@ -14,7 +14,7 @@
     }
 
     .contenedorActualizarUsuario {
-        padding-top: 160px;
-        padding-bottom: 160px;
+        padding-top: 80px;
+        padding-bottom: 80px;
     }
 }
