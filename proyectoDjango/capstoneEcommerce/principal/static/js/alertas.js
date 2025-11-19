@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function crearElementoModal(textoHeader, textoBody, funcionParaContinuar, tipoModal) {
     let template = document.createElement("template");
+    
     template.innerHTML = `
     <div class="alertaModal">
         <div class="superModal">

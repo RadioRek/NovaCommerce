@@ -1,5 +1,7 @@
 from django.urls import path, include
 from . import views
+from django.contrib.auth import views as auth_views
+
 
 # cositas de la API
 from rest_framework.routers import DefaultRouter
@@ -19,7 +21,8 @@ router.register(r'personalizacion-tienda', views.PersonalizacionTiendaViewSet, b
 urlpatterns = [
     # aqui se agregan las urls de la app principal (las rutas que se ingresan en el navegador)
 
-    # se le indica la url de la ruta, la funcion del archivo views.py que se va a ejecutar y un nombre para la ruta para identificarla
+    # se le indica la url de la ruta, la funcion del archivo views.py que se
+    # va a ejecutar y un nombre para la ruta para identificarla
     path("", views.home, name="home"),
     path("home/", views.home, name="home"),
     path("registro/", views.registro, name="registro"),
@@ -38,6 +41,39 @@ urlpatterns = [
     path("personalizarTienda/", views.personalizarTienda, name="personalizarTienda"),
 
     path("testEquisde/", views.testEquisde, name="testEquisde"),
+
+    path(
+        "password-reset/",
+        auth_views.PasswordResetView.as_view(
+            template_name="registration/password_reset_form.html"
+        ),
+        name="password_reset",
+    ),
+
+    path(
+        "password-reset/done/",
+        auth_views.PasswordResetDoneView.as_view(
+            template_name="registration/password_reset_done.html"
+        ),
+        name="password_reset_done",
+    ),
+
+    path(
+        "reset/<uidb64>/<token>/",
+        auth_views.PasswordResetConfirmView.as_view(
+            template_name="registration/password_reset_confirm.html",
+            success_url="/reset/done/"
+        ),
+        name="password_reset_confirm",
+    ),
+    
+    path(
+        "reset/done/",
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name="registration/password_reset_complete.html"
+        ),
+        name="password_reset_complete",
+    ),
 
     # ruta estilos dinamicos Css
     path("estilos.css", views.estilos_css, name="estilos_css"),

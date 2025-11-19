@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-	let API_URL = "/api/productos/";
-
 	let grid = document.getElementById("productosGrid");
 	let paginationEl = document.getElementById("pagination");
 
@@ -13,8 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 	async function fetchProducts(page, query = "") {
+
+		let API_URL = "/api/productos/";
+
 		setLoading(true);
+
 		let url = API_URL + `?page=${encodeURIComponent(page)}`;
+
 		if (query) {
 			url += "&" + query;
 		}
@@ -22,21 +25,19 @@ document.addEventListener("DOMContentLoaded", function () {
 		fetch(url, {
 			method: "GET",
 			credentials: "same-origin",
-		}).then(async (response) => {
+		}).then((response) => {
+
 			if (response.ok) {
-				let data = await response.json();
-
-				if (data && data.results) {
-					renderProducts(data.results);
-					renderPagination(data.count, page, 8);
-				} else {
-					renderProducts([]);
-					renderPagination(0, page, 8);
-				}
-
+				let data = response.json();
+				return data;
 			} else {
-				console.error("Error al obtener productos");
+				renderProducts([]);
+				renderPagination(0, page, 8);
 			}
+		}).then((data) => {
+			renderProducts(data.results);
+			renderPagination(data.count, page, 8);
+
 		}).catch((error) => {
 			console.error("Error en la solicitud:", error);
 		});
@@ -44,6 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		setLoading(false);
 		paginaActual = page;
 	}
+
+	fetchProducts(1);
+
 
 	function renderPagination(totalCount, page, pageSize) {
 
@@ -139,27 +143,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		let items = "";
 
-		products.forEach((p) => {
-			const img = p.img;
-			const nombre = p.nombre || "Producto";
-			let precio;
+		products.forEach((producto) => {
+			let img = producto.img;
 
-			if (typeof p.precio === "number") {
-				precio = currency.format(p.precio);
-			} else {
-				precio = "";
-			}
-			const detalleUrl = `/producto/${p.id}/`;
+			let nombre = producto.nombre;
+
+			let precio = currency.format(producto.precio);
+
+			let detalleUrl = `/producto/${producto.id}/`;
 
 			items += `
 				<div class="col">
 					<div class="cartita card">
-						<img src="${img}" class="cartitaImg" alt="${escapeHtml(nombre)}">
+						<img src="${img}" class="cartitaImg">
 						<div class="card-body d-flex flex-column p-2">
 							<h6 class="head6 m-0">${escapeHtml(nombre)}</h6>
 							<parrafo class="parrafoPequeño">${precio}</parrafo>
 							<div class="mt-auto d-flex m-0 p-0 flex-wrap gap-2">
-								<button class="botonSuccess flex-shrink-0" onclick="agregarAlCarrito(${p.id})">Agregar al carrito</button>
+								<button class="botonSuccess flex-shrink-0" onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
 								<a href="${detalleUrl}" class="text-decoration-none flex-shrink-0 botonGenerico">Ver detalle</a>
 							</div>
 						</div>
@@ -180,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			.replace(/'/g, "&#039;");
 	}
 
-	if (grid) fetchProducts(1);
 
 
 	// Cargar categorias en el select
@@ -302,6 +302,7 @@ async function agregarAlCarrito(productId) {
 		} else {
 			if (response.status === 401) {
 				crearElementoToast("Error", "Debe iniciar sesión para agregar productos al carrito. Redirigiendo...", "error");
+
 				setTimeout(() => {
 					window.location.href = "/sitioLogin/";
 				}, 2000);

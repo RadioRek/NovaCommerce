@@ -93,6 +93,7 @@ function poblarTablaVentasPendientes(idVentaBuscar = null, csrfToken = null) {
 // Funcion para poblar la tabla de usuarios
 function poblarTablaUsuarios(idUsuarioBuscar = null, nombreUsuarioBuscar = null, csrfToken = null) {
 	let tablaUsuariosBody = document.getElementById("tablaUsuariosBody");
+	
 	if (!idUsuarioBuscar) {
 		idUsuarioBuscar = "";
 	}

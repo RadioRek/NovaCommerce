@@ -1,13 +1,14 @@
+import os
+import django
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'capstoneEcommerce.settings')
+django.setup()
+
 from principal.models import (
     DetalleVenta, Venta, CategoriaProducto, Producto, Categoria, User, MetodoPago, TipoUsuario
 )
-import os
-import django
+from datetime import datetime
 import random
-
-# Configura Django antes de importar cualquier modelo
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'capstoneEcommerce.settings')
-django.setup()
 
 # Ahora puedes importar desde tu app
 
@@ -37,7 +38,7 @@ def poblar_datos():
 
     usuario1 = {
         "username" : "Alicia",
-        "nomnbre" : "Alicia",
+        "nombre" : "Alicia",
         "apellido" : "Liddell",
         "email" : "alicia@gmail.com",
         "direccion" : "Calle Falsa 123",
@@ -48,7 +49,7 @@ def poblar_datos():
 
     usuario2 = {
         "username" : "Lizzie",
-        "nomnbre" : "Elizabeth",
+        "nombre" : "Elizabeth",
         "apellido" : "Bennet",
         "email" : "lizzie@gmail.com",
         "direccion" : "Avenida Siempre Viva 742",
@@ -59,7 +60,7 @@ def poblar_datos():
 
     usuario3 = {
         "username" : "Karlangas",
-        "nomnbre" : "Carlos",
+        "nombre" : "Carlos",
         "apellido" : "Santana",
         "email" : "krlo@gmail.com",
         "direccion" : "Boulevard de los Sueños Rotos 456",
@@ -70,7 +71,7 @@ def poblar_datos():
 
     usuario4 = {
         "username" : "Carla",
-        "nomnbre" : "Carla",
+        "nombre" : "Carla",
         "apellido" : "Gonzalez",
         "email" : "carla.g@cafe.cl",
         "direccion" : "Calle del Café 789",
@@ -81,7 +82,7 @@ def poblar_datos():
 
     usuario5 = {
         "username" : "Pedro",
-        "nomnbre" : "Pedro",
+        "nombre" : "Pedro",
         "apellido" : "Ramirez",
         "email" : "ramirez@gmail.com",
         "direccion" : "Camino Real 321",
@@ -107,7 +108,7 @@ def poblar_datos():
 
     # ==============================================================
     # Métodos de pago
-    metodos_pago_nombres = ["Transferencia Bancaria"]
+    metodos_pago_nombres = ["Transferencia"]
     for nombre in metodos_pago_nombres:
         MetodoPago.objects.create(nombre=nombre)
 
@@ -132,25 +133,25 @@ def poblar_datos():
     # ==============================================================
     # Nombres genéricos para categorías
     categorias_genericas = [
-        "Grano entero", # 0
-        "Café molido", # 1
-        "Cápsulas y pods", # 2
-        "Café de origen único", # 3
-        "Descafeinado", # 4
-        "Ediciones limitadas", # 5
-        "Café orgánico", # 6
-        "Tueste claro", # 7
-        "Tueste medio", # 8
-        "Tueste oscuro", # 9
-        "Café para espresso", # 10
-        "Café para filtro", # 11
-        "Café para prensa francesa", # 12
-        "Café para cold brew", # 13
-        "Accesorios", # 14
-        "Pack", # 15
-        "Reglalo", # 16
-        "Dulces", # 17
-        "Acompañamientos" # 18
+        "Grano entero",  # 0
+        "Café molido",  # 1
+        "Cápsulas y pods",  # 2
+        "Café de origen único",  # 3
+        "Descafeinado",  # 4
+        "Ediciones limitadas",  # 5
+        "Café orgánico",  # 6
+        "Tueste claro",  # 7
+        "Tueste medio",  # 8
+        "Tueste oscuro",  # 9
+        "Café para espresso",  # 10
+        "Café para filtro",  # 11
+        "Café para prensa francesa",  # 12
+        "Café para cold brew",  # 13
+        "Accesorios",  # 14
+        "Pack",  # 15
+        "Reglalo",  # 16
+        "Dulces",  # 17
+        "Acompañamientos"  # 18
     ]
 
     categorias = []
@@ -163,20 +164,6 @@ def poblar_datos():
     productosParaCrear = []
     categoriasProductos = []
 
-    imgProd1 = "productos/cafe.png"
-    producto1 = {
-        "nombre" : "",
-        "descripcion" : "",
-        "precio" : 0,
-        "img" : imgProd1,
-        "stock" : 0,
-        "categoriaPrincipal" : None
-    }
-    categoriasSecundariasProducto1 = []
-    productosParaCrear.append(producto1)
-    categoriasProductos.append(categoriasSecundariasProducto1)
-
-
     imgProd2 = "productos/imgProd2.png"
     producto2 = {
         "nombre" : "Cafe Molido Etiopia Sidamo",
@@ -186,8 +173,11 @@ def poblar_datos():
         "stock" : 120,
         "categoriaPrincipal" : categorias[1]
     }
+    categoriasSecundariasProducto2 = [categorias[3], categorias[7], categorias[11]]
+    productosParaCrear.append(producto2)
+    categoriasProductos.append(categoriasSecundariasProducto2)
 
-    imgProd3 = "productos/cafeAndino.pn     g"
+    imgProd3 = "productos/cafeAndino.png"
     producto3 = {
         "nombre" : "Café Andino Intenso",
         "descripcion" : "Tueste oscuro con amargor marcado, cuerpo pesado y final prolongado. Ideal para quienes buscan una taza fuerte que mantenga sabor incluso con leche. Aroma a cacao tostado y notas terrosas.",
@@ -196,6 +186,9 @@ def poblar_datos():
         "stock" : 42,
         "categoriaPrincipal" : categorias[9]
     }
+    categoriasSecundariasProducto3 = [categorias[0], categorias[10]]
+    productosParaCrear.append(producto3)
+    categoriasProductos.append(categoriasSecundariasProducto3)
 
     imgProd4 = "productos/imgProd4.png"
     producto4 = {
@@ -204,8 +197,11 @@ def poblar_datos():
         "precio" : 11900,
         "img" : imgProd4,
         "stock" : 120,
-        "categoriaPrincipal" : categoria[0]
+        "categoriaPrincipal" : categorias[0]
     }
+    categoriasSecundariasProducto4 = [categorias[3], categorias[7]]
+    productosParaCrear.append(producto4)
+    categoriasProductos.append(categoriasSecundariasProducto4)
 
     imgProd5 = "productos/imgProd5.png"
     producto5 = {
@@ -214,18 +210,24 @@ def poblar_datos():
         "precio" : 5900,
         "img" : imgProd5,
         "stock" : 200,
-        "categoriaPrincipal" : categoria[2]
+        "categoriaPrincipal" : categorias[2]
     }
+    categoriasSecundariasProducto5 = [categorias[9], categorias[10]]
+    productosParaCrear.append(producto5)
+    categoriasProductos.append(categoriasSecundariasProducto5)
 
     imgProd6 = "productos/imgProd6.png"
     producto6 = {
         "nombre" : "Cafetera Prensa Francesa 600 ml",
         "descripcion" : "Vidrio templado y acero.",
-        "precio" : 19.900,
+        "precio" : 19900,
         "img" : imgProd6,
         "stock" : 40,
-        "categoriaPrincipal" : categoria[12]
+        "categoriaPrincipal" : categorias[12]
     }
+    categoriasSecundariasProducto6 = [categorias[14], categorias[16]]
+    productosParaCrear.append(producto6)
+    categoriasProductos.append(categoriasSecundariasProducto6)
 
     imgProd7 = "productos/Cold_Brew.jpg"
     producto7 = {
@@ -234,8 +236,11 @@ def poblar_datos():
         "precio" : 5500,
         "img" : imgProd7,
         "stock" : 120,
-        "categoriaPrincipal" : categoria[13]
+        "categoriaPrincipal" : categorias[13]
     }
+    categoriasSecundariasProducto7 = [categorias[7], categorias[10], categorias[6]]
+    productosParaCrear.append(producto7)
+    categoriasProductos.append(categoriasSecundariasProducto7)
 
     imgProd8 = "productos/note_despresso.png"
     producto8 = {
@@ -244,8 +249,11 @@ def poblar_datos():
         "precio" : 9000,
         "img" : imgProd8,
         "stock" : 25,
-        "categoriaPrincipal" : categoria[10]
+        "categoriaPrincipal" : categorias[10]
     }
+    categoriasSecundariasProducto8 = [categorias[8], categorias[1], categorias[6]]
+    productosParaCrear.append(producto8)
+    categoriasProductos.append(categoriasSecundariasProducto8)
 
     imgProd9 = "productos/imgProd9.png"
     producto9 = {
@@ -254,8 +262,11 @@ def poblar_datos():
         "precio" : 21500,
         "img" : imgProd9,
         "stock" : 50,
-        "categoriaPrincipal" : categoria[10]
+        "categoriaPrincipal" : categorias[10]
     }
+    categoriasSecundariasProducto9 = [categorias[14], categorias[15]]
+    productosParaCrear.append(producto9)
+    categoriasProductos.append(categoriasSecundariasProducto9)
 
     imgProd10 = "productos/ehya_descafeinado.png"
     producto10 = {
@@ -264,8 +275,11 @@ def poblar_datos():
         "precio" : 7800,
         "img" : imgProd10,
         "stock" : 40,
-        "categoriaPrincipal" : categoria[4]
+        "categoriaPrincipal" : categorias[4]
     }
+    categoriasSecundariasProducto10 = [categorias[1], categorias[6]]
+    productosParaCrear.append(producto10)
+    categoriasProductos.append(categoriasSecundariasProducto10)
 
     imgProd11 = "productos/imgProd11.png"
     producto11 = {
@@ -274,18 +288,24 @@ def poblar_datos():
         "precio" : 15900,
         "img" : imgProd11,
         "stock" : 70,
-        "categoriaPrincipal" : categoria[10]
+        "categoriaPrincipal" : categorias[10]
     }
+    categoriasSecundariasProducto11 = [categorias[16], categorias[17], categorias[18]]
+    productosParaCrear.append(producto11)
+    categoriasProductos.append(categoriasSecundariasProducto11)
 
     imgProd12 = "productos/native_Organico.png"
-    producto1 = {
+    producto12 = {
         "nombre" : "Native Cafe Organico",
         "descripcion" : "Café certificado orgánico cultivado sin pesticidas ni químicos. Notas herbales, cacao natural y frutos secos. Su acidez es baja y su cuerpo es medio, dando como resultado una taza suave y sostenible para el consumo diario.",
         "precio" : 9200,
         "img" : imgProd12,
         "stock" : 32,
-        "categoriaPrincipal" : categoria[6]
+        "categoriaPrincipal" : categorias[6]
     }
+    categoriasSecundariasProducto12 = [categorias[0], categorias[7], categorias[11]]
+    productosParaCrear.append(producto12)
+    categoriasProductos.append(categoriasSecundariasProducto12)
 
     imgProd13 = "productos/fortaleza_despertar.jpg"
     producto13 = {
@@ -294,8 +314,11 @@ def poblar_datos():
         "precio" : 10000,
         "img" : imgProd13,
         "stock" : 27,
-        "categoriaPrincipal" : categoria[9]
+        "categoriaPrincipal" : categorias[9]
     }
+    categoriasSecundariasProducto13 = [categorias[5], categorias[5], categorias[13]]
+    productosParaCrear.append(producto13)
+    categoriasProductos.append(categoriasSecundariasProducto13)
 
     imgProd14 = "productos/Dolce_Gusto_Expresso_Intenso.png"
     producto14 = {
@@ -304,8 +327,11 @@ def poblar_datos():
         "precio" : 5900,
         "img" : imgProd14,
         "stock" : 45,
-        "categoriaPrincipal" : categoria[4]
+        "categoriaPrincipal" : categorias[4]
     }
+    categoriasSecundariasProducto14 = [categorias[2], categorias[5], categorias[7]]
+    productosParaCrear.append(producto14)
+    categoriasProductos.append(categoriasSecundariasProducto14)
 
     imgProd15 = "productos/kit_accesorios.jpg"
     producto15 = {
@@ -314,8 +340,11 @@ def poblar_datos():
         "precio" : 14900,
         "img" : imgProd15,
         "stock" : 22,
-        "categoriaPrincipal" : categoria[14]
+        "categoriaPrincipal" : categorias[14]
     }
+    categoriasSecundariasProducto15 = [categorias[14], categorias[3], categorias[16]]
+    productosParaCrear.append(producto15)
+    categoriasProductos.append(categoriasSecundariasProducto15)
 
     imgProd16 = "productos/imgProd16.png"
     producto16 = {
@@ -324,8 +353,11 @@ def poblar_datos():
         "precio" : 34900,
         "img" : imgProd16,
         "stock" : 35,
-        "categoriaPrincipal" : categoria[15]
+        "categoriaPrincipal" : categorias[15]
     }
+    categoriasSecundariasProducto16 = [categorias[12], categorias[6], categorias[7]]
+    productosParaCrear.append(producto16)
+    categoriasProductos.append(categoriasSecundariasProducto16)
 
     imgProd17 = "productos/desgustacion_barista_incapto.png"
     producto17 = {
@@ -334,8 +366,24 @@ def poblar_datos():
         "precio" : 15990,
         "img" : imgProd17,
         "stock" : 40,
-        "categoriaPrincipal" : categoria[14]
+        "categoriaPrincipal" : categorias[14]
     }
+    categoriasSecundariasProducto17 = [categorias[15], categorias[5], categorias[3]]
+    productosParaCrear.append(producto17)
+    categoriasProductos.append(categoriasSecundariasProducto17)
+
+    imgProd18 = "productos/cafe_origenunico.jpg"
+    producto18 = {
+        "nombre" : "Cerro Azul Single Origin",
+        "descripcion" : "Proveniente de una sola finca ubicada en altura, donde cada lote se selecciona manualmente para garantizar uniformidad. Presenta un perfil frutal limpio con notas a durazno, naranja madura y miel ligera. Acidez brillante pero equilibrada, cuerpo medio y final dulce persistente. Ideal para métodos que realzan claridad como V60, Kalita o Aeropress.",
+        "precio" : 11500,
+        "img" : imgProd18,
+        "stock" : 22,
+        "categoriaPrincipal" : categorias[3]
+    }
+    categoriasSecundariasProducto18 = [categorias[2], categorias[7], categorias[11]]
+    productosParaCrear.append(producto18)
+    categoriasProductos.append(categoriasSecundariasProducto18)
 
     imgProd19 = "productos/imgProd19.png"
     producto19 = {
@@ -344,8 +392,11 @@ def poblar_datos():
         "precio" : 5800,
         "img" : imgProd19,
         "stock" : 130,
-        "categoriaPrincipal" : categoria[4]
+        "categoriaPrincipal" : categorias[4]
     }
+    categoriasSecundariasProducto19 = [categorias[2], categorias[7], categorias[5]]
+    productosParaCrear.append(producto19)
+    categoriasProductos.append(categoriasSecundariasProducto19)
 
     imgProd20 = "productos/GiftBox_Coffee.png"
     producto20 = {
@@ -354,8 +405,11 @@ def poblar_datos():
         "precio" : 22500,
         "img" : imgProd20,
         "stock" : 12,
-        "categoriaPrincipal" : categoria[16]
+        "categoriaPrincipal" : categorias[16]
     }
+    categoriasSecundariasProducto20 = [categorias[15], categorias[17], categorias[7]]
+    productosParaCrear.append(producto20)
+    categoriasProductos.append(categoriasSecundariasProducto20)
 
     imgProd21 = "productos/galletas_para_cafe.png"
     producto21 = {
@@ -364,8 +418,11 @@ def poblar_datos():
         "precio" : 3200,
         "img" : imgProd21,
         "stock" : 55,
-        "categoriaPrincipal" : categoria[18]
+        "categoriaPrincipal" : categorias[18]
     }
+    categoriasSecundariasProducto21 = [categorias[17], categorias[16]]
+    productosParaCrear.append(producto21)
+    categoriasProductos.append(categoriasSecundariasProducto21)
 
     imgProd22 = "productos/imgProd22.png"
     producto22 = {
@@ -374,8 +431,11 @@ def poblar_datos():
         "precio" : 9800,
         "img" : imgProd22,
         "stock" : 150,
-        "categoriaPrincipal" : categoria[8]
+        "categoriaPrincipal" : categorias[8]
     }
+    categoriasSecundariasProducto22 = [categorias[10], categorias[0], categorias[11]]
+    productosParaCrear.append(producto22)
+    categoriasProductos.append(categoriasSecundariasProducto22)
 
     imgProd23 = "productos/bombones_rellenos.jpg"
     producto23 = {
@@ -384,8 +444,10 @@ def poblar_datos():
         "precio" : 4700,
         "img" : imgProd23,
         "stock" : 55,
-        "categoriaPrincipal" : categoria[17]
-    }
+        "categoriaPrincipal" : categorias[17]}
+    categoriasSecundariasProducto23 = [categorias[16], categorias[15]]
+    productosParaCrear.append(producto23)
+    categoriasProductos.append(categoriasSecundariasProducto23)
 
     imgProd24 = "productos/bruma_cafe.png"
     producto24 = {
@@ -394,8 +456,11 @@ def poblar_datos():
         "precio" : 7900,
         "img" : imgProd24,
         "stock" : 44,
-        "categoriaPrincipal" : categoria[11]
+        "categoriaPrincipal" : categorias[11]
     }
+    categoriasSecundariasProducto24 = [categorias[3], categorias[8]]
+    productosParaCrear.append(producto24)
+    categoriasProductos.append(categoriasSecundariasProducto24)
 
     imgProd25 = "productos/cafe_tuestemedio.jpg"
     producto25 = {
@@ -404,105 +469,114 @@ def poblar_datos():
         "precio" : 8200,
         "img" : imgProd25,
         "stock" : 38,
-        "categoriaPrincipal" : categoria[8]
+        "categoriaPrincipal" : categorias[8]
     }
+    categoriasSecundariasProducto25 = [categorias[0], categorias[10]]
+    productosParaCrear.append(producto25)
+    categoriasProductos.append(categoriasSecundariasProducto25)
 
-    imgProd26 = "productos/cafe_tuesteclaro.jpg"
+    imgProd26 = "productos/cafe_tuesteclaro.png"
     producto26 = {
         "nombre" : "Claro Amanecer 1982",
         "descripcion" : "Grano de alta montaña con acidez brillante, notas frutales (frutos rojos, mandarina) y aroma floral. Ideal para resaltar complejidad y dulzor natural en métodos de filtrado. Final limpio y refrescante.",
         "precio" : 9000,
         "img" : imgProd26,
         "stock" : 27,
-        "categoriaPrincipal" : categoria[7]
+        "categoriaPrincipal" : categorias[7]
     }
+    categoriasSecundariasProducto26 = [categorias[3], categorias[0]]
+    productosParaCrear.append(producto26)
+    categoriasProductos.append(categoriasSecundariasProducto26)
 
-    imgProd27= "productos/cafe_especial.jpg"
+    imgProd27 = "productos/cafe_especial.png"
     producto27 = {
-        "nombre" : "Edición Dorada Microlote Especial Chiara",
-        "descripcion" : "Microlote exclusivo de cosecha reducida, tostado en pequeños lotes para preservar aromas delicados. Perfil complejo con capas de jazmín, miel, té negro y chocolate oscuro. Alta claridad y textura sedosa. Solo disponible durante la temporada.",
+        "nombre" : "Edicion Dorada Microlote Especial Chiara",
+        "descripcion" : "Microlote exclusivo de cosecha reducida, tostado en pequeños lotes para preservar aromas delicados. Perfil complejo con capas de jazmin, miel, te negro y chocolate oscuro. Alta claridad y textura sedosa. Solo disponible durante la temporada.",
         "precio" : 14900,
         "img" : imgProd27,
         "stock" : 9,
-        "categoriaPrincipal" : categoria[5]
+        "categoriaPrincipal" : categorias[5]
     }
+    categoriasSecundariasProducto27 = [categorias[4], categorias[3], categorias[7]]
+    productosParaCrear.append(producto27)
+    categoriasProductos.append(categoriasSecundariasProducto27)
 
-    imgProd28 = "productos/cafe_origenunico.jpg"
-    producto28 = {
-        "nombre" : "Cerro Azul Single Origin",
-        "descripcion" : "Proveniente de una sola finca ubicada en altura, donde cada lote se selecciona manualmente para garantizar uniformidad. Presenta un perfil frutal limpio con notas a durazno, naranja madura y miel ligera. Acidez brillante pero equilibrada, cuerpo medio y final dulce persistente. Ideal para métodos que realzan claridad como V60, Kalita o Aeropress.",
-        "precio" : 11500,
-        "img" : imgProd28,
-        "stock" : 22,
-        "categoriaPrincipal" : categoria[3]
-    }
-
-
-
-
-
-
-
-
-
-
-
-    # Lista de nombres de archivo relativos a MEDIA_ROOT
-    imagenes = ["productos/cafe.png", "productos/prod2.jpeg", "productos/prod3.jpeg"]
-
-    productos = []
-    for nombre in productos_genericos:
-        categoria_principal = random.choice(categorias)
+    contador = 0
+    for producto in productosParaCrear:
         producto = Producto.objects.create(
-            nombre=nombre,
-            descripcion=f"Descripcion para {nombre}",
-            precio=random.randint(1000, 50000),
-            stock=random.randint(5, 50),
-            categoriaPrincipal=categoria_principal,
-            img=random.choice(imagenes)
+            nombre=producto["nombre"],
+            descripcion=producto["descripcion"],
+            precio=producto["precio"],
+            img=producto["img"],
+            stock=producto["stock"],
+            categoriaPrincipal=producto["categoriaPrincipal"]
         )
-        productos.append(producto)
+        producto.save()
 
-    print("Productos creados")
+        for categoria in categoriasProductos[contador]:
+            categoriaProducto = CategoriaProducto.objects.create(producto=producto, categoria=categoria)
+            categoriaProducto.save()
 
-    # Asociar productos con categorías aleatorias (al menos 1 por producto)
-    for producto in productos:
-        cats_usadas = random.sample(categorias, k=random.randint(1, len(categorias)))
-        for cat in cats_usadas:
-            CategoriaProducto.objects.create(producto=producto, categoria=cat)
+        contador = contador + 1
 
-    print("Categorías de productos asociadas")
 
-    # Agrega 300 ventas, usuario y método de pago aleatorio
-    ventas = []
+    # ==============================================================
+    # Ventas y detalles de venta
     estadoVentas = ['Confirmada', 'Confirmada', 'Confirmada', 'Confirmada', 'Pendiente']
-    for _ in range(300):
+
+    usuarios = User.objects.all()
+
+    metodo_pago = MetodoPago.objects.first()
+
+    productos = Producto.objects.all()
+
+    for index in range(50):
+
         usuario = random.choice(usuarios)
-        metodo_pago = random.choice(metodos_pago)
         estadoVenta = random.choice(estadoVentas)
+
+        # la fecha se genera aleatoriamente dentro de los dias de este mes
+        fecha_aleatoria = datetime.now().replace(day=random.randint(1, 17))
+
         venta = Venta.objects.create(
             totalVenta=0,
+            telefonoContacto=usuario.telefono,
             usuario=usuario,
             metodoPago=metodo_pago,
-            estadoVenta=estadoVenta
+            estadoVenta=estadoVenta,
+            fechaHora=fecha_aleatoria,
+            nombreDestinatario=usuario.nombre,
+            apellidoDestinatario=usuario.apellido,
+            region="Metropolitana",
+            comuna="San Joaquin",
+            direccionEnvio=usuario.direccion,
         )
-        ventas.append(venta)
 
-    print("Ventas creadas")
+        cantidad_productos = random.randint(1, 2)
 
-    # Para cada venta, asigna al menos un producto con cantidad aleatoria
-    contador = 0
-    for venta in ventas:
-        productos_en_venta = random.sample(productos, k=random.randint(1, 3))
-        print(f"Asignando productos a la venta {contador}")
-        contador += 1
+        productos_seleccionados = random.sample(list(productos), cantidad_productos)
 
-        for producto in productos_en_venta:
-            cantidad = random.randint(1, 10)
-            DetalleVenta.objects.create(cantidad=cantidad, producto=producto, venta=venta)
 
-    print("Datos poblados correctamente.")
+        totalVenta = 0
+
+        for producto in productos_seleccionados:
+            cantidad = random.randint(1, 3)
+
+            detalleVenta = DetalleVenta.objects.create(
+                cantidad=cantidad,
+                producto=producto,
+                venta=venta
+            )
+            totalVenta = totalVenta + (producto.precio * cantidad)
+
+            detalleVenta.save()
+
+        venta.totalVenta = totalVenta
+        venta.save()
+
+        totalVenta = 0
+
+
 
 
 poblar_datos()
-

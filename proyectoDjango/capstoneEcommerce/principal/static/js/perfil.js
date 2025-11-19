@@ -97,4 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
             crearElementoToast("Error", "Ocurrio un error inesperado", "error")
         });
     });
+
+    
 });

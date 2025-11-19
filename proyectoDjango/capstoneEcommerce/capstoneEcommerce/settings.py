@@ -13,7 +13,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
 # cositas para la producción
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
@@ -25,23 +24,16 @@ SECURE_HSTS_PRELOAD = True
 DEBUG = True
 SECURE_SSL_REDIRECT = False
 
-# cambiar cuando compremos el dominio
 ALLOWED_HOSTS = ['tu-dominio.com', 'www.tu-dominio.com', '72.61.50.136', '*']
 
-
-# para la api
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 AUTH_USER_MODEL = "principal.User"
 
-# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -69,7 +61,7 @@ ROOT_URLCONF = 'capstoneEcommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,10 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'capstoneEcommerce.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 DATABASES = {
@@ -100,9 +88,6 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT'),
     }
 }
-
-# Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -119,24 +104,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
-
 LANGUAGE_CODE = 'es-cl'
-
 
 USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "nld.tzs.96@gmail.com"
+EMAIL_HOST_PASSWORD = "fhcn iybr qtxm uofo"
+
+EMAIL_FROM = EMAIL_HOST_USER
+PASSWORD_RESET_TIMEOUT = 3600
