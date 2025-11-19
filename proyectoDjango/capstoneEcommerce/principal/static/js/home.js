@@ -7,6 +7,7 @@ function poblarCategoriasDestacadas() {
         let data = await response.json();
 
         contenedorCategoriasDestacadas.innerHTML = '';
+        
         data.forEach(categoria => {
             let columnaCategoria = document.createElement('div');
             columnaCategoria.classList.add('flex-grow-1');
