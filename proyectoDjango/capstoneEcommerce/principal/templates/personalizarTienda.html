@@ -56,8 +56,6 @@
                             <div class="color-display"></div>
                         </div>
 
-
-
                         <div class="input-container mt-2">
                             <input type="text" id="colorMarca2Text" name="colorMarca2Text" class="input-field"
                                 placeholder="#000000" required>
@@ -279,6 +277,31 @@
 
             </div>
 
+
+            <h3 class="head3 text-center mt-4 mb-5">Logo de la tienda</h3>
+
+            <div class="contenedorFlex mb-5">
+
+                <div class="flex-item d-flex flex-column align-items-center">
+
+                    <div class="input-container">
+
+                        <input class="file-hidden" type="file" id="logoTiendaArchivo" name="logoTiendaArchivo"
+                            accept=".png,.jpg,.jpeg,.svg">
+                        <label class="input-label" for="logoTiendaArchivo">Logo de la tienda</label>
+
+                        <div class="file-wrapper">
+                            <button type="button" class="file-button"
+                                onclick="document.getElementById('logoTiendaArchivo').click()">
+                                Seleccionar archivo
+                            </button>
+                            <span class="file-name" id="logoTiendaArchivoName">Ningún archivo</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
 
             <div class="d-flex justify-content-between mt-4 mb-2">
                 <button type="button" id="botonResetEstilos" class="botonReset me-3">Restablecer estilos</button>

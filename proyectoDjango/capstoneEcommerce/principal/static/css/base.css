@@ -41,6 +41,8 @@
 }
 
 
+
+
 /* headers */
 .head1 {
     font-family: tipoPrincipal;
@@ -296,10 +298,25 @@
 }
 
 .imgNav {
-    animation: imgNavScroll both;
-    animation-timeline: scroll();
+	width: 50px;
+	height: 50px;
+	background-image: url('/media/logos/default_logo.png');
+	background-size: contain;
+	background-position: center;
+    background-repeat: no-repeat;
 }
 
+.imgFooter {
+    background-image: url('/media/logos/default_logo.png');
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
 @keyframes imgNavScroll {
     0% {
         width: 4rem;
@@ -626,3 +643,33 @@ input[type="number"]::-webkit-outer-spin-button {
     align-items: center;
     flex-direction: column;
 }
+
+/* colores */
+.textoColorDanger {
+    color: var(--colorDanger);
+}
+
+.textoColorSuccess {
+    color: var(--colorSuccess);
+}
+
+.textoColorInfo {
+    color: var(--colorMarca2);
+}
+
+/* borde sutil rojo con un poco de boxshadow rojo */
+.bordeError {
+    border: 1px solid var(--colorDanger);
+    box-shadow: 0 0 5px 1px rgba(240, 97, 110, 0.4);
+}
+
+.bordeSuccess {
+    border: 1px solid var(--colorSuccess);
+    box-shadow: 0 0 5px 1px rgba(47, 107, 77, 0.4);
+}
+
+.bordeInfo {
+    border: 1px solid var(--colorMarca2);
+    box-shadow: 0 0 5px 1px rgba(92, 90, 140, 0.4);
+}
+

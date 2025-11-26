@@ -197,6 +197,11 @@ class PersonalizacionTienda(models.Model):
         default="fuentes/LuxuriousRoman-Regular.ttf"
     )
 
+    logoSitioArchivo = models.ImageField(
+        upload_to="logos/",
+        default="logos/default_logo.png"
+    )
+
     class Meta:
         verbose_name = "Personalización de Tienda"
         verbose_name_plural = "Personalizaciones de Tienda"

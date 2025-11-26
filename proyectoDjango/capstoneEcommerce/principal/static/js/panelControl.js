@@ -93,7 +93,7 @@ function poblarTablaVentasPendientes(idVentaBuscar = null, csrfToken = null) {
 // Funcion para poblar la tabla de usuarios
 function poblarTablaUsuarios(idUsuarioBuscar = null, nombreUsuarioBuscar = null, csrfToken = null) {
 	let tablaUsuariosBody = document.getElementById("tablaUsuariosBody");
-	
+
 	if (!idUsuarioBuscar) {
 		idUsuarioBuscar = "";
 	}
@@ -390,6 +390,7 @@ function cargarCategoriasEnSelect(selectElement) {
 		console.error("Error en la solicitud:", error);
 	});
 }
+
 
 // ===========================================================================
 // Código principal al cargar el DOM

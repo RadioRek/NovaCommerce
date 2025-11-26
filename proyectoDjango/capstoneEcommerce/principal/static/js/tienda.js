@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		let API_URL = "/api/productos/";
 
-		setLoading(true);
 
 		let url = API_URL + `?page=${encodeURIComponent(page)}`;
 
@@ -42,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.error("Error en la solicitud:", error);
 		});
 
-		setLoading(false);
 		paginaActual = page;
 	}
 
@@ -128,14 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		paginationEl.appendChild(pageItem("»", page + 1, page >= totalPages));
 	}
 
-	function setLoading(isLoading) {
-		if (!grid) return;
-		if (isLoading) {
-			grid.innerHTML = `<div class="col-12 text-center py-4">Cargando productos...</div>`;
-		}
-	}
 
-	function renderProducts(products) {
+	function renderProducts(products) {	
 		if (!products.length) {
 			grid.innerHTML = `<div class="col-12 text-center py-4">No hay productos disponibles.</div>`;
 			return;

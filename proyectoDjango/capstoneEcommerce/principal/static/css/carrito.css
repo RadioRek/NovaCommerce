@@ -20,7 +20,8 @@ hr {
 	max-height: 160px;
 }
 
-
+	
 .imgCheck {
     max-width: 100%;
+	max-height: 200px;
 }

@@ -26,11 +26,11 @@ function crearCartaProducto(producto, cantidad) {
             <div class="col-sm-6 d-flex flex-column justify-content-center">
                 <form action="" class="mb-4">
                     <div class="row m-0 p-0">
-                        <button class="col-2 botonGenerico m-0">-</button>
+                        <button type="button" class="col-2 botonGenerico m-0" onclick="actualizarCantidad(this)">-</button>
                         <div class="col-8 m-0 p-0">
                             <input type="number" class="form-control estiloInput parrafoPequeño m-0 campoCantidad" value="${cantidad}" min="1">
                         </div>
-                        <button class="col-2 botonGenerico m-0">+</button>
+                        <button type="button" class="col-2 botonGenerico m-0" onclick="actualizarCantidad(this)">+</button>
                     </div>
                 </form>
                 <button class="botonDanger w-25 align-self-center botonQuitarProd">Eliminar</button>
@@ -41,6 +41,21 @@ function crearCartaProducto(producto, cantidad) {
     `.trim();
 
     return template.content.firstElementChild;
+}
+
+function actualizarCantidad(button) {
+    let inputCantidad = button.parentElement.querySelector(".campoCantidad");
+    let currentValue = parseInt(inputCantidad.value);
+
+    if (button.textContent === "+") {
+        inputCantidad.value = currentValue + 1;
+    } else if (button.textContent === "-") {
+        if (currentValue > 1) {
+            inputCantidad.value = currentValue - 1;
+        }
+    }
+
+    inputCantidad.dispatchEvent(new Event("change", { bubbles: true }));
 }
 
 // ===========================================================================
@@ -84,6 +99,7 @@ function actualizarCarrito(csrftoken) {
                 if (nuevaCantidad > 0) {
                     actualizarCantidadProducto(detalleCarrito.id, nuevaCantidad, csrftoken);
                 } else {
+
                     crearElementoToast("Error", "La cantidad debe ser mayor a 0", "error");
                     event.target.value = detalleCarrito.cantidad;
                 }

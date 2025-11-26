@@ -57,5 +57,6 @@
 .cartita {
 	display: flex;
 	flex-direction: column;
-	height: fit-content;
+	height: 450px;
 }
+

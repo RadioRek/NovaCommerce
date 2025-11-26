@@ -67,16 +67,21 @@ def testEquisde(request):
 
 
 def estilos_css(request):
+
     estilos = PersonalizacionTienda.objects.filter(id=1).first()
 
     if not estilos:
         return HttpResponse("", content_type="text/css")
 
     font_principal = ""
+
     font_secundaria = ""
+
+    logo = ""
 
     # Fuente principal dinámica
     if estilos.fuentePrincipalArchivo:
+
         font_principal = f"""
         @font-face {{
             font-family: 'tipoPrincipal';
@@ -93,21 +98,36 @@ def estilos_css(request):
         }}
         """
 
-    css = f"""
-    {font_principal}
-    {font_secundaria}
+    # logo dinámico
+    if estilos.logoSitioArchivo:
+        logo = f"""
+        .imgNav {{
+            background-image: url('{settings.MEDIA_URL}{estilos.logoSitioArchivo}');
+        }}
+        .imgFooter {{
+            background-image: url('{settings.MEDIA_URL}{estilos.logoSitioArchivo}');
+        }}
+        """
 
-    :root {{
-        --colorMarca1: {estilos.colorMarca1};
-        --colorMarca2: {estilos.colorMarca2};
-        --colorDanger: {estilos.colorDanger};
-        --colorSuccess: {estilos.colorSuccess};
-        --negro: {estilos.negro};
-        --negroSuave: {estilos.negroSuave};
-        --gris: {estilos.gris};
-        --blanco: {estilos.blanco};
-        --masBlanco: {estilos.masBlanco};
-    }}
+
+    css = f"""
+        {font_principal}
+
+        {font_secundaria}
+
+        {logo}
+
+        :root {{
+            --colorMarca1: {estilos.colorMarca1};
+            --colorMarca2: {estilos.colorMarca2};
+            --colorDanger: {estilos.colorDanger};
+            --colorSuccess: {estilos.colorSuccess};
+            --negro: {estilos.negro};
+            --negroSuave: {estilos.negroSuave};
+            --gris: {estilos.gris};
+            --blanco: {estilos.blanco};
+            --masBlanco: {estilos.masBlanco};
+        }}
     """
 
     return HttpResponse(css, content_type="text/css")
@@ -781,7 +801,7 @@ class PersonalizacionTiendaViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'], url_path='reset', permission_classes=[controlPermisosAccesoAdmin])
     def reset(self, request):
-        obj = estilos = PersonalizacionTienda.objects.filter(id=1).first()
+        obj = PersonalizacionTienda.objects.filter(id=1).first()
 
         obj.colorMarca1 = obj._meta.get_field('colorMarca1').default
         obj.colorMarca2 = obj._meta.get_field('colorMarca2').default
@@ -795,7 +815,7 @@ class PersonalizacionTiendaViewSet(viewsets.ModelViewSet):
 
         obj.fuentePrincipalArchivo = obj._meta.get_field('fuentePrincipalArchivo').default
         obj.fuenteSecundariaArchivo = obj._meta.get_field('fuenteSecundariaArchivo').default
-
+        obj.logoSitioArchivo = obj._meta.get_field('logoSitioArchivo').default
         obj.save()
 
         return Response({"status": "ok"}, status=status.HTTP_200_OK)

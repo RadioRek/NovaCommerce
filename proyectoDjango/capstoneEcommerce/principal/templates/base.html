@@ -15,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
         </script>
+
     <script src="{% static 'js/alertas.js' %}"></script>
 
     {% block head %}
@@ -26,7 +27,8 @@
 
         <div class="container-fluid px-0">
             <a class="navbar-brand" href="#">
-                <img src="{% static 'img/coffee-shop.png' %}" width="50" height="50" class="imgNav">
+
+                <div class="imgNav"></div>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -105,26 +107,26 @@
         <div class="row p-2 m-0 mb-2 justify-content-center">
 
             <div class="col-12 col-sm-3 mb-4 mb-sm-0 d-flex justify-content-center justify-content-sm-start">
-                <img src="{% static 'img/coffee-shop.png' %}" width="100" height="100" class="my-auto">
+
+                <div class="imgFooter"></div>
+
             </div>
 
             <div class="col-6 col-sm-3 d-flex flex-column mb-2 mb-sm-0 text-center text-sm-start">
                 <h6 class="parrafoBlanco fw-bold m-0">Ayuda</h6>
 
-                <a class="parrafoPequeñoBlanco noDecor">Contáctanos</a>
-                <a class="parrafoPequeñoBlanco noDecor">Sobre Nosotros</a>
-                <a class="parrafoPequeñoBlanco noDecor">Blog</a>
-                <a class="parrafoPequeñoBlanco noDecor">Reseñas</a>
+                <a class="parrafoPequeñoBlanco noDecor" href="{% url 'nosotros' %}">Contáctanos</a>
+                <a class="parrafoPequeñoBlanco noDecor" href="{% url 'nosotros' %}">Sobre Nosotros</a>
 
             </div>
 
             <div class="col-6 col-sm-3 d-flex flex-column mb-2 mb-sm-0 text-center text-sm-start">
                 <h6 class="parrafoBlanco fw-bold m-0">Contacto</h6>
 
-                <a class="parrafoPequeñoBlanco noDecor">Contacto</a>
-                <a class="parrafoPequeñoBlanco noDecor">Contacto Contacto</a>
-                <a class="parrafoPequeñoBlanco noDecor">Contacto</a>
-                <a class="parrafoPequeñoBlanco noDecor">Contacto</a>
+                <a class="parrafoPequeñoBlanco noDecor">Calle Falsa 123</a>
+                <a class="parrafoPequeñoBlanco noDecor">9 2000 3000</a>
+                <a class="parrafoPequeñoBlanco noDecor">correoempresa@empresa.com</a>
+                <a class="parrafoPequeñoBlanco noDecor">@empresanombre</a>
             </div>
         </div>
 
@@ -142,6 +144,7 @@
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
 
     </div>
+
     <script src="{% static 'js/base.js' %}"></script>
 </body>
 </html>

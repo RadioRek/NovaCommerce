@@ -13,8 +13,6 @@ function getCookie(name) {
     return cookieValue;
 }
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
 
     // seleccionar todos los contenedores de input de color
@@ -54,17 +52,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    const updateName = (inputId, nameId) => {
+    function updateName(inputId, nameId) {
         const input = document.getElementById(inputId);
         const nameSpan = document.getElementById(nameId);
 
         input.addEventListener('change', () => {
-            nameSpan.textContent = input.files.length > 0 ? input.files[0].name : "Ningún archivo";
+            nameSpan.textContent =
+                input.files.length > 0 ? input.files[0].name : "Ningún archivo";
         });
-    };
+    }
 
     updateName("fuentePrincipalArchivo", "fuentePrincipalArchivoName");
     updateName("fuenteSecundariaArchivo", "fuenteSecundariaArchivoName");
+    updateName("logoTiendaArchivo", "logoTiendaArchivoName");
 
 
     function cargarEstilosPersonalizados() {
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
 
         }).then(data => {
-            const estilos = data;
+            let estilos = data;
 
             let colorMarca1 = estilos.colorMarca1;
             let colorMarca2 = estilos.colorMarca2;
@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let formularioPer = document.getElementById('formPersonalizacion');
 
     formularioPer.addEventListener('submit', function (event) {
+
         event.preventDefault();
 
         let colorMarca1 = document.getElementById('colorMarca1').value;
@@ -151,8 +152,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let fuentePrincipal = document.getElementById("fuentePrincipalArchivo").files[0];
         let fuenteSecundaria = document.getElementById("fuenteSecundariaArchivo").files[0];
+        let logoTienda = document.getElementById("logoTiendaArchivo").files[0];
 
         let formData = new FormData();
+
         formData.append('colorMarca1', colorMarca1);
         formData.append('colorMarca2', colorMarca2);
         formData.append('colorDanger', colorDanger);
@@ -169,9 +172,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (fuenteSecundaria) {
             formData.append("fuenteSecundariaArchivo", fuenteSecundaria);
         }
+        if (logoTienda) {
+            formData.append("logoSitioArchivo", logoTienda);
+        }
 
         // comprobar si existen los estilos
-        let banderaEstilos = 'POST'
+        let banderaEstilos = ''
+
         fetch('/api/personalizacion-tienda/1/', {
             method: 'GET'
         }).then(response => {
@@ -183,6 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(() => {
 
             let url = ""
+
             if (banderaEstilos === 'POST') {
                 url = '/api/personalizacion-tienda/';
             }
@@ -197,15 +205,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     'X-CSRFToken': cookieToken
                 }
             }).then((response) => {
+
                 if (response.ok) {
                     let data = response.json();
+                    return data;
 
                 } else {
                     console.log(response)
+                    throw new Error('Error en la solicitud: ' + response.status);
                 }
 
             }).then((data) => {
+
                 crearElementoToast("Exito", "Los estilos personalizados se han guardado correctamente.", "success");
+
                 // recargar sitio
                 setTimeout(() => {
                     window.location.reload();
@@ -222,7 +235,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     let botonReset = document.getElementById('botonResetEstilos');
+
     botonReset.addEventListener('click', function () {
+
         fetch('/api/personalizacion-tienda/reset/', {
             method: 'GET',
             headers: {
@@ -237,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }, 2000);
             } else {
                 crearElementoToast('Error', 'No se pudieron restablecer los estilos personalizados.', 'error');
+                throw new Error('Error en la solicitud: ' + response.status);
             }
         }).catch(error => {
             console.error('Error al restablecer los estilos personalizados:', error);

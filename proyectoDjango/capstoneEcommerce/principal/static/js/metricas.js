@@ -2,8 +2,8 @@ function crearCartaProductoBajoStock(productoNombre, stock) {
     let template = document.createElement("template");
     template.innerHTML = `
     <div class="card cartaProductoBajoStock flex-grow-1 text-center">
-        <p class="parrafo m-0">${productoNombre}</p>
-        <p class="parrafoPequeño m-0">El producto tiene ${stock} en stock</p>
+        <p class="parrafo m-0 textoColorDanger">${productoNombre}</p>
+        <p class="parrafoPequeño m-0 textoColorDanger">El producto tiene ${stock} en stock</p>
     </div>
     `.trim();
 

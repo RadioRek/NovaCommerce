@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function crearElementoModal(textoHeader, textoBody, funcionParaContinuar, tipoModal) {
     let template = document.createElement("template");
-    
+
     template.innerHTML = `
     <div class="alertaModal">
         <div class="superModal">
@@ -23,7 +23,7 @@ async function crearElementoModal(textoHeader, textoBody, funcionParaContinuar, 
     </div>
     `.trim();
 
-    const elementoAlerta = template.content.firstElementChild;
+    let elementoAlerta = template.content.firstElementChild;
 
     // Agregar funcionalidad a los botones
     const btnCerrar = elementoAlerta.querySelector(".btnCerrarModal");
@@ -53,22 +53,45 @@ async function crearElementoToast(textoHeader, textoBody, tipoToast) {
             <div class="spinner-border spinner-border-sm me-2" role="status" id="alertaSpinner">
                 <span class="visually-hidden">Cargando...</span>
             </div>
-            <strong class="me-auto">${textoHeader}</strong>
+            <strong class="parrafo me-auto">${textoHeader}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-        <div class="toast-body">
+        <div class="parrafoPequeño toast-body">
             ${textoBody}
         </div>
     </div>
     `.trim();
 
+
+    // seleccionamos el header
+    let header = template.content.querySelector(".parrafo");
+    // seleccionamos el body
+    let body = template.content.querySelector(".toast-body");
+    // seleccionamos el toast completo
+    let toast = template.content.querySelector(".toast");
+    // seleccionamos el spinner
+    let spinner = template.content.querySelector("#alertaSpinner");
+    spinner.classList.add("d-none");
+
+
+
     if (tipoToast === "loading") {
-        template.content.querySelector("#alertaSpinner").classList.remove("d-none");
-    } else {
-        template.content.querySelector("#alertaSpinner").classList.add("d-none");
+        spinner.classList.remove("d-none");
+    } else if (tipoToast === "error") {
+        header.classList.add("textoColorDanger");
+        body.classList.add("textoColorDanger");
+        toast.classList.add("bordeError");
+    } else if (tipoToast === "success") {
+        header.classList.add("textoColorSuccess");
+        body.classList.add("textoColorSuccess");
+        toast.classList.add("bordeSuccess");
+    } else if (tipoToast === "info") {
+        header.classList.add("textoColorInfo");
+        body.classList.add("textoColorInfo");
+        toast.classList.add("bordeInfo");
     }
 
-    const elementoToast = template.content.firstElementChild;
+    let elementoToast = template.content.firstElementChild;
 
     const toastBootstrap = new bootstrap.Toast(elementoToast, {
         autohide: true,
@@ -91,4 +114,8 @@ async function eliminarUltimoToast() {
 
     toastContainer.removeChild(ultimoToast);
 }
+
+
+
+
 
