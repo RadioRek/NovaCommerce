@@ -40,6 +40,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 
+from rest_framework.exceptions import NotAuthenticated
+
+
 from rest_framework.decorators import action
 
 from datetime import datetime, time
@@ -556,10 +559,7 @@ class DetalleCarritoViewSet(viewsets.ModelViewSet):
 
                 return queryset
         else:
-            return Response(
-                {'error': 'Debes iniciar sesión para ver los detalles del carrito'},
-                status=status.HTTP_401_UNAUTHORIZED
-            )
+            raise NotAuthenticated('Debes iniciar sesión para ver los detalles del carrito')
 
     def create(self, request):
         # Verificar que el usuario esté autenticado
